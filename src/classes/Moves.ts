@@ -16,4 +16,12 @@ export default class Moves {
     }
     return null;
   }
+
+  computerEasyMove(board: Matrix) {
+    let validMove = null;
+    while (!validMove) {
+      validMove = this.moveIsValid(board, Math.floor(Math.random() * 7) + 1);
+    }
+    return validMove;
+  }
 }
