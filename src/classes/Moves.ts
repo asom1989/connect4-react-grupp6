@@ -1,10 +1,10 @@
-import { Move, Matrix, BoardProps } from "../types/types";
+import { Move, Matrix, BoardProps, PlayerType, Color } from "../types/types";
 export default class Moves {
-  moveMade: number;
+  movesMade: number;
   lastMove: Move;
 
   constructor() {
-    this.moveMade = 0;
+    this.movesMade = 0;
     this.lastMove = undefined!;
   }
 
@@ -23,5 +23,17 @@ export default class Moves {
       validMove = this.moveIsValid(board, Math.floor(Math.random() * 7) + 1);
     }
     return validMove;
+  }
+
+  makeMove(board: Matrix, playerType: PlayerType, currentPlayer: number, _move: Move) {
+    if (this.movesMade >= 42) { return }
+
+    const validMove = playerType === 1 ? _move : this.computerEasyMove(board);
+    
+    if (validMove) {
+      board[validMove.row][validMove.col] = Color[currentPlayer];
+      this.lastMove = validMove;
+      this.movesMade++;
+    }
   }
 }
