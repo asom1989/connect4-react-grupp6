@@ -1,7 +1,7 @@
-
+import { Move, Matrix, BoardProps } from "../types/types";
 export default class Moves {
   moveMade: number;
-  lastMove: object;
+  lastMove: Move;
 
   constructor() {
     this.moveMade = 0;
