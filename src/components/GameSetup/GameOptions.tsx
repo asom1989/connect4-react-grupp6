@@ -13,7 +13,7 @@ const GameOptions = ({
 }: GameOptionsProps) => {
   return (
     <section className="game-options">
-      {/* <h1 className="game-title">Connect-4 Game</h1> */}
+      <h1 className="game-title">Connect-4 Game</h1>
       <div className="buttons-wrapper">
         <button
           className="primary-btn"

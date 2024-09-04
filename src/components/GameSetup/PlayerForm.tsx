@@ -18,12 +18,25 @@ const PlayerForm = ({
 }: PlayerFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (
+      (gameType === GameType.Single || gameType === GameType.Dual) &&
+      playerOne.name.trim().length < 3
+    ) {
+      alert("Player 1 name must be at least 3 characters long");
+      return;
+    }
+
+    if (gameType === GameType.Dual && playerTwo.name.trim().length < 3) {
+      alert("Player 2 name must be at least 3 characters long");
+      return;
+    }
     setPlayerFormVisible(false);
   };
 
   return (
     <>
       <section className="player-form">
+        <h1 className="game-title">Connect-4 Game</h1>
         <form onSubmit={handleSubmit}>
           <div className="palyer-form-input">
             {(gameType === GameType.Single || gameType === GameType.Dual) && (

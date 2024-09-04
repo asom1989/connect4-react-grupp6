@@ -1,5 +1,5 @@
 import "./game-setup.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GameType } from "../../types/types";
 import GameOptions from "./GameOptions";
 import { GamePlayer, PlayerType } from "../../types/types";
@@ -17,9 +17,38 @@ const GameSetup = () => {
   const [gameOptionsVisible, setGameOptionsVisible] = useState(true);
   const [playerFormVisible, setPlayerFormVisible] = useState(false);
 
+  useEffect(() => {
+    switch (gameType) {
+      case GameType.Single:
+        setPlayerTwo({
+          name: "Computer",
+          playerType: PlayerType.Easy,
+        });
+        break;
+
+      case GameType.AI:
+        setPlayerOne({
+          name: "Computer 1",
+          playerType: PlayerType.Easy,
+        });
+        setPlayerTwo({
+          name: "Computer 2",
+          playerType: PlayerType.Easy,
+        });
+        break;
+
+      default:
+        setPlayerOne({ name: "", playerType: PlayerType.Player });
+        setPlayerTwo({
+          name: "",
+          playerType: PlayerType.Player,
+        });
+        break;
+    }
+  }, [gameType]);
+
   return (
     <article className="game-setup">
-      <h1 className="game-title">Connect-4 Game</h1>
       {gameOptionsVisible && (
         <GameOptions
           setGameType={setGameType}
