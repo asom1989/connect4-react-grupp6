@@ -14,18 +14,29 @@ const GameSetup = () => {
     name: "",
     playerType: PlayerType.Player,
   });
+  const [gameOptionsVisible, setGameOptionsVisible] = useState(true);
+  const [playerFormVisible, setPlayerFormVisible] = useState(false);
 
   return (
     <article className="game-setup">
       <h1 className="game-title">Connect-4 Game</h1>
-      <GameOptions setGameType={setGameType} />
-      <PlayerForm
-        playerOne={playerOne}
-        playerTwo={playerTwo}
-        setPlayerOne={setPlayerOne}
-        setPlayerTwo={setPlayerTwo}
-        gameType={gameType}
-      />
+      {gameOptionsVisible && (
+        <GameOptions
+          setGameType={setGameType}
+          setGameOptionsVisible={setGameOptionsVisible}
+          setPlayerFormVisible={setPlayerFormVisible}
+        />
+      )}
+      {playerFormVisible && (
+        <PlayerForm
+          playerOne={playerOne}
+          playerTwo={playerTwo}
+          setPlayerOne={setPlayerOne}
+          setPlayerTwo={setPlayerTwo}
+          gameType={gameType}
+          setPlayerFormVisible={setPlayerFormVisible}
+        />
+      )}
       name 1:{playerOne.name}
       <br />
       type1 {playerOne.playerType}
