@@ -41,3 +41,5 @@ export type Move = {
 //   Red = 1,
 //   Yellow,
 // }
+
+export type ColumnStatus = (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
