@@ -6,6 +6,7 @@ interface PlayerFormProps {
   setPlayerOne: (updater: (prevPlayer: GamePlayer) => GamePlayer) => void;
   setPlayerTwo: (updater: (prevPlayer: GamePlayer) => GamePlayer) => void;
   setPlayerFormVisible: (toggel: boolean) => void;
+  setGameOptionsVisible: (toggel: boolean) => void;
   gameType: GameType;
 }
 const PlayerForm = ({
@@ -14,6 +15,7 @@ const PlayerForm = ({
   setPlayerOne,
   setPlayerTwo,
   setPlayerFormVisible,
+  setGameOptionsVisible,
   gameType,
 }: PlayerFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -115,6 +117,16 @@ const PlayerForm = ({
 
           <button className="primary-btn" type="submit">
             Start Game
+          </button>
+          <button
+            className="primary-btn"
+            type="button"
+            onClick={() => {
+              setPlayerFormVisible(false);
+              setGameOptionsVisible(true);
+            }}
+          >
+            Back
           </button>
         </form>
       </section>

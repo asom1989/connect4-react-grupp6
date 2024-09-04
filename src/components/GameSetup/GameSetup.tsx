@@ -64,6 +64,7 @@ const GameSetup = () => {
           setPlayerTwo={setPlayerTwo}
           gameType={gameType}
           setPlayerFormVisible={setPlayerFormVisible}
+          setGameOptionsVisible={setGameOptionsVisible}
         />
       )}
       name 1:{playerOne.name}
