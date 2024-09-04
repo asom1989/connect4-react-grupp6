@@ -1,25 +1,19 @@
 import React, { Fragment } from 'react';
-import { BoardProps } from '../staffana-code/types/types'
-
-interface BoardState {
-  matrix: (string | null)[][];
-  currentPlayerColor: string;
-  winner: string | false;
-  isDraw: boolean;
-  gameOver: boolean | string;
-}
+import { BoardProps, BoardState } from '../types/types'
+import Moves from './Moves';
 
 export default class Board extends React.Component<{}, BoardState> {
+  moves: Moves;
   constructor(props: {}) {
     super(props);
+
+    this.moves = new Moves();
 
     // initialize state
     this.state = {
       matrix: this.initializeMatrix(),
-      currentPlayerColor: 'red',
-      winner: false,
-      isDraw: false,
-      gameOver: false,
+      currentPlayerColor: 'red'
+      
     };
   }
 
@@ -30,19 +24,21 @@ export default class Board extends React.Component<{}, BoardState> {
   }
 
   
-   makeMove(color: string, columnIndex: number ) {
+  handlePlayerMove(columnIndex: number) {
+
+    if (this.moves.columnStatus[columnIndex] <= 0) return;
+
+    const currentPlayer = this.state.currentPlayerColor === 'red' ? 1 : 0;
+
+    this.moves.makeMove(this.state.matrix, 1, currentPlayer, columnIndex);
     const newMatrix = this.state.matrix.map(row => row.slice());
 
-    for (let rowIndex = BoardProps.Rows - 1; rowIndex >= 0; rowIndex--) {
-      if (!newMatrix[rowIndex][columnIndex]) {
-        newMatrix[rowIndex][columnIndex] = color;
-        this.setState({ 
-          matrix: newMatrix,
-          currentPlayerColor: color === 'red' ? 'yellow' : 'red',
-        });
-        return;
-      }
-    }
+    this.setState({
+      matrix: newMatrix,
+      currentPlayerColor: this.state.currentPlayerColor === 'red' ? 'yellow' : 'red',
+      
+      
+    })
   }
 
   render() {
@@ -56,7 +52,7 @@ export default class Board extends React.Component<{}, BoardState> {
               <div
                   key={columnIndex}
                   className={`column ${column || ''}`}
-                  onClick={() => this.makeMove(this.state.currentPlayerColor, columnIndex)}
+                  onClick={() => this.handlePlayerMove(columnIndex)}
                   style={{
                     backgroundColor: column || '#2d84c2', // set column background color
                   }}
