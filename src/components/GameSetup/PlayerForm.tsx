@@ -1,17 +1,19 @@
-import { GamePlayer } from "../../types/types";
+import { GamePlayer, GameType, PlayerType } from "../../types/types";
 
 interface PlayerFormProps {
   playerOne: GamePlayer;
   playerTwo: GamePlayer;
   setPlayerOne: (updater: (prevPlayer: GamePlayer) => GamePlayer) => void;
   setPlayerTwo: (updater: (prevPlayer: GamePlayer) => GamePlayer) => void;
+  gameType: GameType;
 }
 const PlayerForm = ({
   playerOne,
   playerTwo,
   setPlayerOne,
   setPlayerTwo,
-}: PlayerFormProps) => {
+}: // gameType,
+PlayerFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
@@ -34,7 +36,7 @@ const PlayerForm = ({
               }
             />
 
-            <input
+            {/* <input
               id="playerTwoName"
               type="text"
               placeholder="Player 2 Name:"
@@ -45,8 +47,26 @@ const PlayerForm = ({
                   name: e.target.value,
                 }))
               }
-            />
+            /> */}
+            <div className="computer-level">
+              <label htmlFor="computerLevel">Computer Level:</label>
+              <select
+                id="computerLevel"
+                value={playerTwo.playerType}
+                onChange={(e) =>
+                  setPlayerTwo((prevPlayerTwo) => ({
+                    ...prevPlayerTwo,
+                    name: "Computer",
+                    playerType: parseInt(e.target.value) as PlayerType,
+                  }))
+                }
+              >
+                <option value={PlayerType.Easy}>Easy</option>
+                <option value={PlayerType.Hard}>Hard</option>
+              </select>
+            </div>
           </div>
+
           <button className="primary-btn" type="submit">
             Start Game
           </button>

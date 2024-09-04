@@ -21,7 +21,6 @@ section.game-options {
   );
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: var(--primary-font-family);
   font-size: 2.7rem;
   transition: all 0.3s linear;
 }
@@ -62,12 +61,33 @@ section.game-options .buttons-wrapper {
 .palyer-form-input input::placeholder {
   padding-left: 0.5rem;
   font-size: 1.3rem;
-  font-family: var(--primary-font-family);
 }
 
 .palyer-form-input input:focus {
   box-shadow: inset 0px 0px 9px 5px #96a0dd;
 }
+
+.computer-level {
+  width: 18rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  font-size: 1.3rem;
+
+  padding: 0.9rem;
+  border-radius: 1.5rem;
+  background-color: rgba(132, 165, 250, 0.6);
+  box-shadow: 0px 4px 7px 1px #96a0dd;
+  transition: all 0.3s linear;
+}
+
+.computer-level select {
+  width: 7rem;
+  font-size: 1rem;
+  padding: 0.2rem;
+}
+
 /*--------- End Player Form ----------------*/
 
 @media screen and (min-width: 768px) {
@@ -75,6 +95,9 @@ section.game-options .buttons-wrapper {
     font-size: 4rem;
   }
   .palyer-form-input input {
+    width: 25rem;
+  }
+  .computer-level {
     width: 25rem;
   }
 }
