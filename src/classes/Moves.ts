@@ -10,29 +10,15 @@ export default class Moves {
     this.lastMove = undefined!;
   }
 
-  moveIsValid(board: Matrix, col: number) {
-    for (let row = BoardProps.Rows - 1; row >= 0; row--) {
-      if (!board[row][col]) {
-        return { row, col };
-      }
-    }
-    return null;
+  computerEasyMove(): number {
+    return this.validColumns[Math.floor(Math.random() * (this.validColumns.length - 0)) + 0];
   }
 
-  computerEasyMove(board: Matrix) {
-    let validMove = null;
-    while (!validMove) {
-      validMove = this.moveIsValid(board, Math.floor(Math.random() * 7) + 1);
-    }
-    return validMove;
-  }
+  makeMove(board: Matrix, playerType: PlayerType, currentPlayer: number, _col: number) {
+    if (this.movesMade >= 42) { return }
 
-  makeMove(board: Matrix, playerType: PlayerType, currentPlayer: number, _move: Move) {
-    if (this.movesMade >= 42) {
-      return;
-    }
-
-    const validMove = playerType === 1 ? _move : this.computerEasyMove(board);
+    const validColumn = playerType === 1 ? _col : this.computerEasyMove();
+    const validMove = this.getMovePosition(board, validColumn);
 
     if (validMove) {
       board[validMove.row][validMove.col] = Color[currentPlayer];
@@ -41,4 +27,6 @@ export default class Moves {
       this.movesMade++;
     }
   }
+
+
 }
