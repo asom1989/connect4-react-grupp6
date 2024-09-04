@@ -8,15 +8,22 @@ section.game-options {
 }
 
 .game-title {
+  margin-top: 2rem;
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(
     90deg,
-    rgba(0, 138, 255, 1) 30%,
+    rgb(4, 93, 171) 30%,
     rgba(132, 165, 250, 1) 65%
   );
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: cursive;
+  font-family: var(--primary-font-family);
   font-size: 2.7rem;
+  transition: all 0.3s linear;
 }
 
 section.game-options .buttons-wrapper {
@@ -25,25 +32,49 @@ section.game-options .buttons-wrapper {
   gap: 2rem;
 }
 
-section.game-options .buttons-wrapper button {
-  width: 15rem;
+/*--------- End Game Options ----------------*/
+/*--------- Start Player Form ----------------*/
+.player-form form {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.palyer-form-input {
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding: 1rem 0;
+}
+.palyer-form-input input {
+  width: 18rem;
+  font-size: 1.3rem;
+  padding: 1rem;
   border: none;
-  background-color: rgba(132, 165, 250, 0.6);
   border-radius: 1.5rem;
-  font-family: cursive;
-  font-weight: bold;
-  font-size: 1.5rem;
-  cursor: pointer;
+  outline: none;
+  background-color: rgba(132, 165, 250, 0.6);
+  box-shadow: 0px 4px 7px 1px #96a0dd;
+  transition: all 0.3s linear;
+}
+.palyer-form-input input::placeholder {
+  padding-left: 0.5rem;
+  font-size: 1.3rem;
+  font-family: var(--primary-font-family);
 }
 
-/*--------- End Game Options ----------------*/
+.palyer-form-input input:focus {
+  box-shadow: inset 0px 0px 9px 5px #96a0dd;
+}
+/*--------- End Player Form ----------------*/
 
 @media screen and (min-width: 768px) {
-  section.game-options h1 {
+  .game-title {
     font-size: 4rem;
   }
-  section.game-options .buttons-wrapper button {
+  .palyer-form-input input {
     width: 25rem;
   }
 }

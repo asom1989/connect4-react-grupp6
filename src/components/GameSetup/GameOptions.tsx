@@ -7,15 +7,23 @@ interface GameOptionsProps {
 const GameOptions = ({ setGameType }: GameOptionsProps) => {
   return (
     <section className="game-options">
-      <h1 className="game-title">Connect-4 Game</h1>
+      {/* <h1 className="game-title">Connect-4 Game</h1> */}
       <div className="buttons-wrapper">
-        <button type="button" onClick={() => setGameType(GameType.Dual)}>
+        <button
+          className="primary-btn"
+          type="button"
+          onClick={() => setGameType(GameType.Dual)}
+        >
           1 VS 1
         </button>
-        <button type="button" onClick={() => setGameType(GameType.Single)}>
+        <button
+          className="primary-btn"
+          type="button"
+          onClick={() => setGameType(GameType.Single)}
+        >
           1 player
         </button>
-        {/* <button type="button" onClick={() => setGameType(GameType.AI)}>
+        {/* <button className="primary-btn" type="button" onClick={() => setGameType(GameType.AI)}>
           Cpu VS Cpu
         </button> */}
       </div>
