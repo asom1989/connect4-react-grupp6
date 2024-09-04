@@ -37,6 +37,7 @@ export default class Moves {
     if (validMove) {
       board[validMove.row][validMove.col] = Color[currentPlayer];
       this.lastMove = validMove;
+      this.columnStatus[validMove.col]--;
       this.movesMade++;
     }
   }
