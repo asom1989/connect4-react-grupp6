@@ -7,7 +7,7 @@ section.game-options {
   justify-content: space-evenly;
 }
 
-section.game-options h1 {
+.game-title {
   background: linear-gradient(
     90deg,
     rgba(0, 138, 255, 1) 30%,
@@ -37,7 +37,7 @@ section.game-options .buttons-wrapper button {
   cursor: pointer;
 }
 
-/*--------- end Game Options ----------------*/
+/*--------- End Game Options ----------------*/
 
 @media screen and (min-width: 768px) {
   section.game-options h1 {
