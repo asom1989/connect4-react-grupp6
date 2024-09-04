@@ -1,0 +1,49 @@
+/*--------- Start Game Options ----------------*/
+section.game-options {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+section.game-options h1 {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 138, 255, 1) 30%,
+    rgba(132, 165, 250, 1) 65%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: cursive;
+  font-size: 2.7rem;
+}
+
+section.game-options .buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+section.game-options .buttons-wrapper button {
+  width: 15rem;
+  padding: 1rem 0;
+  border: none;
+  background-color: rgba(132, 165, 250, 0.6);
+  border-radius: 1.5rem;
+  font-family: cursive;
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/*--------- end Game Options ----------------*/
+
+@media screen and (min-width: 768px) {
+  section.game-options h1 {
+    font-size: 4rem;
+  }
+  section.game-options .buttons-wrapper button {
+    width: 25rem;
+  }
+}

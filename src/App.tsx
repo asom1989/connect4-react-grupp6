@@ -1,3 +1,9 @@
+import GameSetup from "./components/GameSetup/GameSetup";
+
 export default function App() {
-  return <div>App aa</div>;
+  return (
+    <div>
+      <GameSetup />
+    </div>
+  );
 }
