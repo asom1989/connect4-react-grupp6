@@ -38,3 +38,6 @@ export type Move = {
   row: number;
   col: number;
 };
+//   Red = 1,
+//   Yellow,
+// }
