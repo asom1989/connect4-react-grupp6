@@ -19,7 +19,7 @@ export default class Moves {
     }
     return cols;
   }
-  
+
   computerEasyMove(): number {
     return this.validColumns[
       Math.floor(Math.random() * (this.validColumns.length - 0)) + 0
@@ -44,6 +44,14 @@ export default class Moves {
       this.lastMove = validMove;
       this.columnStatus[validMove.col]--;
       this.movesMade++;
+    }
+  }
+  
+  getMovePosition(board: Matrix, c: number) {
+    for (let r = 5; r >= 0; r--) {
+      if (!board[r][c]) {
+        return { row: r, col: c };
+      }
     }
   }
 }
