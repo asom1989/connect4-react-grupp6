@@ -15,9 +15,9 @@ const GameOptions = ({ setGameType }: GameOptionsProps) => {
         <button type="button" onClick={() => setGameType(GameType.Single)}>
           1 player
         </button>
-        <button type="button" onClick={() => setGameType(GameType.AI)}>
+        {/* <button type="button" onClick={() => setGameType(GameType.AI)}>
           Cpu VS Cpu
-        </button>
+        </button> */}
       </div>
     </section>
   );

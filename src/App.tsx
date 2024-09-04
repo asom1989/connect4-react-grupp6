@@ -1,9 +1,9 @@
-import Board from "./classes/Board";
+// import Board from "./classes/Board";
 import GameSetup from "./components/GameSetup/GameSetup";
 export default function App() {
   return (
     <div>
-      <Board />
+      {/* <Board /> */}
       <GameSetup />
     </div>
   );
