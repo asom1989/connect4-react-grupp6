@@ -10,12 +10,31 @@ export default class Moves {
     this.lastMove = undefined!;
   }
 
+  get validColumns() {
+    const cols = [];
+    for (let col = 0; col < BoardProps.Cols; col++) {
+      if (this.columnStatus[col] > 0) {
+        cols.push(col);
+      }
+    }
+    return cols;
+  }
+  
   computerEasyMove(): number {
-    return this.validColumns[Math.floor(Math.random() * (this.validColumns.length - 0)) + 0];
+    return this.validColumns[
+      Math.floor(Math.random() * (this.validColumns.length - 0)) + 0
+    ];
   }
 
-  makeMove(board: Matrix, playerType: PlayerType, currentPlayer: number, _col: number) {
-    if (this.movesMade >= 42) { return }
+  makeMove(
+    board: Matrix,
+    playerType: PlayerType,
+    currentPlayer: number,
+    _col: number
+  ) {
+    if (this.movesMade >= 42) {
+      return;
+    }
 
     const validColumn = playerType === 1 ? _col : this.computerEasyMove();
     const validMove = this.getMovePosition(board, validColumn);
@@ -27,6 +46,4 @@ export default class Moves {
       this.movesMade++;
     }
   }
-
-
 }
