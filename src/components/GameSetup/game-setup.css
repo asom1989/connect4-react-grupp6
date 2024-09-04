@@ -73,7 +73,6 @@ section.game-options .buttons-wrapper {
   align-items: center;
   justify-content: space-between;
   background-color: var(--primary-color);
-  font-size: 1.3rem;
 
   padding: 0.9rem;
   border-radius: 1.5rem;
@@ -98,6 +97,7 @@ section.game-options .buttons-wrapper {
     width: 25rem;
   }
   .computer-level {
+    font-size: 1.3rem;
     width: 25rem;
   }
 }
