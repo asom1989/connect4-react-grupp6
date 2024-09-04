@@ -12,9 +12,9 @@ export default class Board {
   }
 
   render() {
-		let line = "\n" + "-".repeat(this.cols * 4 + 1) + "\n";
-		let lastLine = "\n" + "-".repeat(this.cols * 4 + 1);
-    let columnNumbers = [...new Array(7)].map((_col, index) => `${index + 1}`);
+		const line = "\n" + "-".repeat(this.cols * 4 + 1) + "\n";
+		const lastLine = "\n" + "-".repeat(this.cols * 4 + 1);
+    const columnNumbers = [...new Array(7)].map((_col, index) => `${index + 1}`);
 
     console.log(line + this.matrix.map((row) => row.map((col) => `| ${col === null ? " " : col} `).join("") + "|").join(line) + lastLine);
     console.log(columnNumbers.map((col) => `| ${col} `).join("") + "|" + "\n");
