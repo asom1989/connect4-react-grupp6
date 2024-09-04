@@ -28,9 +28,9 @@ const GameSetup = () => {
       />
       name 1:{playerOne.name}
       <br />
-      name2:{playerTwo.name}
-      <br />
       type1 {playerOne.playerType}
+      <br />
+      name2:{playerTwo.name}
       <br />
       type2 {playerTwo.playerType}
     </article>
