@@ -29,3 +29,19 @@ export interface BoardState {
   currentPlayerColor: string;
   
 }
+
+export enum RegExes {
+  Column = 0,
+  GameType = 1,
+  Level = 2,
+  PlayerName = 3,
+}
+export enum GameType {
+  Dual = 1,
+  Single,
+  AI,
+}
+export type GamePlayer = {
+  name: string;
+  playerType: PlayerType;
+};
