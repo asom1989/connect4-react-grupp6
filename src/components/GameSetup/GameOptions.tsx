@@ -1,9 +1,10 @@
+import "./game-setup.css";
 import { GameType } from "../../types/types";
 
 interface GameOptionsProps {
   setGameType: (gameType: GameType) => void;
-  setGameOptionsVisible: (toggel: boolean) => void;
-  setPlayerFormVisible: (toggel: boolean) => void;
+  setGameOptionsVisible: (toggle: boolean) => void;
+  setPlayerFormVisible: (toggle: boolean) => void;
 }
 
 const GameOptions = ({
@@ -11,6 +12,11 @@ const GameOptions = ({
   setGameOptionsVisible,
   setPlayerFormVisible,
 }: GameOptionsProps) => {
+  const toggleComponent = () => {
+    setGameOptionsVisible(false);
+    setPlayerFormVisible(true);
+  };
+
   return (
     <section className="game-options">
       <h1 className="game-title">Connect-4 Game</h1>
@@ -20,8 +26,7 @@ const GameOptions = ({
           type="button"
           onClick={() => {
             setGameType(GameType.Dual);
-            setGameOptionsVisible(false);
-            setPlayerFormVisible(true);
+            toggleComponent();
           }}
         >
           1 VS 1
@@ -31,8 +36,7 @@ const GameOptions = ({
           type="button"
           onClick={() => {
             setGameType(GameType.Single);
-            setGameOptionsVisible(false);
-            setPlayerFormVisible(true);
+            toggleComponent();
           }}
         >
           1 player
@@ -42,8 +46,7 @@ const GameOptions = ({
           type="button"
           onClick={() => {
             setGameType(GameType.AI);
-            setGameOptionsVisible(false);
-            setPlayerFormVisible(true);
+            toggleComponent();
           }}
         >
           Cpu VS Cpu

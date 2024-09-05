@@ -1,3 +1,4 @@
+import "./game-setup.css";
 import { GamePlayer, GameType, PlayerType } from "../../types/types";
 
 interface PlayerFormProps {
@@ -5,8 +6,10 @@ interface PlayerFormProps {
   playerTwo: GamePlayer;
   setPlayerOne: (updater: (prevPlayer: GamePlayer) => GamePlayer) => void;
   setPlayerTwo: (updater: (prevPlayer: GamePlayer) => GamePlayer) => void;
-  setPlayerFormVisible: (toggel: boolean) => void;
-  setGameOptionsVisible: (toggel: boolean) => void;
+  setPlayerFormVisible: (toggle: boolean) => void;
+  setGameOptionsVisible: (toggle: boolean) => void;
+  setGameVisible: (toggle: boolean) => void;
+
   gameType: GameType;
 }
 const PlayerForm = ({
@@ -16,6 +19,7 @@ const PlayerForm = ({
   setPlayerTwo,
   setPlayerFormVisible,
   setGameOptionsVisible,
+  setGameVisible,
   gameType,
 }: PlayerFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,6 +37,7 @@ const PlayerForm = ({
       return;
     }
     setPlayerFormVisible(false);
+    setGameVisible(true);
   };
 
   return (
