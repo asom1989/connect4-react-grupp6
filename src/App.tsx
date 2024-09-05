@@ -1,5 +1,17 @@
+import { useState } from "react";
 import Board from "./classes/Board";
-
+import StartGameButton from "./classes/StartGameButton";
+// import GameSetup from "./components/GameSetup/GameSetup";
 export default function App() {
-  return <div><Board/></div>;
+  const [isBoardVisible, setBoardVisible] = useState(false);
+  return (
+    <div>
+      {isBoardVisible ? (
+        <Board setBoardVisible={setBoardVisible} />
+      ) : (
+        <StartGameButton setBoardVisible={setBoardVisible} />
+      )}
+      {/* <GameSetup /> */}
+    </div>
+  );
 }
