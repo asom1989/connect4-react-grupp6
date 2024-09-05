@@ -26,7 +26,7 @@ export default function GameSetup({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleStartGame = (e: React.FormEvent) => {
     e.preventDefault();
     if (
       (setup.gameType === 1 || setup.gameType === 2) &&
@@ -98,7 +98,7 @@ export default function GameSetup({
       {setup.gameType !== 0 && (
         <section className="player-form">
           <h1 className="game-title">Connect-4 Game</h1>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="palyer-form-input">
               {(setup.gameType === 1 || setup.gameType === 2) && (
                 <>
@@ -155,7 +155,7 @@ export default function GameSetup({
                 </div>
               )}
             </div>
-            <button className="primary-btn" type="submit">
+            <button className="primary-btn" onClick={handleStartGame}>
               Start Game
             </button>
           </form>
