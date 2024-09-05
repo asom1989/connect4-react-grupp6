@@ -98,7 +98,7 @@ export default function GameSetup({
       {setup.gameType !== 0 && (
         <section className="player-form">
           <h1 className="game-title">Connect-4 Game</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="palyer-form-input">
               {(setup.gameType === 1 || setup.gameType === 2) && (
                 <>
@@ -155,7 +155,7 @@ export default function GameSetup({
                 </div>
               )}
             </div>
-            <button className="primary-btn" onClick={handleSubmit}>
+            <button className="primary-btn" type="submit">
               Start Game
             </button>
           </form>
