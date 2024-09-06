@@ -5,15 +5,16 @@ import { Setup } from "../../types/types";
 interface GameSetupProps {
   setGameState: (setup: Setup) => void;
 }
+const initialGameSetup = {
+  playerOneName: "",
+  playerTwoName: "",
+  playerOneType: 1,
+  playerTwoType: 1,
+  gameType: 0,
+};
 
 export default function GameSetup({ setGameState }: GameSetupProps) {
-  const [setup, setSetup] = useState({
-    playerOneName: "",
-    playerTwoName: "",
-    playerOneType: 1,
-    playerTwoType: 1,
-    gameType: 0,
-  });
+  const [setup, setSetup] = useState(initialGameSetup);
 
   const handleChange = (
     e: React.FormEvent<HTMLInputElement | HTMLSelectElement>
@@ -155,8 +156,19 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
                 </div>
               )}
             </div>
-            <button className="primary-btn" onClick={handleStartGame}>
+            <button
+              type="button"
+              className="primary-btn"
+              onClick={handleStartGame}
+            >
               Start Game
+            </button>
+            <button
+              type="button"
+              className="primary-btn"
+              onClick={() => setSetup(initialGameSetup)}
+            >
+              Back
             </button>
           </form>
         </section>

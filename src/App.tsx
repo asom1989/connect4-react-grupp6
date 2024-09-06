@@ -11,12 +11,16 @@ export default function App() {
   };
 
   const handleQuit = () => {
-    setGameState(null)
-  }
+    setGameState(null);
+  };
 
   return (
     <div>
-      {gameState ? <Board onQuit={handleQuit} /> : <GameSetup setGameState={handleGameState} />}
+      {gameState ? (
+        <Board onQuit={handleQuit} gameState={gameState} />
+      ) : (
+        <GameSetup setGameState={handleGameState} />
+      )}
     </div>
   );
 }
