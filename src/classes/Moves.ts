@@ -1,4 +1,11 @@
-import { Move, Matrix, BoardProps, PlayerType, Color, ColumnStatus } from "../types/types";
+import {
+  Move,
+  Matrix,
+  BoardProps,
+  PlayerType,
+  Color,
+  ColumnStatus,
+} from "../types/types";
 export default class Moves {
   movesMade: number;
   columnStatus: ColumnStatus;
@@ -29,7 +36,7 @@ export default class Moves {
   makeMove(
     board: Matrix,
     playerType: PlayerType,
-    currentPlayer: number,
+    currentPlayerColor: number,
     _col: number
   ) {
     if (this.movesMade >= 42) {
@@ -40,13 +47,13 @@ export default class Moves {
     const validMove = this.getMovePosition(board, validColumn);
 
     if (validMove) {
-      board[validMove.row][validMove.col] = Color[currentPlayer];
+      board[validMove.row][validMove.col] = Color[currentPlayerColor];
       this.lastMove = validMove;
       this.columnStatus[validMove.col]--;
       this.movesMade++;
     }
   }
-  
+
   getMovePosition(board: Matrix, c: number) {
     for (let r = 5; r >= 0; r--) {
       if (!board[r][c]) {
