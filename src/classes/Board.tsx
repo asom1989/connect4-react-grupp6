@@ -1,10 +1,15 @@
 import React, { Fragment } from 'react';
-import { BoardProps, BoardState } from '../types/types'
+import { BoardProps, BoardState } from '../types/types';
 import Moves from './Moves';
 
-export default class Board extends React.Component<{}, BoardState> {
+interface BoardPropsVisible {
+  setBoardVisible: (visible: boolean) => void;
+}
+
+export default class Board extends React.Component<BoardPropsVisible, BoardState> {
   moves: Moves;
-  constructor(props: {}) {
+
+  constructor(props: BoardPropsVisible) {
     super(props);
 
     this.moves = new Moves();
@@ -13,9 +18,17 @@ export default class Board extends React.Component<{}, BoardState> {
     this.state = {
       matrix: this.initializeMatrix(),
       currentPlayerColor: 'red'
-      
     };
+
+    this.resetGame = this.resetGame.bind(this);
   }
+
+  resetGame = () => {
+    this.setState({
+      matrix: this.initializeMatrix(),
+      currentPlayerColor: 'red',
+    });
+  };
 
   initializeMatrix() {
     return Array(BoardProps.Rows).fill(null).map(() =>
@@ -23,9 +36,7 @@ export default class Board extends React.Component<{}, BoardState> {
     );
   }
 
-  
   handlePlayerMove(columnIndex: number) {
-
     if (this.moves.columnStatus[columnIndex] <= 0) return;
 
     const currentPlayer = this.state.currentPlayerColor === 'red' ? 1 : 0;
@@ -36,30 +47,33 @@ export default class Board extends React.Component<{}, BoardState> {
     this.setState({
       matrix: newMatrix,
       currentPlayerColor: this.state.currentPlayerColor === 'red' ? 'yellow' : 'red',
-      
-      
-    })
+    });
   }
 
   render() {
     return (
       <div className="game-container">
+        <h1 className='game-title-board'>Connect Four</h1>
         <div className="status">{`Current Player: ${this.state.currentPlayerColor}`}</div>
-      <div className="board">
-        {this.state.matrix.map((row, rowIndex) => (
-          <Fragment key={rowIndex}>
-            {row.map((column, columnIndex) => (
-              <div
+        <div className="board">
+          {this.state.matrix.map((row, rowIndex) => (
+            <Fragment key={rowIndex}>
+              {row.map((column, columnIndex) => (
+                <div
                   key={columnIndex}
                   className={`column ${column || ''}`}
                   onClick={() => this.handlePlayerMove(columnIndex)}
                   style={{
-                    backgroundColor: column || '#2d84c2', // set column background color
+                    backgroundColor: column || '#D9D9D9', // set column background color
                   }}
                 ></div>
-            ))}
-          </Fragment>
-        ))}
+              ))}
+            </Fragment>
+          ))}
+        </div>
+        <div className='board-buttons'>
+          <button onClick={this.resetGame}>New Game</button>
+          <button onClick={() => this.props.setBoardVisible(false)}>Quit</button>
         </div>
       </div>
     );
