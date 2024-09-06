@@ -10,9 +10,13 @@ export default function App() {
     setGameState(setup);
   };
 
+  const handleQuit = () => {
+    setGameState(null)
+  }
+
   return (
     <div>
-      {gameState ? <Board /> : <GameSetup setGameState={handleGameState} />}
+      {gameState ? <Board onQuit={handleQuit} /> : <GameSetup setGameState={handleGameState} />}
     </div>
   );
 }
