@@ -2,11 +2,11 @@ import "./game-setup.css";
 import { useState } from "react";
 import { Setup } from "../../types/types";
 
-export default function GameSetup({
-  setGameState,
-}: {
+interface GameSetupProps {
   setGameState: (setup: Setup) => void;
-}) {
+}
+
+export default function GameSetup({ setGameState }: GameSetupProps) {
   const [setup, setSetup] = useState({
     playerOneName: "",
     playerTwoName: "",
