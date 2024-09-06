@@ -2,11 +2,12 @@ import { useState } from "react";
 import GameSetup from "./components/GameSetup/GameSetup";
 import { Setup } from "./types/types";
 import Board from "./classes/Board";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   const [gameState, setGameState] = useState<Setup | null>(null);
   const handleGameState = (setup: Setup) => {
-    console.log("Game setup completed:", setup);
+    // console.log("Game setup completed:", setup);
     setGameState(setup);
   };
 
@@ -16,6 +17,7 @@ export default function App() {
 
   return (
     <div>
+      <ToastContainer theme="colored" position="top-right" autoClose={1700} />
       {gameState ? (
         <Board onQuit={handleQuit} gameState={gameState} />
       ) : (
