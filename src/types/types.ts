@@ -1,3 +1,5 @@
+import Player from "../classes/Player";
+
 export enum BoardProps {
   Rows = 6,
   Cols = 7,
@@ -19,24 +21,8 @@ export type ColumnStatus = (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
 
 export interface BoardState {
   matrix: (string | null)[][];
-  currentPlayerColor: string;
-  currentPlayerName: string;
-  playerOneName: string;
-  playerTwoName: string;
-  playerOneColor: number;
-  playerTwoColor: number;
+  currentPlayer: Player;
 }
-
-// export enum RegExes {
-//   Column = 0,
-//   GameType = 1,
-//   Level = 2,
-//   PlayerName = 3,
-// }
-// export type GamePlayer = {
-//   name: string;
-//   playerType: PlayerType;
-// };
 
 export enum PlayerType {
   Player = 1,

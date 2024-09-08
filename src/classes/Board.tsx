@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { BoardProps, BoardState, Setup } from "../types/types";
 import Moves from "./Moves";
+import Player from "./Player";
 
 interface BoardPropsPlayer {
   onQuit: () => void;
@@ -12,30 +13,34 @@ export default class Board extends React.Component<
   BoardState
 > {
   moves: Moves;
+  playerOne: Player;
+  playerTwo: Player;
 
   constructor(props: BoardPropsPlayer) {
     super(props);
 
     this.moves = new Moves();
-    // initialize state
+
+    // initialize Player
     const player = props.gameState;
+    //this.player = new Player(player.name, player.playerType, player.playerColor);
+    this.playerOne = new Player(player.playerOneName, player.playerOneType, 1);
+    this.playerTwo = new Player(player.playerTwoName, player.playerTwoType, 0);
+
+    // initialize state
     this.state = {
       matrix: this.initializeMatrix(),
-      currentPlayerName: player.playerOneName,
-      currentPlayerColor: "red",
-      playerOneName: player.playerOneName,
-      playerTwoName: player.playerTwoName,
-      playerOneColor: 1,
-      playerTwoColor: 0,
+      currentPlayer: this.playerOne,
     };
 
     this.resetGame = this.resetGame.bind(this);
   }
 
   resetGame = () => {
+    this.moves = new Moves();
     this.setState({
       matrix: this.initializeMatrix(),
-      currentPlayerColor: "red",
+      currentPlayer: this.playerOne,
     });
   };
 
@@ -46,33 +51,30 @@ export default class Board extends React.Component<
   }
 
   handlePlayerMove(columnIndex: number) {
+    const { currentPlayer } = this.state;
     if (this.moves.columnStatus[columnIndex] <= 0) return;
 
-    const { currentPlayerName, playerOneName, playerTwoName } = this.state;
-
-    const currentPlayerColor = this.state.currentPlayerColor === "red" ? 1 : 0;
-
-    this.moves.makeMove(this.state.matrix, 1, currentPlayerColor, columnIndex);
+    this.moves.makeMove(this.state.matrix, 1, currentPlayer.color, columnIndex);
     const newMatrix = this.state.matrix.map((row) => row.slice());
 
-    this.setState({
+    this.setState((prevState) => ({
       matrix: newMatrix,
-      currentPlayerColor:
-        this.state.currentPlayerColor === "red" ? "yellow" : "red",
-      currentPlayerName:
-        currentPlayerName === playerOneName ? playerTwoName : playerOneName,
-    });
+      currentPlayer:
+        prevState.currentPlayer === this.playerOne
+          ? this.playerTwo
+          : this.playerOne,
+    }));
   }
 
   render() {
-    const { currentPlayerName, currentPlayerColor } = this.state;
+    const { currentPlayer } = this.state;
     return (
       <div className="game-container">
         <h1 className="game-title-board">Connect Four</h1>
         <div className="status">
           Current Player:
-          <span style={{ color: currentPlayerColor }}>
-            {` ${currentPlayerName}`}
+          <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
+            {` ${currentPlayer.name}`}
           </span>
         </div>
         <div className="board">
