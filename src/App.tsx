@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <div>
-      <ToastContainer theme="colored" position="top-right" autoClose={1700} />
+      <ToastContainer theme="colored" position="top-center" autoClose={1700} />
       {gameState ? (
         <Board onQuit={handleQuit} gameState={gameState} />
       ) : (
