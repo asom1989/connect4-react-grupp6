@@ -33,6 +33,14 @@ export default class Moves {
     ];
   }
 
+  //Detta för att skriva logik för den smart AI (typt=3)
+  //nu är det samma computerEasyMove kod
+  computerSmartMove(): number {
+    return this.validColumns[
+      Math.floor(Math.random() * (this.validColumns.length - 0)) + 0
+    ];
+  }
+
   makeMove(
     board: Matrix,
     playerType: PlayerType,

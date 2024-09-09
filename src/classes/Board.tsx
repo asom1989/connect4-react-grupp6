@@ -54,16 +54,37 @@ export default class Board extends React.Component<
     const { currentPlayer } = this.state;
     if (this.moves.columnStatus[columnIndex] <= 0) return;
 
-    this.moves.makeMove(this.state.matrix, 1, currentPlayer.color, columnIndex);
+    this.moves.makeMove(
+      this.state.matrix,
+      currentPlayer.type,
+      currentPlayer.color,
+      columnIndex
+    );
     const newMatrix = this.state.matrix.map((row) => row.slice());
 
-    this.setState((prevState) => ({
-      matrix: newMatrix,
-      currentPlayer:
-        prevState.currentPlayer === this.playerOne
-          ? this.playerTwo
-          : this.playerOne,
-    }));
+    this.setState(
+      (prevState) => ({
+        matrix: newMatrix,
+        currentPlayer:
+          prevState.currentPlayer === this.playerOne
+            ? this.playerTwo
+            : this.playerOne,
+      }),
+      //Token placeras automatiskt i datorns roll
+      () => {
+        if (this.state.currentPlayer.type !== 1) {
+          setTimeout(() => {
+            if (this.state.currentPlayer.type === 2) {
+              const columnIndex = this.moves.computerEasyMove();
+              this.handlePlayerMove(columnIndex);
+            } else if (this.state.currentPlayer.type === 3) {
+              const columnIndex = this.moves.computerSmartMove();
+              this.handlePlayerMove(columnIndex);
+            }
+          }, 500);
+        }
+      }
+    );
   }
 
   render() {
