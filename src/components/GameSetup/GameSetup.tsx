@@ -1,6 +1,8 @@
 import "./game-setup.css";
 import { useState } from "react";
 import { Setup } from "../../types/types";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface GameSetupProps {
   setGameState: (setup: Setup) => void;
@@ -29,24 +31,34 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
 
   const handleStartGame = (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      (setup.gameType === 1 || setup.gameType === 2) &&
-      setup.playerOneName.trim().length < 3
+    const { playerOneName, gameType, playerTwoName } = setup;
+
+    if ((gameType === 1 || gameType === 2) && playerOneName.trim() === "") {
+      toast.error(`Player ${gameType === 2 ? "" : "1"} Name Is Required`);
+      return false;
+    } else if (
+      (gameType === 1 || gameType === 2) &&
+      playerOneName.trim().length < 3
     ) {
-      alert(
+      toast.warning(
         `Player ${
-          setup.gameType === 2 ? "" : "1"
+          gameType === 2 ? "" : "1"
         } name must be at least 3 characters long  `
       );
       return false;
     }
 
-    if (setup.gameType === 1 && setup.playerTwoName.trim().length < 3) {
-      alert("Player 2 name must be at least 3 characters long");
+    if (gameType === 1 && playerTwoName.trim() === "") {
+      toast.error("Player 2 Name Is Required");
+      return false;
+    }
+    if (gameType === 1 && playerTwoName.trim().length < 3) {
+      toast.warning("Player 2 name must be at least 3 characters long");
       return false;
     }
     setGameState(setup);
   };
+
   return (
     <>
       {setup.gameType === 0 && (
