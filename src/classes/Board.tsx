@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { BoardProps, BoardState, Setup } from "../types/types";
 import Moves from "./Moves";
 import Player from "./Player";
+import VictoryChecker from "./VictoryChecker";
 
 interface BoardPropsPlayer {
   onQuit: () => void;
@@ -13,6 +14,7 @@ export default class Board extends React.Component<
   BoardState
 > {
   moves: Moves;
+  victoryChecker: VictoryChecker;
   playerOne: Player;
   playerTwo: Player;
 
@@ -20,6 +22,7 @@ export default class Board extends React.Component<
     super(props);
 
     this.moves = new Moves();
+    this.victoryChecker = new VictoryChecker();
 
     // initialize Player
     const player = props.gameState;
