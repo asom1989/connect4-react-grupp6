@@ -116,6 +116,7 @@ export default class Board extends React.Component<
         onCellClick={this.handlePlayerMove}
         onResetGame={this.resetGame}
         onQuitGame={this.props.onQuit}
+        getMovePosition={this.moves.getMovePosition.bind(this.moves)}
       />
     );
   }
