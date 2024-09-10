@@ -60,7 +60,7 @@ export default class VictoryChecker {
         }
         diagonal = 0;
       }
-      if (!(roTwo < 0 || roTwo > 2 || coTwo < 0 || coTwo > 3)) {
+      if (!(roTwo < 0 || roTwo > 2 || coTwo < 3 || coTwo > 6)) {
         for (let j = 0; j < 4; j++) {
           if (board[roTwo + j][coTwo - j] === player) {
             diagonal++;
