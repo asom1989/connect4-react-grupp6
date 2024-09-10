@@ -25,7 +25,7 @@ const BoardUI: React.FC<BoardUIProps> = ({
       <h1 className="game-title-board">Connect Four</h1>
       <div className="status">
         Current Player:
-        <span style={{ color: currentPlayer.color === 0 ? "red" : "yellow" }}>
+        <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
           {` ${currentPlayer.name}`}
         </span>
       </div>

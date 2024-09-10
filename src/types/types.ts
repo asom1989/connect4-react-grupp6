@@ -11,7 +11,7 @@ export type Move = {
 };
 
 export enum Color {
-  Red = 0,
+  Red = 1,
   Yellow 
 }
 
