@@ -46,6 +46,9 @@ export default class Board extends React.Component<
       currentPlayer: this.playerOne,
     });
   };
+  colorToString = (color: number): string => {
+    return color === 1 ? "red" : "yellow";
+  };
 
   initializeMatrix() {
     return Array(BoardProps.Rows)
@@ -59,7 +62,9 @@ export default class Board extends React.Component<
     if (this.victoryChecker.isGameOver) return;
 
     if (this.moves.columnStatus[columnIndex] <= 0) return;
-
+    const validMove = this.moves.getMovePosition(matrix, columnIndex);
+    if (!validMove) return;
+    
     const newMatrix = matrix.map((row) => row.slice());
 
     this.moves.makeMove(
@@ -70,6 +75,19 @@ export default class Board extends React.Component<
     );
 
     this.setState({ matrix: newMatrix }, () => {
+
+      const columnElement = document.querySelector(
+        `.row-${validMove.row}.col-${validMove.col}`
+      ) as HTMLElement;
+
+      if (columnElement) {
+        columnElement.classList.remove('red', 'yellow');
+        columnElement.classList.add('animate');
+
+        setTimeout(() => {
+          columnElement.classList.add(this.colorToString(currentPlayer.color));
+        }, 0);
+      }
       this.victoryChecker.checkForWin(
         newMatrix,
         this.moves.lastMove,

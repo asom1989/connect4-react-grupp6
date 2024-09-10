@@ -10,60 +10,25 @@
   margin: 0;
   font-family: var(--primary-font-family);
 }
-
+body {
+  background-image: url("../public/background.jpg"); /* Path is relative to the public folder */
+  background-size: cover; /* Ensures the image covers the element */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  height: 100vh; /* Sets the height of the background element */
+  width: 100vw; /* Sets the width of the background element */
+}
 :root {
   --primary-font-family: cursive;
-  --primary-color: rgba(132, 165, 250, 0.6);
-}
-
-.game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.status {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-top: 1rem;
-}
-.board {
-  border-radius: 5%;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 equal columns */
-  aspect-ratio: 7/6;
-  margin: 0 auto;
-  padding: 3px;
-  width: min(85vh, 85vw);
-  margin-top: min(2vh, 2vw);
-  margin-bottom: min(5vh, 5vw);
-  padding: 3%;
-  background-color: var(--primary-color);
-  gap: 5px;
-}
-.board-buttons {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  gap: 10px;
-  margin-bottom: 20px;
-  max-width: 400px;
-}
-.board-buttons button {
-  justify-content: space-evenly;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: none;
-  background-color: var(--primary-color);
-  color: white;
-  cursor: pointer;
-}
-
-.column {
-  aspect-ratio: 1/1;
-  background-color: rgba(126, 119, 119, 0.394);
-  border-radius: 50%;
-  cursor: pointer;
+  --primary-color: rgba(132, 165, 250, 0.8);
+  --secondary-color: rgb(72 73 73);
+  --bg-primary-color: linear-gradient(
+    90deg,
+    rgb(4, 93, 171) 30%,
+    rgb(149, 177, 249) 65%
+  );
+  --outset-box-shadow: 0px 4px 7px 1px #96a0dd;
+  --inset-box-shadow: inset 0px 0px 9px 5px #96a0dd;
 }
 
 .primary-btn {
@@ -71,16 +36,28 @@
   padding: 0.8rem 0;
   border: none;
   background-color: var(--primary-color);
+  color: var(--secondary-color);
   border-radius: 1.5rem;
-  font-family: var(--primary-font-family);
   font-weight: bold;
   font-size: 1.5rem;
   cursor: pointer;
   box-shadow: 0px 4px 7px 1px #96a0dd;
   transition: all 0.3s linear;
 }
-.primary-btn:active {
+.primary-btn:active,
+.secondary-btn:active {
   scale: 0.9;
+}
+.secondary-btn {
+  justify-content: space-evenly;
+  padding: 10px 20px;
+  font-size: 1.5em;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary-color);
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
 }
 
 @media screen and (min-width: 768px) {

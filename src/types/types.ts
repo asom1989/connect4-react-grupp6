@@ -46,3 +46,7 @@ export type Setup = {
   playerTwoType: PlayerType;
   gameType: GameType;
 };
+export interface BoardPropsPlayer {
+  onQuit: () => void;  // A function that will be called when the player quits
+  gameState: Setup;    // Represents the initial setup or game state
+}
