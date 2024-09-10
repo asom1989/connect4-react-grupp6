@@ -18,12 +18,14 @@ const BoardUI: React.FC<BoardUIProps> = ({
   onResetGame,
   onQuitGame,
 }) => {
+
+  
   return (
     <div className="game-container">
       <h1 className="game-title-board">Connect Four</h1>
       <div className="status">
         Current Player:
-        <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
+        <span style={{ color: currentPlayer.color === 0 ? "red" : "yellow" }}>
           {` ${currentPlayer.name}`}
         </span>
       </div>
@@ -33,10 +35,10 @@ const BoardUI: React.FC<BoardUIProps> = ({
             {row.map((column, columnIndex) => (
               <div
                 key={columnIndex}
-                className={`column row-${rowIndex} col-${columnIndex} ${column || ""}`}
+                className="brick"
                 onClick={() => onCellClick(columnIndex)}
                 style={{
-                  backgroundColor: "white", // Set column background color
+                  backgroundColor: column || "white", // Set column background color
                 }}
               ></div>
             ))}

@@ -48,6 +48,7 @@ body {
 .secondary-btn:active {
   scale: 0.9;
 }
+
 .secondary-btn {
   justify-content: space-evenly;
   padding: 10px 20px;
@@ -58,6 +59,9 @@ body {
   color: rgb(0, 0, 0);
   cursor: pointer;
   box-shadow: 5px 5px 5px rgb(0, 0, 0);
+}
+.secondary-btn:hover {
+  filter: brightness(1.1);
 }
 
 @media screen and (min-width: 768px) {
