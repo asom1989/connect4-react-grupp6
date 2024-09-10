@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { BoardProps, BoardState, Setup } from "../types/types";
 import Moves from "./Moves";
 import Player from "./Player";
 import VictoryChecker from "./VictoryChecker";
 import { toast } from "react-toastify";
+import BoardUI from "../components/Board/BoardUI";
 
 interface BoardPropsPlayer {
   onQuit: () => void;
@@ -25,13 +26,10 @@ export default class Board extends React.Component<
     this.moves = new Moves();
     this.victoryChecker = new VictoryChecker();
 
-    // initialize Player
     const player = props.gameState;
-    //this.player = new Player(player.name, player.playerType, player.playerColor);
     this.playerOne = new Player(player.playerOneName, player.playerOneType, 1);
     this.playerTwo = new Player(player.playerTwoName, player.playerTwoType, 0);
 
-    // initialize state
     this.state = {
       matrix: this.initializeMatrix(),
       currentPlayer: this.playerOne,
@@ -55,12 +53,10 @@ export default class Board extends React.Component<
       .map(() => Array(BoardProps.Cols).fill(null));
   }
 
-  handlePlayerMove(columnIndex: number) {
+  handlePlayerMove = (columnIndex: number) => {
     const { currentPlayer, matrix } = this.state;
 
-    if (this.victoryChecker.isGameOver) {
-      return;
-    }
+    if (this.victoryChecker.isGameOver) return;
 
     if (this.moves.columnStatus[columnIndex] <= 0) return;
 
@@ -110,43 +106,17 @@ export default class Board extends React.Component<
         }
       );
     });
-  }
+  };
+
   render() {
-    const { currentPlayer } = this.state;
     return (
-      <div className="game-container">
-        <h1 className="game-title-board">Connect Four</h1>
-        <div className="status">
-          Current Player:
-          <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
-            {` ${currentPlayer.name}`}
-          </span>
-        </div>
-        <div className="board">
-          {this.state.matrix.map((row, rowIndex) => (
-            <Fragment key={rowIndex}>
-              {row.map((column, columnIndex) => (
-                <div
-                  key={columnIndex}
-                  className={`column ${column || ""}`}
-                  onClick={() => this.handlePlayerMove(columnIndex)}
-                  style={{
-                    backgroundColor: column || "#D9D9D9", // set column background color
-                  }}
-                ></div>
-              ))}
-            </Fragment>
-          ))}
-        </div>
-        <div className="board-buttons">
-          <button type="button" onClick={this.resetGame}>
-            Reset Game
-          </button>
-          <button type="button" onClick={this.props.onQuit}>
-            Quit
-          </button>
-        </div>
-      </div>
+      <BoardUI
+        matrix={this.state.matrix}
+        currentPlayer={this.state.currentPlayer}
+        onCellClick={this.handlePlayerMove}
+        onResetGame={this.resetGame}
+        onQuitGame={this.props.onQuit}
+      />
     );
   }
 }
