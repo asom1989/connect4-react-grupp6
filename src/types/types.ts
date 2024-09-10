@@ -12,7 +12,7 @@ export type Move = {
 
 export enum Color {
   Red = 1,
-  Yellow 
+  Yellow = 0
 }
 
 export type ColumnStatus = (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
