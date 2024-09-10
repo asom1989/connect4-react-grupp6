@@ -1,5 +1,3 @@
-import Player from "../classes/Player";
-
 export enum BoardProps {
   Rows = 6,
   Cols = 7,
@@ -21,8 +19,13 @@ export type ColumnStatus = (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
 
 export interface BoardState {
   matrix: (string | null)[][];
-  currentPlayer: Player;
+  currentPlayer: PlayerInfo;
 }
+export type PlayerInfo = {
+  name: string;
+  type: PlayerType;
+  color: Color;
+};
 
 export enum PlayerType {
   Player = 1,
