@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Player from "../../classes/Player";
 import { Matrix } from "../../types/types";
+import './board-ui.css';
 
 interface BoardUIProps {
   matrix: Matrix;
@@ -17,6 +18,8 @@ const BoardUI: React.FC<BoardUIProps> = ({
   onResetGame,
   onQuitGame,
 }) => {
+
+  
   return (
     <div className="game-container">
       <h1 className="game-title-board">Connect Four</h1>
@@ -32,10 +35,10 @@ const BoardUI: React.FC<BoardUIProps> = ({
             {row.map((column, columnIndex) => (
               <div
                 key={columnIndex}
-                className={`column ${column || ""}`}
+                className="brick"
                 onClick={() => onCellClick(columnIndex)}
                 style={{
-                  backgroundColor: column || "#D9D9D9", // set column background color
+                  backgroundColor: column || "white", // Set column background color
                 }}
               ></div>
             ))}
@@ -43,10 +46,10 @@ const BoardUI: React.FC<BoardUIProps> = ({
         ))}
       </div>
       <div className="board-buttons">
-        <button type="button" onClick={onResetGame}>
+        <button className="secondary-btn" type="button" onClick={onResetGame}>
           Reset Game
         </button>
-        <button type="button" onClick={onQuitGame}>
+        <button className="secondary-btn" type="button" onClick={onQuitGame}>
           Quit
         </button>
       </div>
