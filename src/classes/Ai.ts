@@ -175,4 +175,14 @@ export default class Ai {
     });
     return moves;
   }
+
+  getValidMoves(board: Matrix) {
+    const validColumns = [];
+    for (let col = 0; col < this.COLS; col++) {
+      if (!board[0][col]) {
+        validColumns.push(col);
+      }
+    }
+    return validColumns;
+  }
 }
