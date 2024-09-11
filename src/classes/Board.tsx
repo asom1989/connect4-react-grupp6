@@ -27,8 +27,18 @@ export default class Board extends React.Component<
     this.victoryChecker = new VictoryChecker();
 
     const player = props.gameState;
-    this.playerOne = new Player(player.playerOneName, player.playerOneType, 1);
-    this.playerTwo = new Player(player.playerTwoName, player.playerTwoType, 0);
+    this.playerOne = new Player(
+      player.playerOneName,
+      player.playerOneType,
+      1,
+      player.playerOneAvatar
+    );
+    this.playerTwo = new Player(
+      player.playerTwoName,
+      player.playerTwoType,
+      0,
+      player.playerTwoAvatar
+    );
 
     this.state = {
       matrix: this.initializeMatrix(),

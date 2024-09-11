@@ -11,7 +11,7 @@
   font-family: var(--primary-font-family);
 }
 body {
-  background-image: url("../public/background.jpg"); /* Path is relative to the public folder */
+  background-image: url("/background.jpg"); /* Path is relative to the public folder */
   background-size: cover; /* Ensures the image covers the element */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */
