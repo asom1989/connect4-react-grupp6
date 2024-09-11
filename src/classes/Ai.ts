@@ -64,6 +64,14 @@ export default class Ai {
           }
         }
       }
+      // Negatively sloped diagonals
+      for (let row = 0; row < this.ROWS - 3; row++) {
+        for (let col = 3; col < this.COLS; col++) {
+          if ([0, 1, 2, 3].every((offset) => board[row + offset][col - offset] === player)) {
+            return player;
+          }
+        }
+      }
     }
   }
 }
