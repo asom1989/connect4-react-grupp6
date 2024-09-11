@@ -12,7 +12,7 @@ export type Move = {
 
 export enum Color {
   Red = 1,
-  Yellow = 0,
+  Yellow = 0
 }
 
 export type ColumnStatus = (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
@@ -46,3 +46,7 @@ export type Setup = {
   playerTwoType: PlayerType;
   gameType: GameType;
 };
+export interface BoardPropsPlayer {
+  onQuit: () => void;  // A function that will be called when the player quits
+  gameState: Setup;    // Represents the initial setup or game state
+}
