@@ -98,8 +98,7 @@ export default class Board extends React.Component<
                 const columnIndex = this.moves.computerEasyMove();
                 this.handlePlayerMove(columnIndex);
               } else if (this.state.currentPlayer.type === 3) {
-                const columnIndex = this.moves.computerSmartMove();
-                this.handlePlayerMove(columnIndex);
+                this.handlePlayerMove(this.moves.computerSmartMove(this.state.matrix, this.state.currentPlayer === this.playerOne ? 1 : 2))
               }
             }, 500);
           }
