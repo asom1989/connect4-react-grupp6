@@ -6,6 +6,7 @@ import "./board-ui.css";
 interface BoardUIProps {
   matrix: Matrix;
   currentPlayer: Player;
+  lastMove?: { row: number; col: number }; // Add the lastMove prop
   onCellClick: (columnIndex: number) => void;
   onResetGame: () => void;
   onQuitGame: () => void;
@@ -14,13 +15,13 @@ interface BoardUIProps {
 const BoardUI: React.FC<BoardUIProps> = ({
   matrix,
   currentPlayer,
+  lastMove,  // Access the lastMove prop
   onCellClick,
   onResetGame,
   onQuitGame,
 }) => {
   return (
     <div className="game-container">
-      {/* <h1 className="game-title-board">Connect Four</h1> */}
       <div className="status">
         Current Player:
         <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
@@ -38,7 +39,11 @@ const BoardUI: React.FC<BoardUIProps> = ({
             {row.map((column, columnIndex) => (
               <div
                 key={columnIndex}
-                className="brick"
+                className={`brick ${
+                  lastMove?.row === rowIndex && lastMove?.col === columnIndex
+                    ? "new-brick"
+                    : ""
+                }`}
                 onClick={() => onCellClick(columnIndex)}
                 style={{
                   backgroundColor: column || "white", // Set column background color

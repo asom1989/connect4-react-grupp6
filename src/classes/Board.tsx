@@ -64,68 +64,74 @@ export default class Board extends React.Component<
   }
 
   handlePlayerMove = (columnIndex: number) => {
-    const { currentPlayer, matrix } = this.state;
+  const { currentPlayer, matrix } = this.state;
 
-    if (this.victoryChecker.isGameOver) return;
+  if (this.victoryChecker.isGameOver) return;
 
-    if (this.moves.columnStatus[columnIndex] <= 0) return;
+  if (this.moves.columnStatus[columnIndex] <= 0) return;
 
-    const newMatrix = matrix.map((row) => row.slice());
+  const newMatrix = matrix.map((row) => row.slice());
 
-    this.moves.makeMove(
+  this.moves.makeMove(
+    newMatrix,
+    currentPlayer.type,
+    currentPlayer.color,
+    columnIndex
+  );
+
+  // Track the last move (row and column)
+  const lastMove = this.moves.lastMove;
+
+  this.setState({ matrix: newMatrix, lastMove }, () => {
+    this.victoryChecker.checkForWin(
       newMatrix,
-      currentPlayer.type,
-      currentPlayer.color,
-      columnIndex
+      this.moves.lastMove,
+      this.moves.movesMade,
+      currentPlayer.color
     );
 
-    this.setState({ matrix: newMatrix }, () => {
-      this.victoryChecker.checkForWin(
-        newMatrix,
-        this.moves.lastMove,
-        this.moves.movesMade,
-        currentPlayer.color
-      );
-
-      if (this.victoryChecker.isGameOver) {
-        if (this.victoryChecker.isDraw) {
-          toast.info("The game is a draw!");
-        } else {
-          toast.success(`${currentPlayer.name} has won the game!`);
-        }
-        return;
+    if (this.victoryChecker.isGameOver) {
+      if (this.victoryChecker.isDraw) {
+        toast.info("The game is a draw!");
+      } else {
+        toast.success(`${currentPlayer.name} has won the game!`);
       }
+      return;
+    }
 
-      this.setState(
-        {
-          currentPlayer:
-            currentPlayer === this.playerOne ? this.playerTwo : this.playerOne,
-        },
-        () => {
-          if (this.state.currentPlayer.type !== 1) {
-            setTimeout(() => {
-              if (this.state.currentPlayer.type === 2) {
-                const columnIndex = this.moves.computerEasyMove();
-                this.handlePlayerMove(columnIndex);
-              } else if (this.state.currentPlayer.type === 3) {
-                this.handlePlayerMove(this.moves.computerSmartMove(this.state.matrix, this.state.currentPlayer === this.playerOne ? 1 : 2))
-              }
-            }, 500);
-          }
+    this.setState(
+      {
+        currentPlayer:
+          currentPlayer === this.playerOne ? this.playerTwo : this.playerOne,
+      },
+      () => {
+        if (this.state.currentPlayer.type !== 1) {
+          setTimeout(() => {
+            if (this.state.currentPlayer.type === 2) {
+              const columnIndex = this.moves.computerEasyMove();
+              this.handlePlayerMove(columnIndex);
+            } else if (this.state.currentPlayer.type === 3) {
+              this.handlePlayerMove(this.moves.computerSmartMove(this.state.matrix, this.state.currentPlayer === this.playerOne ? 1 : 2))
+            }
+          }, 500);
         }
-      );
-    });
-  };
+      }
+    );
+  });
+};
+
 
   render() {
     return (
       <BoardUI
-        matrix={this.state.matrix}
-        currentPlayer={this.state.currentPlayer}
-        onCellClick={this.handlePlayerMove}
-        onResetGame={this.resetGame}
-        onQuitGame={this.props.onQuit}
-      />
+  matrix={this.state.matrix}
+  currentPlayer={this.state.currentPlayer}
+  lastMove={this.state.lastMove} // Pass the last move
+  onCellClick={this.handlePlayerMove}
+  onResetGame={this.resetGame}
+  onQuitGame={this.props.onQuit}
+/>
+
     );
   }
 }

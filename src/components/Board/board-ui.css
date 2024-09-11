@@ -68,8 +68,19 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.new-brick {
+  animation: brick-animation 0.1s ease-out; /* Animate the new brick */
+}
 .brick:hover {
   filter: brightness(1.5);
+}
+@keyframes brick-animation {
+  0% {
+    transform: translateY(-600px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @media screen and (max-width: 700px) {
