@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Player from "../../classes/Player";
 import { Matrix } from "../../types/types";
-import './board-ui.css';
+import "./board-ui.css";
 
 interface BoardUIProps {
   matrix: Matrix;
@@ -18,16 +18,19 @@ const BoardUI: React.FC<BoardUIProps> = ({
   onResetGame,
   onQuitGame,
 }) => {
-
-  
   return (
     <div className="game-container">
-      <h1 className="game-title-board">Connect Four</h1>
+      {/* <h1 className="game-title-board">Connect Four</h1> */}
       <div className="status">
         Current Player:
         <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
           {` ${currentPlayer.name}`}
         </span>
+        <img
+          className="board-player-img"
+          src={currentPlayer.avatar}
+          alt={`${currentPlayer.name}'s avatar`}
+        />
       </div>
       <div className="board">
         {matrix.map((row, rowIndex) => (
