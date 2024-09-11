@@ -5,6 +5,7 @@ import Player from "./Player";
 import VictoryChecker from "./VictoryChecker";
 import { toast } from "react-toastify";
 import BoardUI from "../components/Board/BoardUI";
+import WinnerUI from "../components/winner/WinnerUI";
 
 interface BoardPropsPlayer {
   onQuit: () => void;
@@ -43,6 +44,7 @@ export default class Board extends React.Component<
     this.state = {
       matrix: this.initializeMatrix(),
       currentPlayer: this.playerOne,
+      winner: null,
     };
 
     this.resetGame = this.resetGame.bind(this);
@@ -54,6 +56,7 @@ export default class Board extends React.Component<
     this.setState({
       matrix: this.initializeMatrix(),
       currentPlayer: this.playerOne,
+      winner: null,
     });
   };
 
@@ -90,8 +93,10 @@ export default class Board extends React.Component<
       if (this.victoryChecker.isGameOver) {
         if (this.victoryChecker.isDraw) {
           toast.info("The game is a draw!");
+          this.setState({ winner: "Draw" });
         } else {
           toast.success(`${currentPlayer.name} has won the game!`);
+          this.setState({ winner: currentPlayer.name });
         }
         return;
       }
@@ -108,7 +113,12 @@ export default class Board extends React.Component<
                 const columnIndex = this.moves.computerEasyMove();
                 this.handlePlayerMove(columnIndex);
               } else if (this.state.currentPlayer.type === 3) {
-                this.handlePlayerMove(this.moves.computerSmartMove(this.state.matrix, this.state.currentPlayer === this.playerOne ? 1 : 2))
+                this.handlePlayerMove(
+                  this.moves.computerSmartMove(
+                    this.state.matrix,
+                    this.state.currentPlayer === this.playerOne ? 1 : 2
+                  )
+                );
               }
             }, 500);
           }
@@ -119,13 +129,22 @@ export default class Board extends React.Component<
 
   render() {
     return (
-      <BoardUI
-        matrix={this.state.matrix}
-        currentPlayer={this.state.currentPlayer}
-        onCellClick={this.handlePlayerMove}
-        onResetGame={this.resetGame}
-        onQuitGame={this.props.onQuit}
-      />
+      <>
+        {this.state.winner && (
+          <WinnerUI
+            winner={this.state.winner}
+            onResetGame={this.resetGame}
+            onQuitGame={this.props.onQuit}
+          />
+        )}
+        <BoardUI
+          matrix={this.state.matrix}
+          currentPlayer={this.state.currentPlayer}
+          onCellClick={this.handlePlayerMove}
+          onResetGame={this.resetGame}
+          onQuitGame={this.props.onQuit}
+        />
+      </>
     );
   }
 }
