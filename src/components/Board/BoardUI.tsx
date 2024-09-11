@@ -15,7 +15,7 @@ interface BoardUIProps {
 const BoardUI: React.FC<BoardUIProps> = ({
   matrix,
   currentPlayer,
-  lastMove,  // Access the lastMove prop
+  lastMove, // Access the lastMove prop
   onCellClick,
   onResetGame,
   onQuitGame,
@@ -58,7 +58,7 @@ const BoardUI: React.FC<BoardUIProps> = ({
           Reset Game
         </button>
         <button className="secondary-btn" type="button" onClick={onQuitGame}>
-          Quit
+          Quit Game
         </button>
       </div>
     </div>

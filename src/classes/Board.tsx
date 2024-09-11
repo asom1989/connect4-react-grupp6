@@ -3,7 +3,7 @@ import { BoardProps, BoardState, Setup } from "../types/types";
 import Moves from "./Moves";
 import Player from "./Player";
 import VictoryChecker from "./VictoryChecker";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import BoardUI from "../components/Board/BoardUI";
 import WinnerUI from "../components/winner/WinnerUI";
 
@@ -103,10 +103,10 @@ export default class Board extends React.Component<
 
         if (this.victoryChecker.isGameOver) {
           if (this.victoryChecker.isDraw) {
-            toast.info("The game is a draw!");
+            // toast.info("The game is a draw!");
             this.setState({ winner: "Draw" });
           } else {
-            toast.success(`${currentPlayer.name} has won the game!`);
+            // toast.success(`${currentPlayer.name} has won the game!`);
             this.setState({ winner: currentPlayer.name });
           }
           return;

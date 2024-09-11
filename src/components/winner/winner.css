@@ -16,6 +16,10 @@
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+.winner-content img {
+  width: 15rem;
+  margin-top: -2rem;
+}
 
 .winner-content h1 {
   text-transform: capitalize;

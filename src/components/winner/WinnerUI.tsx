@@ -16,7 +16,7 @@ export default function WinnerUI({
     <section className="overlay">
       <Confetti />
       <article className="winner-content">
-        <img src="/public/images/prize.png" alt="prize" />
+        <img src="/images/prize.png" alt="prize" />
         <h1>{winner} Wins!</h1>
         <div className="board-buttons">
           <button className="secondary-btn" type="button" onClick={onResetGame}>
