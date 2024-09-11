@@ -82,7 +82,10 @@ export default class Board extends React.Component<
       columnIndex
     );
 
-    this.setState({ matrix: newMatrix }, () => {
+    // Track the last move (row and column)
+    const lastMove = this.moves.lastMove;
+
+    this.setState({ matrix: newMatrix, lastMove }, () => {
       this.victoryChecker.checkForWin(
         newMatrix,
         this.moves.lastMove,
@@ -90,16 +93,26 @@ export default class Board extends React.Component<
         currentPlayer.color
       );
 
-      if (this.victoryChecker.isGameOver) {
-        if (this.victoryChecker.isDraw) {
-          toast.info("The game is a draw!");
-          this.setState({ winner: "Draw" });
-        } else {
-          toast.success(`${currentPlayer.name} has won the game!`);
-          this.setState({ winner: currentPlayer.name });
+      this.setState({ matrix: newMatrix }, () => {
+        this.victoryChecker.checkForWin(
+          newMatrix,
+          this.moves.lastMove,
+          this.moves.movesMade,
+          currentPlayer.color
+        );
+
+        if (this.victoryChecker.isGameOver) {
+          if (this.victoryChecker.isDraw) {
+            toast.info("The game is a draw!");
+            this.setState({ winner: "Draw" });
+          } else {
+            toast.success(`${currentPlayer.name} has won the game!`);
+            this.setState({ winner: currentPlayer.name });
+          }
+          return;
         }
         return;
-      }
+      });
 
       this.setState(
         {
@@ -143,6 +156,7 @@ export default class Board extends React.Component<
           onCellClick={this.handlePlayerMove}
           onResetGame={this.resetGame}
           onQuitGame={this.props.onQuit}
+          lastMove={this.state.lastMove} // Pass the last move
         />
       </>
     );
