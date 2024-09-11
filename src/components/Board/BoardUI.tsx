@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Player from "../../classes/Player";
 import { Matrix } from "../../types/types";
+import "./board-ui.css";
 
 interface BoardUIProps {
   matrix: Matrix;
@@ -19,12 +20,17 @@ const BoardUI: React.FC<BoardUIProps> = ({
 }) => {
   return (
     <div className="game-container">
-      <h1 className="game-title-board">Connect Four</h1>
+      {/* <h1 className="game-title-board">Connect Four</h1> */}
       <div className="status">
         Current Player:
         <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
           {` ${currentPlayer.name}`}
         </span>
+        <img
+          className="board-player-img"
+          src={currentPlayer.avatar}
+          alt={`${currentPlayer.name}'s avatar`}
+        />
       </div>
       <div className="board">
         {matrix.map((row, rowIndex) => (
@@ -32,10 +38,10 @@ const BoardUI: React.FC<BoardUIProps> = ({
             {row.map((column, columnIndex) => (
               <div
                 key={columnIndex}
-                className={`column ${column || ""}`}
+                className="brick"
                 onClick={() => onCellClick(columnIndex)}
                 style={{
-                  backgroundColor: column || "#D9D9D9", // set column background color
+                  backgroundColor: column || "white", // Set column background color
                 }}
               ></div>
             ))}
@@ -43,10 +49,10 @@ const BoardUI: React.FC<BoardUIProps> = ({
         ))}
       </div>
       <div className="board-buttons">
-        <button type="button" onClick={onResetGame}>
+        <button className="secondary-btn" type="button" onClick={onResetGame}>
           Reset Game
         </button>
-        <button type="button" onClick={onQuitGame}>
+        <button className="secondary-btn" type="button" onClick={onQuitGame}>
           Quit
         </button>
       </div>
