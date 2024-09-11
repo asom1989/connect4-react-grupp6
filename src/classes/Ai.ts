@@ -34,4 +34,18 @@ export default class Ai {
     }
     return true;
   }
+
+  checkWinningMove(board: Matrix) {
+    const players = ["X", "O"];
+    for (const player of players) {
+      // Horizontal
+      for (let row = 0; row < this.ROWS; row++) {
+        for (let col = 0; col < this.COLS - 3; col++) {
+          if (board[row].slice(col, col + 4).every((column) => column === player)) {
+            return player;
+          }
+        }
+      }
+    }
+  }
 }
