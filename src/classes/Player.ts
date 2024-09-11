@@ -10,6 +10,6 @@ export default class Player {
     this.name = name;
     this.type = type;
     this.color = color;
-    this.avatar = avatar || "/public/images/user_icon_001.jpg";
+    this.avatar = avatar || "/images/user_icon_001.jpg";
   }
 }
