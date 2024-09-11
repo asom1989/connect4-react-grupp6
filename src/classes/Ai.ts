@@ -94,5 +94,20 @@ export default class Ai {
         }
       }
     }
+    // Vertical
+    for (let col = 0; col < this.COLS; col++) {
+      for (let row = this.ROWS - 1; row >= length - 1; row--) {
+        const arr = [];
+        for (let i = 0; i < length; i++) {
+          arr.push(board[row - i][col]);
+        }
+        if (arr.includes(null)) {
+          break;
+        }
+        if (arr.every((cell) => cell === player)) {
+          count++;
+        }
+      }
+    }
   }
 }
