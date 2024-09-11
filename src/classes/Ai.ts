@@ -59,7 +59,11 @@ export default class Ai {
       // Positively sloped diagonals
       for (let row = 0; row < this.ROWS - 3; row++) {
         for (let col = 0; col < this.COLS - 3; col++) {
-          if ([0, 1, 2, 3].every((offset) => board[row + offset][col + offset] === player)) {
+          if (
+            [0, 1, 2, 3].every(
+              (offset) => board[row + offset][col + offset] === player
+            )
+          ) {
             return player;
           }
         }
@@ -67,7 +71,11 @@ export default class Ai {
       // Negatively sloped diagonals
       for (let row = 0; row < this.ROWS - 3; row++) {
         for (let col = 3; col < this.COLS; col++) {
-          if ([0, 1, 2, 3].every((offset) => board[row + offset][col - offset] === player)) {
+          if (
+            [0, 1, 2, 3].every(
+              (offset) => board[row + offset][col - offset] === player
+            )
+          ) {
             return player;
           }
         }
@@ -134,5 +142,15 @@ export default class Ai {
       }
     }
     return count;
+  }
+
+  evaluateBoard(board: Matrix, player: string) {
+    const opponent = player === "X" ? "O" : "X";
+    let score = 0;
+
+    score += this.evaluatePosition(board, player, 2) * 2 + this.evaluatePosition(board, player, 3) * 5 + this.evaluatePosition(board, player, 4) * 1000;
+    score -= this.evaluatePosition(board, opponent, 2) * 2 + this.evaluatePosition(board, opponent, 3) * 5 + this.evaluatePosition(board, opponent, 4) * 1000;
+
+    return score;
   }
 }
