@@ -148,9 +148,31 @@ export default class Ai {
     const opponent = player === "X" ? "O" : "X";
     let score = 0;
 
-    score += this.evaluatePosition(board, player, 2) * 2 + this.evaluatePosition(board, player, 3) * 5 + this.evaluatePosition(board, player, 4) * 1000;
-    score -= this.evaluatePosition(board, opponent, 2) * 2 + this.evaluatePosition(board, opponent, 3) * 5 + this.evaluatePosition(board, opponent, 4) * 1000;
+    score +=
+      this.evaluatePosition(board, player, 2) * 2 +
+      this.evaluatePosition(board, player, 3) * 5 +
+      this.evaluatePosition(board, player, 4) * 1000;
+    score -=
+      this.evaluatePosition(board, opponent, 2) * 2 +
+      this.evaluatePosition(board, opponent, 3) * 5 +
+      this.evaluatePosition(board, opponent, 4) * 1000;
 
     return score;
+  }
+
+  sortMoves(board: Matrix, player: string) {
+    const moves = this.getValidMoves(board);
+    moves.sort((a, b) => {
+      this.makeMove(board, a, player);
+      const scoreA = this.evaluateBoard(board, player);
+      this.undoMove(board, a);
+
+      this.makeMove(board, b, player);
+      const scoreB = this.evaluateBoard(board, player);
+      this.undoMove(board, b);
+
+      return scoreB - scoreA;
+    });
+    return moves;
   }
 }
