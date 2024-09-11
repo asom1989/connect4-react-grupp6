@@ -7,7 +7,6 @@ import { ToastContainer } from "react-toastify";
 export default function App() {
   const [gameState, setGameState] = useState<Setup | null>(null);
   const handleGameState = (setup: Setup) => {
-    // console.log("Game setup completed:", setup);
     setGameState(setup);
   };
 

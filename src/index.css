@@ -17,6 +17,7 @@ body {
   background-repeat: no-repeat; /* Prevents the image from repeating */
   height: 100vh; /* Sets the height of the background element */
   width: 100vw; /* Sets the width of the background element */
+  overflow: hidden;
 }
 :root {
   --primary-font-family: cursive;
