@@ -41,7 +41,17 @@ export default class Ai {
       // Horizontal
       for (let row = 0; row < this.ROWS; row++) {
         for (let col = 0; col < this.COLS - 3; col++) {
-          if (board[row].slice(col, col + 4).every((column) => column === player)) {
+          if (
+            board[row].slice(col, col + 4).every((column) => column === player)
+          ) {
+            return player;
+          }
+        }
+      }
+      // Vertical
+      for (let col = 0; col < this.COLS; col++) {
+        for (let row = 0; row < this.ROWS - 3; row++) {
+          if ([0, 1, 2, 3].every((r) => board[row + r][col] === player)) {
             return player;
           }
         }
