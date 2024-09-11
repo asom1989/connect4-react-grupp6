@@ -20,6 +20,9 @@ export type ColumnStatus = (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
 export interface BoardState {
   matrix: (string | null)[][];
   currentPlayer: PlayerInfo;
+
+  winner: string | null;
+
   lastMove?: { row: number; col: number };
 }
 export type PlayerInfo = {
