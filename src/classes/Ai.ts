@@ -121,5 +121,18 @@ export default class Ai {
         }
       }
     }
+    // Negatively sloped diagonal
+    for (let row = 0; row <= this.ROWS - length; row++) {
+      for (let col = this.COLS - 1; col >= length - 1; col--) {
+        const arr = [];
+        for (let i = 0; i < length; i++) {
+          arr.push(board[row + i][col - i]);
+        }
+        if (arr.every((element) => element === player)) {
+          count++;
+        }
+      }
+    }
+    return count;
   }
 }
