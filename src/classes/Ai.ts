@@ -23,4 +23,15 @@ export default class Ai {
     }
     return true;
   }
+
+  undoMove(board: Matrix, move: number) {
+    for (let row = 0; row < this.ROWS; row++) {
+      if (board[row][move] !== null) {
+        this.movesMade--;
+        board[row][move] = null;
+        break;
+      }
+    }
+    return true;
+  }
 }
