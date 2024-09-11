@@ -13,11 +13,7 @@ section.game-options {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    90deg,
-    rgb(4, 93, 171) 30%,
-    rgba(132, 165, 250, 1) 65%
-  );
+  background: white;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 2.7rem;
