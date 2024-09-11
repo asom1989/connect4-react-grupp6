@@ -13,19 +13,20 @@ export default function WinnerUI({
   onQuitGame,
 }: WinnerProps) {
   return (
-    <div>
+    <section className="overlay">
       <Confetti />
-      <div>
-        <h1>{winner}</h1>
+      <article className="winner-content">
+        <img src="/public/images/prize.png" alt="prize" />
+        <h1>{winner} Wins!</h1>
         <div className="board-buttons">
           <button className="secondary-btn" type="button" onClick={onResetGame}>
             Reset Game
           </button>
           <button className="secondary-btn" type="button" onClick={onQuitGame}>
-            Quit
+            Quit Game
           </button>
         </div>
-      </div>
-    </div>
+      </article>
+    </section>
   );
 }

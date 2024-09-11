@@ -1,0 +1,34 @@
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.winner-content {
+  background-color: rgba(255, 255, 255, 0.48);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.winner-content h1 {
+  text-transform: capitalize;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .winner-content h1 {
+    font-size: 2.5rem;
+  }
+  .winner-content img {
+    width: 15rem;
+  }
+}
