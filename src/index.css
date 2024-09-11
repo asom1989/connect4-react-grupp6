@@ -21,7 +21,7 @@ body {
 }
 :root {
   --primary-font-family: cursive;
-  --primary-color: rgba(132, 165, 250, 0.8);
+  --primary-color: rgba(132, 165, 250, 1);
   --secondary-color: rgb(72 73 73);
   --bg-primary-color: linear-gradient(
     90deg,

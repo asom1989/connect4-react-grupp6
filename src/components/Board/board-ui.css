@@ -29,7 +29,7 @@
   margin-top: min(2vh, 2vw);
   margin-bottom: min(5vh, 5vw);
   padding: 3%;
-  background-color: var(--primary-color);
+  background-color: rgba(132, 165, 250, 0.8);
   gap: 15px;
 }
 @media screen and (max-width: 600px) {
