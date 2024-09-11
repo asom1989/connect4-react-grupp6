@@ -12,5 +12,15 @@ export default class Ai {
     this.currentPlayer = 1;
     this.movesMade = 0;
   }
-  
+
+  makeMove(board: Matrix, move: number, player: string) {
+    for (let row = this.ROWS - 1; row >= 0; row--) {
+      if (!board[row][move]) {
+        this.movesMade++;
+        board[row][move] = player;
+        break;
+      }
+    }
+    return true;
+  }
 }
