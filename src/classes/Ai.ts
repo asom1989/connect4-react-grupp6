@@ -79,4 +79,20 @@ export default class Ai {
     }
     return false;
   }
+
+  evaluatePosition(board: Matrix, player: string, length: number) {
+    let count = 0;
+    // Horizontal
+    for (let row = 0; row < this.ROWS; row++) {
+      for (let col = 0; col <= this.COLS - length; col++) {
+        const arr = [];
+        for (let i = 0; i < length; i++) {
+          arr.push(board[row][col + i]);
+        }
+        if (arr.every((cell) => cell === player)) {
+          count++;
+        }
+      }
+    }
+  }
 }
