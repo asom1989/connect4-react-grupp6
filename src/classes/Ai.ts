@@ -109,5 +109,17 @@ export default class Ai {
         }
       }
     }
+    // Positively sloped diagonal
+    for (let row = 0; row <= this.ROWS - length; row++) {
+      for (let col = 0; col <= this.COLS - length; col++) {
+        const arr = [];
+        for (let i = 0; i < length; i++) {
+          arr.push(board[row + i][col + i]);
+        }
+        if (arr.every((element) => element === player)) {
+          count++;
+        }
+      }
+    }
   }
 }
