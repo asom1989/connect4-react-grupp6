@@ -185,4 +185,22 @@ export default class Ai {
     }
     return validColumns;
   }
+
+  getBestMove(board: Matrix, depth: number, player: string) {
+    const moves = this.sortMoves(board, player);
+    let bestMove = moves[0];
+    let bestScore = -Infinity;
+
+    for (const move of moves) {
+      this.makeMove(board, move, player);
+      const score = -this.negaScout(board, depth - 1, -Infinity, Infinity, player === "X" ? "O" : "X");
+      this.undoMove(board, move);
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestMove = move;
+      }
+    }
+    return bestMove;
+  }
 }
