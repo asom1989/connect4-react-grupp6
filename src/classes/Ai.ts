@@ -73,5 +73,10 @@ export default class Ai {
         }
       }
     }
+    // Check if game is a draw
+    if (this.getValidMoves(board).length === 0) {
+      return "DRAW";
+    }
+    return false;
   }
 }
