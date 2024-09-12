@@ -18,14 +18,14 @@ export default function WinnerUI({
     <section className="overlay">
       <Confetti />
       <article className="winner-content">
-        {winnerAvatar ? (
+        {winnerAvatar === "/images/user_icon_001.jpg" ? (
+          <img src="/images/prize.png" alt="prize" className="prize-avatar" />
+        ) : (
           <img
             src={winnerAvatar}
             alt={`${winner}'s Avatar`}
             className="winner-avatar"
           />
-        ) : (
-          <img src="/images/prize.png" alt="prize" className="prize-avatar" />
         )}
         <h1>{winner} Wins!</h1>
         <div className="board-buttons">
