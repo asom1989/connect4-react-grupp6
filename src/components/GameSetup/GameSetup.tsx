@@ -10,6 +10,8 @@ interface GameSetupProps {
 const initialGameSetup = {
   playerOneName: "",
   playerTwoName: "",
+  playerOneAvatar: "",
+  playerTwoAvatar: "",
   playerOneType: 1,
   playerTwoType: 1,
   gameType: 0,
