@@ -16,9 +16,15 @@
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.winner-content img {
+.prize-avatar {
   width: 15rem;
   margin-top: -2rem;
+}
+.winner-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
 }
 
 .winner-content h1 {
@@ -32,7 +38,7 @@
   .winner-content h1 {
     font-size: 2.5rem;
   }
-  .winner-content img {
+  .prize-avatar {
     width: 15rem;
   }
 }
