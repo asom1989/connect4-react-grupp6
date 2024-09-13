@@ -31,6 +31,13 @@ export default function PlayerInput() {
     }
   };
 
+  const handleRemoveImage = () => {
+    if (user.imagePreview) {
+      URL.revokeObjectURL(user.imagePreview);
+    }
+    setUser((prevUser) => ({ ...prevUser, image: null, imagePreview: null }));
+  };
+  
   return (
     <section className={styles.playerSection}>
       <div className={styles.tabButtons}>
