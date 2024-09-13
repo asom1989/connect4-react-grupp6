@@ -37,7 +37,7 @@ export default function WinnerUI({
 
         {winner === "Draw" ? <h1>It is a draw!</h1> : <h1>{winner} Wins!</h1>}
 
-        <div className="board-buttons">
+        <div className="winner-overlay-buttons">
           <button className="secondary-btn" type="button" onClick={onResetGame}>
             Reset Game
           </button>
