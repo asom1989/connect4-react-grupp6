@@ -10,25 +10,15 @@ interface BoardUIProps {
   onCellClick: (columnIndex: number) => void;
   onResetGame: () => void;
   onQuitGame: () => void;
-  winningCells: { row: number, col: number }[];
 }
-
-const isWinningCell = (
-  row: number,
-  col: number,
-  winningCells: { row: number; col: number }[]
-) => {
-  return winningCells.some((cell) => cell.row === row && cell.col === col);
-};
 
 const BoardUI: React.FC<BoardUIProps> = ({
   matrix,
   currentPlayer,
-  lastMove, 
+  lastMove, // Access the lastMove prop
   onCellClick,
   onResetGame,
   onQuitGame,
-  winningCells
 }) => {
   return (
     <div className="game-container">
@@ -50,9 +40,7 @@ const BoardUI: React.FC<BoardUIProps> = ({
               <div
                 key={columnIndex}
                 className={`brick ${
-                  isWinningCell(rowIndex, columnIndex, winningCells)
-                    ? "winning-brick" // Apply a special class to winning cells
-                    : lastMove?.row === rowIndex && lastMove?.col === columnIndex
+                  lastMove?.row === rowIndex && lastMove?.col === columnIndex
                     ? "new-brick"
                     : ""
                 }`}
