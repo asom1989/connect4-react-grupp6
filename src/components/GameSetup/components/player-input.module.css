@@ -85,3 +85,44 @@
   border: 0;
   transform: translateY(-100%);
 }
+
+.fileUpload {
+  width: 80%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fileLabel {
+  
+  display: inline-block;
+  position: relative;
+  width: 80%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+}
+
+
+.fileInput {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.imagePreview {
+  width: 80%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
