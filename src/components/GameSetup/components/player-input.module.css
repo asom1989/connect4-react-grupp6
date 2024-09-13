@@ -8,3 +8,31 @@
   width: 80vw;
   max-width: 400px;
 }
+
+/* Tab buttons */
+.tabButtons {
+  width: 100%;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  
+  & :nth-child(1){
+    border-top-left-radius: 1.5rem;
+    border-right: 1px solid grey;
+  }
+  & :nth-child(3){
+    border-top-right-radius: 1.5rem;
+    border-left: 1px solid grey;
+  } 
+}
+
+.tabButton {
+  font-size: 1rem;
+  flex: auto;
+  border: 0;
+  background-color: rgba(132, 165, 250, 0.7);
+  /* background-color: rgba(132, 165, 250, 0.2); */
+}
+.active {
+  background-color: rgba(132, 165, 250, 1);
+}
