@@ -18,9 +18,27 @@ const initialGameSetup = {
   gameType: 0,
 };
 
+type Player = {
+  name: string;
+  image: string;
+}
+
 export default function GameSetup({ setGameState }: GameSetupProps) {
   const [setup, setSetup] = useState(initialGameSetup);
 
+  const handleSetPlayer = (player: Player) => {
+    if (setup.gameType === 2) {
+      setSetup((prevSetup) => ({ ...prevSetup, playerOneName: player.name, playerOneAvatar: player.image }));
+    }
+    if (setup.gameType === 1) {
+      if (setup.playerOneName === "") {
+        setSetup((prevSetup) => ({ ...prevSetup, playerOneName: player.name, playerOneAvatar: player.image }));
+      }
+      if (setup.playerOneName !== "") {
+        setSetup((prevSetup) => ({ ...prevSetup, playerTwoName: player.name, playerTwoAvatar: player.image }));
+      }
+    }
+  }
   // const handleChange = (
   //   e: React.FormEvent<HTMLInputElement | HTMLSelectElement>
   // ) => {
@@ -115,7 +133,7 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
           <h1 className="player-heading">
             {setup.playerOneName === "" ? "Player 1" : "Player 2"}
           </h1>
-          <PlayerInput />
+          <PlayerInput setPlayer={handleSetPlayer} />
         </section>
       )}
 
