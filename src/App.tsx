@@ -13,7 +13,7 @@ export default function App() {
   const handleQuit = () => {
     setGameState(null);
   };
-
+  // awdwaddad
   return (
     <div>
       <ToastContainer theme="colored" position="top-center" autoClose={1700} />
@@ -22,6 +22,7 @@ export default function App() {
       ) : (
         <GameSetup setGameState={handleGameState} />
       )}
+      
     </div>
   );
 }
