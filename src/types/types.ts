@@ -21,6 +21,7 @@ export interface BoardState {
   matrix: (string | null)[][];
   currentPlayer: PlayerInfo;
 
+  winnerAvatar: string | null;
   winner: string | null;
 
   lastMove?: { row: number; col: number };

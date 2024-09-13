@@ -45,6 +45,7 @@ export default class Board extends React.Component<
       matrix: this.initializeMatrix(),
       currentPlayer: this.playerOne,
       winner: null,
+      winnerAvatar: null,
     };
 
     this.resetGame = this.resetGame.bind(this);
@@ -57,6 +58,7 @@ export default class Board extends React.Component<
       matrix: this.initializeMatrix(),
       currentPlayer: this.playerOne,
       winner: null,
+      winnerAvatar: null,
     });
   };
 
@@ -107,7 +109,10 @@ export default class Board extends React.Component<
             this.setState({ winner: "Draw" });
           } else {
             // toast.success(`${currentPlayer.name} has won the game!`);
-            this.setState({ winner: currentPlayer.name });
+            this.setState({
+              winner: currentPlayer.name,
+              winnerAvatar: currentPlayer.avatar,
+            });
           }
           return;
         }
@@ -145,6 +150,9 @@ export default class Board extends React.Component<
       <>
         {this.state.winner && (
           <WinnerUI
+            winnerAvatar={
+              this.state.winnerAvatar || "/images/user_icon_001.jpg"
+            }
             winner={this.state.winner}
             onResetGame={this.resetGame}
             onQuitGame={this.props.onQuit}
