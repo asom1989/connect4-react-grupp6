@@ -58,7 +58,7 @@
   width: 100%;
   gap: 10px;
   margin-bottom: 20px;
-  max-width: 50rem;
+  max-width: 400px;
 }
 
 .brick {
@@ -72,11 +72,9 @@
 .new-brick {
   animation: brick-animation 0.2s ease-out; /* Animate the new brick */
 }
-
-.winning-brick {
-  border: 10px solid rgb(3, 193, 3);
+.brick:hover {
+  filter: brightness(1.5);
 }
-
 @keyframes brick-animation {
   0% {
     transform: translateY(-800px);
@@ -86,7 +84,7 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+ @media screen and (max-width: 700px) {
   .board {
     gap: 4px;
     width: min(95vh, 95vw);
@@ -99,12 +97,6 @@
   .status span {
     font-size: 1.2rem;
   }
-  .winning-brick {
-    border: 5px solid rgb(3, 193, 3);
-  }
-  .board-buttons {
-    padding: 0 0.4rem;
-  }
 }
 
 @media screen and (min-width: 701px) and (max-width: 1100px) {
@@ -115,7 +107,28 @@
   .status span {
     font-size: 1.6rem;
   }
-  .board-buttons {
-    padding: 0 2rem;
+} 
+
+ 
+@media screen and (orientation: landscape) and (max-width: 700px) {
+  .board-buttons button {
+    padding: 0.5rem 1rem; 
+    font-size: 0.9rem;    
+    width: 90%;           
+    max-width: 200px;     
+  }
+  .board {
+    width: min(75vh, 95vw);  
+    gap: 3px;                
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    padding: 2%;
+    box-shadow: 1px 3px 2px black; 
+  }
+
+  .board-player-img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
   }
 }

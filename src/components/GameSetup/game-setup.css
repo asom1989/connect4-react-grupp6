@@ -96,3 +96,57 @@ section.game-options .buttons-wrapper {
     width: 25rem;
   }
 }
+
+
+@media screen and (orientation: landscape) and (max-width: 700px) {
+
+  .game-title {
+    font-size: 2rem; 
+    height: 15vh; 
+    padding: 2.5rem;
+  }
+
+  
+  section.game-options {
+    height: 30vh; 
+  }
+
+  
+  .player-form form {
+    height: 80vh; 
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .palyer-form-input {
+    height: 40%; 
+    padding: 0.5rem 0; 
+  }
+
+  .palyer-form-input input {
+    width: 15rem; 
+    font-size: 1rem; 
+    padding: 0.8rem; 
+    border-radius: 1rem; 
+  }
+
+  .palyer-form-input input::placeholder {
+    font-size: 1rem; 
+  }
+
+  .computer-level {
+    width: 20rem; 
+    font-size: 1rem; 
+    padding: 0.7rem; 
+  }
+
+  .computer-level select {
+    width: 5rem; 
+    font-size: 0.9rem; 
+    padding: 0.2rem; 
+  }
+
+  .buttons-wrapper {
+    gap: 1.5rem; 
+  }
+}
