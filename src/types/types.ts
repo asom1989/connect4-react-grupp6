@@ -20,7 +20,7 @@ export type ColumnStatus = (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
 export interface BoardState {
   matrix: (string | null)[][];
   currentPlayer: PlayerInfo;
-  winningCells: { row: number; col: number }[];
+
   winnerAvatar: string | null;
   winner: string | null;
 

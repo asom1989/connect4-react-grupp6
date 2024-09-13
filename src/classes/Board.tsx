@@ -1,5 +1,5 @@
 import React from "react";
-import { BoardProps, BoardState, Setup, } from "../types/types";
+import { BoardProps, BoardState, Setup } from "../types/types";
 import Moves from "./Moves";
 import Player from "./Player";
 import VictoryChecker from "./VictoryChecker";
@@ -11,7 +11,6 @@ interface BoardPropsPlayer {
   onQuit: () => void;
   gameState: Setup;
 }
-
 
 export default class Board extends React.Component<
   BoardPropsPlayer,
@@ -47,7 +46,6 @@ export default class Board extends React.Component<
       currentPlayer: this.playerOne,
       winner: null,
       winnerAvatar: null,
-      winningCells: [],
     };
 
     this.resetGame = this.resetGame.bind(this);
@@ -64,7 +62,6 @@ export default class Board extends React.Component<
       currentPlayer: this.playerOne,
       winner: null,
       winnerAvatar: null,
-      winningCells: []
     });
   };
 
@@ -100,31 +97,18 @@ export default class Board extends React.Component<
         this.moves.movesMade,
         currentPlayer.color
       );
-      
-      this.setState({ matrix: newMatrix }, () => {
-        this.victoryChecker.checkForWin(
-          newMatrix,
-          this.moves.lastMove,
-          this.moves.movesMade,
-          currentPlayer.color
-        );
 
-        if (this.victoryChecker.isGameOver) {
-          const winningCells = this.victoryChecker.winningCells;
-          if (this.victoryChecker.isDraw) {
-            // toast.info("The game is a draw!");
-            this.setState({ winner: "Draw" });
-          } else {
-            // toast.success(`${currentPlayer.name} has won the game!`);
-            this.setState({
-              winner: currentPlayer.name, winningCells,
-              winnerAvatar: currentPlayer.avatar,
-              
-            });
-            this.updateLocalStorage(currentPlayer.name);
-          }
-          return;
-
+      if (this.victoryChecker.isGameOver) {
+        if (this.victoryChecker.isDraw) {
+          // toast.info("The game is a draw!");
+          this.setState({ winner: "Draw" });
+        } else {
+          // toast.success(`${currentPlayer.name} has won the game!`);
+          this.setState({
+            winner: currentPlayer.name,
+            winnerAvatar: currentPlayer.avatar,
+          });
+          this.updateLocalStorage(currentPlayer.name);
         }
         return;
       }
@@ -199,10 +183,7 @@ export default class Board extends React.Component<
           onCellClick={this.handlePlayerMove}
           onResetGame={this.resetGame}
           onQuitGame={this.props.onQuit}
-          lastMove={this.state.lastMove}
-          winningCells={this.state.winningCells}
-          
-          
+          lastMove={this.state.lastMove} // Pass the last move
         />
       </>
     );
