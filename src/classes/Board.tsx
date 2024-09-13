@@ -54,6 +54,9 @@ export default class Board extends React.Component<
   resetGame = () => {
     this.moves = new Moves();
     this.victoryChecker = new VictoryChecker();
+    this.playerOne.playerMovesMade = 0;
+    this.playerTwo.playerMovesMade = 0;
+
     this.setState({
       matrix: this.initializeMatrix(),
       currentPlayer: this.playerOne,
@@ -83,9 +86,9 @@ export default class Board extends React.Component<
       currentPlayer.color,
       columnIndex
     );
-
     // Track the last move (row and column)
     const lastMove = this.moves.lastMove;
+    currentPlayer.incrementMoves();
 
     this.setState({ matrix: newMatrix, lastMove }, () => {
       this.victoryChecker.checkForWin(
@@ -95,29 +98,20 @@ export default class Board extends React.Component<
         currentPlayer.color
       );
 
-      this.setState({ matrix: newMatrix }, () => {
-        this.victoryChecker.checkForWin(
-          newMatrix,
-          this.moves.lastMove,
-          this.moves.movesMade,
-          currentPlayer.color
-        );
-
-        if (this.victoryChecker.isGameOver) {
-          if (this.victoryChecker.isDraw) {
-            // toast.info("The game is a draw!");
-            this.setState({ winner: "Draw" });
-          } else {
-            // toast.success(`${currentPlayer.name} has won the game!`);
-            this.setState({
-              winner: currentPlayer.name,
-              winnerAvatar: currentPlayer.avatar,
-            });
-          }
-          return;
+      if (this.victoryChecker.isGameOver) {
+        if (this.victoryChecker.isDraw) {
+          // toast.info("The game is a draw!");
+          this.setState({ winner: "Draw" });
+        } else {
+          // toast.success(`${currentPlayer.name} has won the game!`);
+          this.setState({
+            winner: currentPlayer.name,
+            winnerAvatar: currentPlayer.avatar,
+          });
+          this.updateLocalStorage(currentPlayer.name);
         }
         return;
-      });
+      }
 
       this.setState(
         {
@@ -144,6 +138,31 @@ export default class Board extends React.Component<
       );
     });
   };
+
+  updateLocalStorage(winnerName: string) {
+    const playerStatsString = localStorage.getItem("playerStats");
+    const playerStats: {
+      [key: string]: { wins: number; moves: number; avatar: string };
+    } = playerStatsString ? JSON.parse(playerStatsString) : {};
+
+    if (!playerStats[winnerName]) {
+      playerStats[winnerName] = {
+        wins: 0,
+        moves: Number.MAX_VALUE,
+        avatar: this.state.currentPlayer.avatar,
+      };
+    }
+
+    playerStats[winnerName].wins += 1;
+
+    if (
+      this.state.currentPlayer.playerMovesMade < playerStats[winnerName].moves
+    ) {
+      playerStats[winnerName].moves = this.state.currentPlayer.playerMovesMade;
+    }
+
+    localStorage.setItem("playerStats", JSON.stringify(playerStats));
+  }
 
   render() {
     return (
