@@ -1,5 +1,5 @@
 import React from "react";
-import { BoardProps, BoardState, Setup } from "../types/types";
+import { BoardProps, BoardState, Setup, } from "../types/types";
 import Moves from "./Moves";
 import Player from "./Player";
 import VictoryChecker from "./VictoryChecker";
@@ -11,6 +11,7 @@ interface BoardPropsPlayer {
   onQuit: () => void;
   gameState: Setup;
 }
+
 
 export default class Board extends React.Component<
   BoardPropsPlayer,
@@ -46,6 +47,7 @@ export default class Board extends React.Component<
       currentPlayer: this.playerOne,
       winner: null,
       winnerAvatar: null,
+      winningCells: [],
     };
 
     this.resetGame = this.resetGame.bind(this);
@@ -56,12 +58,12 @@ export default class Board extends React.Component<
     this.victoryChecker = new VictoryChecker();
     this.playerOne.playerMovesMade = 0;
     this.playerTwo.playerMovesMade = 0;
-
     this.setState({
       matrix: this.initializeMatrix(),
       currentPlayer: this.playerOne,
       winner: null,
       winnerAvatar: null,
+      winningCells: []
     });
   };
 
@@ -99,21 +101,22 @@ export default class Board extends React.Component<
       );
 
       if (this.victoryChecker.isGameOver) {
+        const winningCells=this.victoryChecker.winningCells
         if (this.victoryChecker.isDraw) {
           // toast.info("The game is a draw!");
           this.setState({ winner: "Draw" });
         } else {
-          // toast.success(`${currentPlayer.name} has won the game!`);
+          // toast.success(${currentPlayer.name} has won the game!);
           this.setState({
             winner: currentPlayer.name,
             winnerAvatar: currentPlayer.avatar,
+            winningCells
           });
           this.updateLocalStorage(currentPlayer.name);
         }
         return;
       }
-
-      this.setState(
+this.setState(
         {
           currentPlayer:
             currentPlayer === this.playerOne ? this.playerTwo : this.playerOne,
@@ -138,7 +141,6 @@ export default class Board extends React.Component<
       );
     });
   };
-
   updateLocalStorage(winnerName: string) {
     const playerStatsString = localStorage.getItem("playerStats");
     const playerStats: {
@@ -163,6 +165,7 @@ export default class Board extends React.Component<
 
     localStorage.setItem("playerStats", JSON.stringify(playerStats));
   }
+      
 
   render() {
     return (
@@ -183,7 +186,10 @@ export default class Board extends React.Component<
           onCellClick={this.handlePlayerMove}
           onResetGame={this.resetGame}
           onQuitGame={this.props.onQuit}
-          lastMove={this.state.lastMove} // Pass the last move
+          lastMove={this.state.lastMove}
+          winningCells={this.state.winningCells}
+          
+          
         />
       </>
     );
