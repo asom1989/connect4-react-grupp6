@@ -16,9 +16,16 @@ export default function WinnerUI({
 }: WinnerProps) {
   return (
     <section className="overlay">
-      <Confetti />
+      {winner === "Draw" ? null : <Confetti />}
+
       <article className="winner-content">
-        {winnerAvatar === "/images/user_icon_001.jpg" ? (
+        {winner === "Draw" ? (
+          <img
+            src="/public/images/vs_draw1.jpg"
+            alt="draw"
+            className="draw-avatar"
+          />
+        ) : winnerAvatar === "/images/user_icon_001.jpg" ? (
           <img src="/images/prize.png" alt="prize" className="prize-avatar" />
         ) : (
           <img
@@ -27,7 +34,9 @@ export default function WinnerUI({
             className="winner-avatar"
           />
         )}
-        <h1>{winner} Wins!</h1>
+
+        {winner === "Draw" ? <h1>It is a draw!</h1> : <h1>{winner} Wins!</h1>}
+
         <div className="board-buttons">
           <button className="secondary-btn" type="button" onClick={onResetGame}>
             Reset Game
