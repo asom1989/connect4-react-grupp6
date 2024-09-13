@@ -72,9 +72,11 @@
 .new-brick {
   animation: brick-animation 0.2s ease-out; /* Animate the new brick */
 }
-.brick:hover {
-  filter: brightness(1.5);
+
+.winning-brick {
+  border: 10px solid rgb(3, 193, 3);
 }
+
 @keyframes brick-animation {
   0% {
     transform: translateY(-800px);
@@ -96,6 +98,9 @@
   }
   .status span {
     font-size: 1.2rem;
+  }
+  .winning-brick {
+    border: 5px solid rgb(3, 193, 3);
   }
 }
 
