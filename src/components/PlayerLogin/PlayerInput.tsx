@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import styles from "./player-input.module.css";
 
 const tabOptions = ["Guest", "Login", "Register"];
@@ -8,8 +8,7 @@ type User = {
   password: string;
   image: null | File;
   imagePreview: null | string;
-}
-
+};
 
 export default function PlayerInput() {
   const [selectedTab, setSelectedTab] = useState<string>("Guest");
@@ -18,13 +17,17 @@ export default function PlayerInput() {
     password: "",
     image: null,
     imagePreview: null,
-  })
+  });
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.files) {
       const image = e.currentTarget.files[0];
       const preview = URL.createObjectURL(image);
-      setUser((prevUser) => ({...prevUser, image: image, imagePreview: preview}));
+      setUser((prevUser) => ({
+        ...prevUser,
+        image: image,
+        imagePreview: preview,
+      }));
     } else {
       const { name, value } = e.currentTarget;
       setUser((prevUser) => ({ ...prevUser, [name]: value }));
@@ -37,7 +40,7 @@ export default function PlayerInput() {
     }
     setUser((prevUser) => ({ ...prevUser, image: null, imagePreview: null }));
   };
-  
+
   return (
     <section className={styles.playerSection}>
       <div className={styles.tabButtons}>
@@ -99,7 +102,11 @@ export default function PlayerInput() {
 
             {user.imagePreview && (
               <>
-                <img src={user.imagePreview} className={styles.imagePreview} />
+                <img
+                  src={user.imagePreview}
+                  className={styles.imagePreview}
+                  alt="user image"
+                />
                 <button
                   type="button"
                   className={styles.removeButton}
