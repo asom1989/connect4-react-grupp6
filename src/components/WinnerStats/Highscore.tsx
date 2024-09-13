@@ -2,9 +2,15 @@ import "./high-score.css";
 
 interface HighScoreProps {
   setShowHighscore: (toggle: boolean) => void;
+  mostWinsPlayer: { name: string; avatar: string; wins: number };
+  fewestMovesPlayer: { name: string; avatar: string; moves: number };
 }
 
-const HighScore = ({ setShowHighscore }: HighScoreProps) => {
+const HighScore = ({
+  setShowHighscore,
+  mostWinsPlayer,
+  fewestMovesPlayer,
+}: HighScoreProps) => {
   return (
     <section className="high-score-overlay">
       <div className="high-score-overlay-content">
@@ -13,13 +19,15 @@ const HighScore = ({ setShowHighscore }: HighScoreProps) => {
         <article>
           <h3>Player with Most Wins:</h3>
           <div className="high-score-info">
-            <img src="/images/user_icon_001.jpg" alt="Most Wins Player" />
+            <img src={mostWinsPlayer.avatar} alt="Most Wins Player" />
             <div className="high-score-text-content">
               <p>
-                <span>Name:</span>Motasem
+                <span>Name:</span>
+                {mostWinsPlayer.name}
               </p>
               <p>
-                <span>Wins:</span>10
+                <span>Wins:</span>
+                {mostWinsPlayer.wins}
               </p>
             </div>
           </div>
@@ -27,13 +35,15 @@ const HighScore = ({ setShowHighscore }: HighScoreProps) => {
         <article>
           <h3>Player with Fewest Moves to Win:</h3>
           <div className="high-score-info">
-            <img src="/images/user_icon_001.jpg" alt="Fewest Moves Player" />
+            <img src={fewestMovesPlayer.avatar} alt="Fewest Moves Player" />
             <div className="high-score-text-content">
               <p>
-                <span>Name:</span>Motasem
+                <span>Name:</span>
+                {fewestMovesPlayer.name}
               </p>
               <p>
-                <span>Moves:</span> 5
+                <span>Moves:</span>
+                {fewestMovesPlayer.moves}
               </p>
             </div>
           </div>

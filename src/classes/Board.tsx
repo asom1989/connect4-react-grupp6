@@ -140,6 +140,7 @@ export default class Board extends React.Component<
       );
     });
   };
+
   updateLocalStorage(winnerName: string) {
     const playerStatsString = localStorage.getItem("playerStats");
     const playerStats: {

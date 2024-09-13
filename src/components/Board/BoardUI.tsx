@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import Player from "../../classes/Player";
 import { Matrix } from "../../types/types";
 import "./board-ui.css";
@@ -22,7 +22,7 @@ const isWinningCell = (
   return winningCells.some((cell) => cell.row === row && cell.col === col);
 };
 
-const BoardUI: React.FC<BoardUIProps> = ({
+const BoardUI = ({
   matrix,
   currentPlayer,
   lastMove,
@@ -30,16 +30,53 @@ const BoardUI: React.FC<BoardUIProps> = ({
   onResetGame,
   onQuitGame,
   winningCells,
-}) => {
+}: BoardUIProps) => {
   const [showHighscore, setShowHighscore] = useState(false);
 
-  const handleShowStats = () => {
-    setShowHighscore(true);
+  const getHighscore = () => {
+    const highscoreString = localStorage.getItem("playerStats");
+    const highscoreStats: {
+      [key: string]: { wins: number; moves: number; avatar: string };
+    } = highscoreString ? JSON.parse(highscoreString) : {};
+
+    if (Object.keys(highscoreStats).length === 0) {
+      return {
+        mostWinsPlayer: { name: "", avatar: "", wins: 0 },
+        fewestMovesPlayer: { name: "", avatar: "", moves: 0 },
+      };
+    }
+    let mostWinsPlayer = { name: "", avatar: "", wins: 0 };
+    let fewestMovesPlayer = { name: "", avatar: "", moves: Number.MAX_VALUE };
+
+    // Find player with most wins
+    let maxWins = -1;
+    for (const [name, stats] of Object.entries(highscoreStats)) {
+      if (stats.wins > maxWins) {
+        mostWinsPlayer = { name, avatar: stats.avatar, wins: stats.wins };
+        maxWins = stats.wins;
+      }
+    }
+    // Find player with fewest moves
+    let minMoves = Number.MAX_VALUE;
+    for (const [name, stats] of Object.entries(highscoreStats)) {
+      if (stats.moves < minMoves) {
+        fewestMovesPlayer = { name, avatar: stats.avatar, moves: stats.moves };
+        minMoves = stats.moves;
+      }
+    }
+    return { mostWinsPlayer, fewestMovesPlayer };
   };
+  const { mostWinsPlayer, fewestMovesPlayer } = getHighscore();
 
   return (
     <div className="game-container">
-      {showHighscore && <HighScore setShowHighscore={setShowHighscore} />}
+      {showHighscore && (
+        <HighScore
+          setShowHighscore={setShowHighscore}
+          mostWinsPlayer={mostWinsPlayer}
+          fewestMovesPlayer={fewestMovesPlayer}
+        />
+      )}
       <div className="status">
         {/* Current Player: */}
         <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
@@ -84,7 +121,7 @@ const BoardUI: React.FC<BoardUIProps> = ({
         <button
           className="secondary-btn"
           type="button"
-          onClick={handleShowStats}
+          onClick={() => setShowHighscore(true)}
         >
           High Score
         </button>
