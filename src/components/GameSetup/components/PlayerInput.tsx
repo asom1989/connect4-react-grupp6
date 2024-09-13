@@ -20,6 +20,16 @@ export default function PlayerInput() {
     imagePreview: null,
   })
 
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    if (e.currentTarget.files) {
+      const image = e.currentTarget.files[0];
+      const preview = URL.createObjectURL(image);
+      setUser((prevUser) => ({...prevUser, image: image, imagePreview: preview}));
+    } else {
+      const { name, value } = e.currentTarget;
+      setUser((prevUser) => ({ ...prevUser, [name]: value }));
+    }
+  };
 
   return (
     <section className={styles.playerSection}>
