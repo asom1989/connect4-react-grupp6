@@ -4,6 +4,7 @@ export default class VictoryChecker {
   isGameOver: boolean;
   isDraw: boolean;
   isWinner: number | undefined;
+  winningCells: { row: number, col: number }[] = [];
 
   constructor() {
     this.isGameOver = false;
@@ -17,7 +18,9 @@ export default class VictoryChecker {
     currentPlayer: number
   ) {
     const player = Color[currentPlayer];
-    if (this.checkBoard(board, lastMove, player)) {
+    this.winningCells = this.checkBoard(board, lastMove, player);
+
+    if (this.winningCells.length > 0) {
       this.isWinner = currentPlayer;
       this.isGameOver = true;
     }
@@ -26,52 +29,64 @@ export default class VictoryChecker {
       this.isGameOver = true;
     }
   }
-  checkBoard(board: Matrix, lastMove: Move, player: string) {
-    const diagonalOffsets = [
-      [lastMove.row - 3, lastMove.col - 3],
-      [lastMove.row - 3, lastMove.col + 3],
-    ];
-    for (let i = 0; i < 4; i++) {
-      const horizontal = board[lastMove.row]
-        .slice(i, i + 4)
-        .every((col) => col === player);
-      let vertical = false;
-      if (i < 3) {
-        vertical = [0, 1, 2, 3].every(
-          (row) => board[i + row][lastMove.col] === player
-        );
-      }
-      if (horizontal || vertical) {
-        return true;
-      }
-      let diagonal = 0;
-      const roOne = diagonalOffsets[0][0] + i;
-      const coOne = diagonalOffsets[0][1] + i;
-      const roTwo = diagonalOffsets[1][0] + i;
-      const coTwo = diagonalOffsets[1][1] - i;
-      if (!(roOne < 0 || roOne > 2 || coOne < 0 || coOne > 3)) {
-        for (let j = 0; j < 4; j++) {
-          if (board[roOne + j][coOne + j] === player) {
-            diagonal++;
-          }
-        }
-        if (diagonal === 4) {
-          return true;
-        }
-        diagonal = 0;
-      }
-      if (!(roTwo < 0 || roTwo > 2 || coTwo < 3 || coTwo > 6)) {
-        for (let j = 0; j < 4; j++) {
-          if (board[roTwo + j][coTwo - j] === player) {
-            diagonal++;
-          }
-        }
-        if (diagonal === 4) {
-          return true;
-        }
-        diagonal = 0;
+  checkBoard(board: Matrix, lastMove: Move, player: string): { row: number; col: number }[] {
+
+  // Check horizontal
+  for (let colStart = Math.max(0, lastMove.col - 3); colStart <= Math.min(board[0].length - 4, lastMove.col); colStart++) {
+    const cells = [];
+    for (let offset = 0; offset < 4; offset++) {
+      if (board[lastMove.row][colStart + offset] === player) {
+        cells.push({ row: lastMove.row, col: colStart + offset });
       }
     }
-    return false;
+    if (cells.length === 4) {
+      return cells;  // Return winning horizontal cells
+    }
   }
+
+  for (let rowStart = Math.max(0, lastMove.row - 3); rowStart <= Math.min(board.length - 4, lastMove.row); rowStart++) {
+    const cells = [];
+    for (let offset = 0; offset < 4; offset++) {
+      if (board[rowStart + offset][lastMove.col] === player) {
+        cells.push({ row: rowStart + offset, col: lastMove.col });
+      }
+    }
+    if (cells.length === 4) {
+      return cells;  // Return winning vertical cells
+    }
+  }
+
+  for (let offset = -3; offset <= 0; offset++) {
+    const cells = [];
+    for (let i = 0; i < 4; i++) {
+      const row = lastMove.row + offset + i;
+      const col = lastMove.col + offset + i;
+      if (row >= 0 && row < board.length && col >= 0 && col < board[0].length && board[row][col] === player) {
+        cells.push({ row, col });
+      }
+    }
+    if (cells.length === 4) {
+      return cells;  // Return winning diagonal cells
+    }
+  }
+
+  // Check diagonal (top-right to bottom-left)
+  for (let offset = -3; offset <= 0; offset++) {
+    const cells = [];
+    for (let i = 0; i < 4; i++) {
+      const row = lastMove.row + offset + i;
+      const col = lastMove.col - offset - i;
+      if (row >= 0 && row < board.length && col >= 0 && col < board[0].length && board[row][col] === player) {
+        cells.push({ row, col });
+      }
+    }
+    if (cells.length === 4) {
+      return cells;  // Return winning diagonal cells
+    }
+  }
+
+  // No win found, return empty array
+  return [];
+  }
+
 }

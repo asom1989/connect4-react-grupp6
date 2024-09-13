@@ -1,5 +1,5 @@
 import React from "react";
-import { BoardProps, BoardState, Setup } from "../types/types";
+import { BoardProps, BoardState, Setup, } from "../types/types";
 import Moves from "./Moves";
 import Player from "./Player";
 import VictoryChecker from "./VictoryChecker";
@@ -11,6 +11,7 @@ interface BoardPropsPlayer {
   onQuit: () => void;
   gameState: Setup;
 }
+
 
 export default class Board extends React.Component<
   BoardPropsPlayer,
@@ -46,6 +47,7 @@ export default class Board extends React.Component<
       currentPlayer: this.playerOne,
       winner: null,
       winnerAvatar: null,
+      winningCells: [],
     };
 
     this.resetGame = this.resetGame.bind(this);
@@ -59,6 +61,7 @@ export default class Board extends React.Component<
       currentPlayer: this.playerOne,
       winner: null,
       winnerAvatar: null,
+      winningCells: []
     });
   };
 
@@ -104,14 +107,16 @@ export default class Board extends React.Component<
         );
 
         if (this.victoryChecker.isGameOver) {
+          const winningCells = this.victoryChecker.winningCells;
           if (this.victoryChecker.isDraw) {
             // toast.info("The game is a draw!");
             this.setState({ winner: "Draw" });
           } else {
             // toast.success(`${currentPlayer.name} has won the game!`);
             this.setState({
-              winner: currentPlayer.name,
+              winner: currentPlayer.name, winningCells,
               winnerAvatar: currentPlayer.avatar,
+              
             });
           }
           return;
@@ -164,7 +169,10 @@ export default class Board extends React.Component<
           onCellClick={this.handlePlayerMove}
           onResetGame={this.resetGame}
           onQuitGame={this.props.onQuit}
-          lastMove={this.state.lastMove} // Pass the last move
+          lastMove={this.state.lastMove}
+          winningCells={this.state.winningCells}
+          
+          
         />
       </>
     );
