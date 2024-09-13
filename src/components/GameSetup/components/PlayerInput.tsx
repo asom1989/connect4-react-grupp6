@@ -64,7 +64,36 @@ export default function PlayerInput() {
           </label>
         )}
 
-        
+        {selectedTab === "Register" && (
+          <div className={styles.fileUpload}>
+            <input
+              type="file"
+              name="userImage"
+              accept=".jpg, .jpeg, .png"
+              className={styles.fileInput}
+              id="userImage"
+              onChange={handleChange}
+            />
+            {!user.image && (
+              <label htmlFor="userImage" className={styles.fileLabel}>
+                Upload image
+              </label>
+            )}
+
+            {user.imagePreview && (
+              <>
+                <img src={user.imagePreview} className={styles.imagePreview} />
+                <button
+                  type="button"
+                  className={styles.removeButton}
+                  onClick={handleRemoveImage}
+                >
+                  Change image
+                </button>
+              </>
+            )}
+          </div>
+        )}
         <button type="button" className={styles.button}>
           {selectedTab === "Guest" ? "Next" : selectedTab}
         </button>
