@@ -1,0 +1,152 @@
+/*--------- Start Game Options ----------------*/
+section.game-options {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.game-title {
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.7rem;
+  transition: all 0.3s linear;
+}
+
+section.game-options .buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/*--------- End Game Options ----------------*/
+/*--------- Start Player Form ----------------*/
+.player-form form {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.palyer-form-input {
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem 0;
+}
+.palyer-form-input input {
+  width: 18rem;
+  font-size: 1.3rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 1.5rem;
+  outline: none;
+  background-color: rgba(132, 165, 250, 1);
+  box-shadow: 0px 4px 7px 1px #96a0dd;
+  transition: all 0.3s linear;
+}
+.palyer-form-input input::placeholder {
+  padding-left: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.palyer-form-input input:focus {
+  box-shadow: inset 0px 0px 9px 5px #96a0dd;
+}
+
+.computer-level {
+  width: 18rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+
+  padding: 0.9rem;
+  border-radius: 1.5rem;
+  background-color: rgba(132, 165, 250, 1);
+  box-shadow: 0px 4px 7px 1px #96a0dd;
+  transition: all 0.3s linear;
+}
+
+.computer-level select {
+  width: 7rem;
+  font-size: 1rem;
+  padding: 0.2rem;
+}
+
+/*--------- End Player Form ----------------*/
+
+@media screen and (min-width: 768px) {
+  .game-title {
+    font-size: 4rem;
+  }
+  .palyer-form-input input {
+    width: 25rem;
+  }
+  .computer-level {
+    font-size: 1.3rem;
+    width: 25rem;
+  }
+}
+
+
+@media screen and (orientation: landscape) and (max-width: 700px) {
+
+  .game-title {
+    font-size: 2rem; 
+    height: 15vh; 
+    padding: 2.5rem;
+  }
+
+  
+  section.game-options {
+    height: 30vh; 
+  }
+
+  
+  .player-form form {
+    height: 80vh; 
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .palyer-form-input {
+    height: 40%; 
+    padding: 0.5rem 0; 
+  }
+
+  .palyer-form-input input {
+    width: 15rem; 
+    font-size: 1rem; 
+    padding: 0.8rem; 
+    border-radius: 1rem; 
+  }
+
+  .palyer-form-input input::placeholder {
+    font-size: 1rem; 
+  }
+
+  .computer-level {
+    width: 20rem; 
+    font-size: 1rem; 
+    padding: 0.7rem; 
+  }
+
+  .computer-level select {
+    width: 5rem; 
+    font-size: 0.9rem; 
+    padding: 0.2rem; 
+  }
+
+  .buttons-wrapper {
+    gap: 1.5rem; 
+  }
+}
