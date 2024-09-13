@@ -1,6 +1,6 @@
 /*--------- Start Game Options ----------------*/
 section.game-options {
-  height: 60vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
