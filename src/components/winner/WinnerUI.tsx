@@ -3,12 +3,14 @@ import "./winner.css";
 
 interface WinnerProps {
   winner: string;
+  winnerAvatar: string;
   onResetGame: () => void;
   onQuitGame: () => void;
 }
 
 export default function WinnerUI({
   winner,
+  winnerAvatar,
   onResetGame,
   onQuitGame,
 }: WinnerProps) {
@@ -16,7 +18,15 @@ export default function WinnerUI({
     <section className="overlay">
       <Confetti />
       <article className="winner-content">
-        <img src="/images/prize.png" alt="prize" />
+        {winnerAvatar === "/images/user_icon_001.jpg" ? (
+          <img src="/images/prize.png" alt="prize" className="prize-avatar" />
+        ) : (
+          <img
+            src={winnerAvatar}
+            alt={`${winner}'s Avatar`}
+            className="winner-avatar"
+          />
+        )}
         <h1>{winner} Wins!</h1>
         <div className="board-buttons">
           <button className="secondary-btn" type="button" onClick={onResetGame}>
