@@ -3,7 +3,7 @@
 // import { Setup } from "./types/types";
 // import Board from "./classes/Board";
 // import { ToastContainer } from "react-toastify";
-import WinnerStats from "./components/WinnerStats/WinnerStats";
+import HighScore from "./components/WinnerStats/Highscore";
 
 export default function App() {
   // const [gameState, setGameState] = useState<Setup | null>(null);
@@ -23,7 +23,7 @@ export default function App() {
       ) : (
         <GameSetup setGameState={handleGameState} />
       )} */}
-      <WinnerStats />
+      <HighScore />
     </div>
   );
 }
