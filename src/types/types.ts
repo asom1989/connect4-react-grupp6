@@ -54,8 +54,8 @@ export type Setup = {
   playerTwoType: PlayerType;
   playerOneAvatar: string;
   playerTwoAvatar: string;
-  playerOneMovesMade: number;
-  playerTwoMovesMade: number;
+  playerOneMovesMade?: number;
+  playerTwoMovesMade?: number;
   gameType: GameType;
 };
 export interface BoardPropsPlayer {
