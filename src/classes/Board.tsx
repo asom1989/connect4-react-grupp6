@@ -83,9 +83,9 @@ export default class Board extends React.Component<
       currentPlayer.color,
       columnIndex
     );
-
     // Track the last move (row and column)
     const lastMove = this.moves.lastMove;
+    currentPlayer.incrementMoves();
 
     this.setState({ matrix: newMatrix, lastMove }, () => {
       this.victoryChecker.checkForWin(
@@ -163,8 +163,10 @@ export default class Board extends React.Component<
 
     playerStats[winnerName].wins += 1;
 
-    if (this.moves.movesMade < playerStats[winnerName].moves) {
-      playerStats[winnerName].moves = this.moves.movesMade;
+    if (
+      this.state.currentPlayer.playerMovesMade < playerStats[winnerName].moves
+    ) {
+      playerStats[winnerName].moves = this.state.currentPlayer.playerMovesMade;
     }
 
     localStorage.setItem("playerStats", JSON.stringify(playerStats));
