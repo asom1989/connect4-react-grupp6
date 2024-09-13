@@ -108,6 +108,7 @@ export default class Board extends React.Component<
           } else {
             // toast.success(`${currentPlayer.name} has won the game!`);
             this.setState({ winner: currentPlayer.name });
+            this.updateLocalStorage(currentPlayer.name);
           }
           return;
         }
@@ -139,6 +140,29 @@ export default class Board extends React.Component<
       );
     });
   };
+
+  updateLocalStorage(winnerName: string) {
+    const playerStatsString = localStorage.getItem("playerStats");
+    const playerStats: {
+      [key: string]: { wins: number; moves: number; avatar: string };
+    } = playerStatsString ? JSON.parse(playerStatsString) : {};
+
+    if (!playerStats[winnerName]) {
+      playerStats[winnerName] = {
+        wins: 0,
+        moves: Number.MAX_VALUE,
+        avatar: this.state.currentPlayer.avatar,
+      };
+    }
+
+    playerStats[winnerName].wins += 1;
+
+    if (this.moves.movesMade < playerStats[winnerName].moves) {
+      playerStats[winnerName].moves = this.moves.movesMade;
+    }
+
+    localStorage.setItem("playerStats", JSON.stringify(playerStats));
+  }
 
   render() {
     return (
