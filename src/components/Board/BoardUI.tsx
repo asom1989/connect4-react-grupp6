@@ -23,9 +23,9 @@ const BoardUI: React.FC<BoardUIProps> = ({
   return (
     <div className="game-container">
       <div className="status">
-        Current Player:
+        {/* Current Player: */}
         <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
-          {` ${currentPlayer.name}`}
+          {` ${currentPlayer.name}'s turn`}
         </span>
         <img
           className="board-player-img"
