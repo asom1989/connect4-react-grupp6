@@ -37,6 +37,38 @@ export default function PlayerInput() {
           </button>
         ))}
       </div>
+      <form className={styles.form}>
+        <label htmlFor="name" className={styles.label}>
+          <p className={styles.error}></p>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            className={styles.input}
+            value={user.name}
+            onChange={handleChange}
+          />
+        </label>
+
+        {selectedTab !== "Guest" && (
+          <label htmlFor="password" className={styles.label}>
+            <p className={styles.error}></p>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              className={styles.input}
+              value={user.password}
+              onChange={handleChange}
+            />
+          </label>
+        )}
+
+        
+        <button type="button" className={styles.button}>
+          {selectedTab === "Guest" ? "Next" : selectedTab}
+        </button>
+      </form>
     </section>
   );
 }
