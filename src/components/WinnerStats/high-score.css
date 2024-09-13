@@ -1,18 +1,18 @@
 .high-score-overlay {
   position: fixed;
-
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 .high-score-overlay article {
   margin: 1.5rem auto;
 }
 .high-score-overlay-content {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.875);
   padding: 1.5rem;
   border-radius: 12px;
   text-align: center;

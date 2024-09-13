@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Player from "../../classes/Player";
 import { Matrix } from "../../types/types";
 import "./board-ui.css";
+import HighScore from "../WinnerStats/Highscore";
 
 interface BoardUIProps {
   matrix: Matrix;
@@ -10,7 +11,7 @@ interface BoardUIProps {
   onCellClick: (columnIndex: number) => void;
   onResetGame: () => void;
   onQuitGame: () => void;
-  winningCells: { row: number, col: number }[];
+  winningCells: { row: number; col: number }[];
 }
 
 const isWinningCell = (
@@ -24,14 +25,21 @@ const isWinningCell = (
 const BoardUI: React.FC<BoardUIProps> = ({
   matrix,
   currentPlayer,
-  lastMove, 
+  lastMove,
   onCellClick,
   onResetGame,
   onQuitGame,
-  winningCells
+  winningCells,
 }) => {
+  const [showHighscore, setShowHighscore] = useState(false);
+
+  const handleShowStats = () => {
+    setShowHighscore(true);
+  };
+
   return (
     <div className="game-container">
+      {showHighscore && <HighScore setShowHighscore={setShowHighscore} />}
       <div className="status">
         {/* Current Player: */}
         <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
@@ -52,7 +60,8 @@ const BoardUI: React.FC<BoardUIProps> = ({
                 className={`brick ${
                   isWinningCell(rowIndex, columnIndex, winningCells)
                     ? "winning-brick" // Apply a special class to winning cells
-                    : lastMove?.row === rowIndex && lastMove?.col === columnIndex
+                    : lastMove?.row === rowIndex &&
+                      lastMove?.col === columnIndex
                     ? "new-brick"
                     : ""
                 }`}
@@ -71,6 +80,13 @@ const BoardUI: React.FC<BoardUIProps> = ({
         </button>
         <button className="secondary-btn" type="button" onClick={onQuitGame}>
           Quit Game
+        </button>
+        <button
+          className="secondary-btn"
+          type="button"
+          onClick={handleShowStats}
+        >
+          High Score
         </button>
       </div>
     </div>

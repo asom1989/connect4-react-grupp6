@@ -1,5 +1,10 @@
 import "./high-score.css";
-const HighScore = () => {
+
+interface HighScoreProps {
+  setShowHighscore: (toggle: boolean) => void;
+}
+
+const HighScore = ({ setShowHighscore }: HighScoreProps) => {
   return (
     <section className="high-score-overlay">
       <div className="high-score-overlay-content">
@@ -34,7 +39,11 @@ const HighScore = () => {
           </div>
         </article>
 
-        <button className="secondary-btn" type="button">
+        <button
+          className="secondary-btn"
+          type="button"
+          onClick={() => setShowHighscore(false)}
+        >
           Back to Game
         </button>
       </div>
