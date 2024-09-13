@@ -10,7 +10,12 @@ type User = {
   imagePreview: null | string;
 };
 
-export default function PlayerInput() {
+type Player = {
+  name: string;
+  image: string;
+}
+
+export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) => void}) {
   const [selectedTab, setSelectedTab] = useState<string>("Guest");
   const [user, setUser] = useState<User>({
     name: "",
@@ -41,6 +46,19 @@ export default function PlayerInput() {
     setUser((prevUser) => ({ ...prevUser, image: null, imagePreview: null }));
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (selectedTab === "Guest") {
+      setPlayer({ name: user.name, image: "" });
+    }
+    if (selectedTab === "Login") {
+      // Login and set player
+    }
+    if (selectedTab === "Register") {
+      // Register user and set player
+    }
+  }
+
   return (
     <section className={styles.playerSection}>
       <div className={styles.tabButtons}>
@@ -57,7 +75,7 @@ export default function PlayerInput() {
           </button>
         ))}
       </div>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="name" className={styles.label}>
           <p className={styles.error}></p>
           <input
@@ -118,7 +136,7 @@ export default function PlayerInput() {
             )}
           </div>
         )}
-        <button type="button" className={styles.button}>
+        <button type="submit" className={styles.button}>
           {selectedTab === "Guest" ? "Next" : selectedTab}
         </button>
       </form>
