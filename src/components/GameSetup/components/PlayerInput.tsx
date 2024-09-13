@@ -23,7 +23,20 @@ export default function PlayerInput() {
 
   return (
     <section className={styles.playerSection}>
-
+      <div className={styles.tabButtons}>
+        {tabOptions.map((option) => (
+          <button
+            key={option}
+            type="button"
+            className={`${styles.tabButton} ${
+              option === selectedTab && `${styles.active}`
+            }`}
+            onClick={() => setSelectedTab(option)}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
     </section>
   );
 }
