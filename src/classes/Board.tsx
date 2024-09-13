@@ -54,6 +54,9 @@ export default class Board extends React.Component<
   resetGame = () => {
     this.moves = new Moves();
     this.victoryChecker = new VictoryChecker();
+    this.playerOne.playerMovesMade = 0;
+    this.playerTwo.playerMovesMade = 0;
+
     this.setState({
       matrix: this.initializeMatrix(),
       currentPlayer: this.playerOne,
@@ -95,31 +98,20 @@ export default class Board extends React.Component<
         currentPlayer.color
       );
 
-      this.setState({ matrix: newMatrix }, () => {
-        this.victoryChecker.checkForWin(
-          newMatrix,
-          this.moves.lastMove,
-          this.moves.movesMade,
-          currentPlayer.color
-        );
-
-        if (this.victoryChecker.isGameOver) {
-          if (this.victoryChecker.isDraw) {
-            // toast.info("The game is a draw!");
-            this.setState({ winner: "Draw" });
-          } else {
-            // toast.success(`${currentPlayer.name} has won the game!`);
-
-            this.setState({
-              winner: currentPlayer.name,
-              winnerAvatar: currentPlayer.avatar,
-            });
-            this.updateLocalStorage(currentPlayer.name);
-          }
-          return;
+      if (this.victoryChecker.isGameOver) {
+        if (this.victoryChecker.isDraw) {
+          // toast.info("The game is a draw!");
+          this.setState({ winner: "Draw" });
+        } else {
+          // toast.success(`${currentPlayer.name} has won the game!`);
+          this.setState({
+            winner: currentPlayer.name,
+            winnerAvatar: currentPlayer.avatar,
+          });
+          this.updateLocalStorage(currentPlayer.name);
         }
         return;
-      });
+      }
 
       this.setState(
         {
