@@ -1,0 +1,10 @@
+/* PlayerInput */
+.playerSection {
+  margin-block: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items: center;
+  width: 80vw;
+  max-width: 400px;
+}
