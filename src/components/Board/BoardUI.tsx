@@ -1,7 +1,9 @@
-import React, { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Player from "../../classes/Player";
 import { Matrix } from "../../types/types";
 import "./board-ui.css";
+import HighScore from "../WinnerStats/Highscore";
+import getHighscore from "../../Utils/getHighscore";
 
 interface BoardUIProps {
   matrix: Matrix;
@@ -10,7 +12,7 @@ interface BoardUIProps {
   onCellClick: (columnIndex: number) => void;
   onResetGame: () => void;
   onQuitGame: () => void;
-  winningCells: { row: number, col: number }[];
+  winningCells: { row: number; col: number }[];
 }
 
 const isWinningCell = (
@@ -21,17 +23,27 @@ const isWinningCell = (
   return winningCells.some((cell) => cell.row === row && cell.col === col);
 };
 
-const BoardUI: React.FC<BoardUIProps> = ({
+const BoardUI = ({
   matrix,
   currentPlayer,
-  lastMove, 
+  lastMove,
   onCellClick,
   onResetGame,
   onQuitGame,
-  winningCells
-}) => {
+  winningCells,
+}: BoardUIProps) => {
+  const [showHighscore, setShowHighscore] = useState(false);
+  const { mostWinsPlayer, fewestMovesPlayer } = getHighscore();
+
   return (
     <div className="game-container">
+      {showHighscore && (
+        <HighScore
+          setShowHighscore={setShowHighscore}
+          mostWinsPlayer={mostWinsPlayer}
+          fewestMovesPlayer={fewestMovesPlayer}
+        />
+      )}
       <div className="status">
         {/* Current Player: */}
         <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
@@ -52,7 +64,8 @@ const BoardUI: React.FC<BoardUIProps> = ({
                 className={`brick ${
                   isWinningCell(rowIndex, columnIndex, winningCells)
                     ? "winning-brick" // Apply a special class to winning cells
-                    : lastMove?.row === rowIndex && lastMove?.col === columnIndex
+                    : lastMove?.row === rowIndex &&
+                      lastMove?.col === columnIndex
                     ? "new-brick"
                     : ""
                 }`}
@@ -71,6 +84,13 @@ const BoardUI: React.FC<BoardUIProps> = ({
         </button>
         <button className="secondary-btn" type="button" onClick={onQuitGame}>
           Quit Game
+        </button>
+        <button
+          className="secondary-btn"
+          type="button"
+          onClick={() => setShowHighscore(true)}
+        >
+          High Score
         </button>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { BoardProps, BoardState, Setup, } from "../types/types";
+import { BoardProps, BoardState, Setup } from "../types/types";
 import Moves from "./Moves";
 import Player from "./Player";
 import VictoryChecker from "./VictoryChecker";
@@ -11,7 +11,6 @@ interface BoardPropsPlayer {
   onQuit: () => void;
   gameState: Setup;
 }
-
 
 export default class Board extends React.Component<
   BoardPropsPlayer,
@@ -63,7 +62,7 @@ export default class Board extends React.Component<
       currentPlayer: this.playerOne,
       winner: null,
       winnerAvatar: null,
-      winningCells: []
+      winningCells: [],
     });
   };
 
@@ -101,7 +100,7 @@ export default class Board extends React.Component<
       );
 
       if (this.victoryChecker.isGameOver) {
-        const winningCells=this.victoryChecker.winningCells
+        const winningCells = this.victoryChecker.winningCells;
         if (this.victoryChecker.isDraw) {
           // toast.info("The game is a draw!");
           this.setState({ winner: "Draw" });
@@ -110,13 +109,13 @@ export default class Board extends React.Component<
           this.setState({
             winner: currentPlayer.name,
             winnerAvatar: currentPlayer.avatar,
-            winningCells
+            winningCells,
           });
           this.updateLocalStorage(currentPlayer.name);
         }
         return;
       }
-this.setState(
+      this.setState(
         {
           currentPlayer:
             currentPlayer === this.playerOne ? this.playerTwo : this.playerOne,
@@ -141,6 +140,7 @@ this.setState(
       );
     });
   };
+
   updateLocalStorage(winnerName: string) {
     const playerStatsString = localStorage.getItem("playerStats");
     const playerStats: {
@@ -165,7 +165,6 @@ this.setState(
 
     localStorage.setItem("playerStats", JSON.stringify(playerStats));
   }
-      
 
   render() {
     return (
@@ -188,8 +187,6 @@ this.setState(
           onQuitGame={this.props.onQuit}
           lastMove={this.state.lastMove}
           winningCells={this.state.winningCells}
-          
-          
         />
       </>
     );
