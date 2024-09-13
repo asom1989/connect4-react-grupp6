@@ -1,28 +1,19 @@
 import { useState } from "react";
 import styles from "./player-input.module.css";
+import { UserData, Player } from "../../types/types";
 
 const tabOptions = ["Guest", "Login", "Register"];
 
-type User = {
-  name: string;
-  password: string;
-  image: null | File;
-  imagePreview: null | string;
-};
-
-type Player = {
-  name: string;
-  image: string;
+const userData: UserData = {
+  name: "",
+  password: "",
+  image: null,
+  imagePreview: null,
 }
 
 export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) => void}) {
   const [selectedTab, setSelectedTab] = useState<string>("Guest");
-  const [user, setUser] = useState<User>({
-    name: "",
-    password: "",
-    image: null,
-    imagePreview: null,
-  });
+  const [user, setUser] = useState<UserData>(userData);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.files) {
@@ -50,6 +41,7 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
     e.preventDefault();
     if (selectedTab === "Guest") {
       setPlayer({ name: user.name, image: "" });
+      setUser(userData)
     }
     if (selectedTab === "Login") {
       // Login and set player
