@@ -1,82 +1,80 @@
-import React, { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import Player from "../../classes/Player";
 import { Matrix } from "../../types/types";
 import "./board-ui.css";
+import HighScore from "../WinnerStats/Highscore";
+import getHighscore from "../../Utils/getHighscore";
 
 interface BoardUIProps {
   matrix: Matrix;
   currentPlayer: Player;
+  lastMove?: { row: number; col: number }; // Add the lastMove prop
   onCellClick: (columnIndex: number) => void;
   onResetGame: () => void;
   onQuitGame: () => void;
-  getMovePosition: (
-    board: Matrix,
-    columnIndex: number
-  ) => { row: number; col: number } | undefined;
+  winningCells: { row: number; col: number }[];
 }
 
-const BoardUI: React.FC<BoardUIProps> = ({
+const isWinningCell = (
+  row: number,
+  col: number,
+  winningCells: { row: number; col: number }[]
+) => {
+  return winningCells.some((cell) => cell.row === row && cell.col === col);
+};
+
+const BoardUI = ({
   matrix,
   currentPlayer,
+  lastMove,
   onCellClick,
   onResetGame,
   onQuitGame,
-  getMovePosition,
-}) => {
-  const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
-
-  const getHoveringPosition = (columnIndex: number) => {
-    const position = getMovePosition(matrix, columnIndex);
-    return position;
-  };
+  winningCells,
+}: BoardUIProps) => {
+  const [showHighscore, setShowHighscore] = useState(false);
+  const { mostWinsPlayer, fewestMovesPlayer } = getHighscore();
 
   return (
     <div className="game-container">
-      <h1 className="game-title-board">Connect Four</h1>
+      {showHighscore && (
+        <HighScore
+          setShowHighscore={setShowHighscore}
+          mostWinsPlayer={mostWinsPlayer}
+          fewestMovesPlayer={fewestMovesPlayer}
+        />
+      )}
       <div className="status">
-        Current Player:
+        {/* Current Player: */}
         <span style={{ color: currentPlayer.color === 1 ? "red" : "yellow" }}>
-          {` ${currentPlayer.name}`}
+          {` ${currentPlayer.name}'s turn`}
         </span>
+        <img
+          className="board-player-img"
+          src={currentPlayer.avatar}
+          alt={`${currentPlayer.name}'s avatar`}
+        />
       </div>
       <div className="board">
         {matrix.map((row, rowIndex) => (
           <Fragment key={rowIndex}>
-            {row.map((cell, columnIndex) => {
-              const isHovering = hoveredColumn === columnIndex;
-              const hoverPosition = getHoveringPosition(columnIndex);
-              const isHoverRow = hoverPosition
-                ? hoverPosition.row === rowIndex
-                : false;
-              return (
-                <div
-                  key={columnIndex}
-                  className={`brick ${cell || ""} ${
-                    isHovering && isHoverRow ? "hovered" : ""
-                  }`}
-                  onMouseEnter={() => setHoveredColumn(columnIndex)}
-                  onMouseLeave={() => setHoveredColumn(null)}
-                  onClick={() => onCellClick(columnIndex)}
-                  style={{
-                    backgroundColor: cell
-                      ? cell === "Red"
-                        ? "red"
-                        : "yellow"
-                      : "#D9D9D9",
-                  }}
-                >
-                  {isHovering && isHoverRow && (
-                    <div
-                      className="hover-preview"
-                      style={{
-                        backgroundColor:
-                          currentPlayer.color === 1 ? "red" : "yellow",
-                      }}
-                    />
-                  )}
-                </div>
-              );
-            })}
+            {row.map((column, columnIndex) => (
+              <div
+                key={columnIndex}
+                className={`brick ${
+                  isWinningCell(rowIndex, columnIndex, winningCells)
+                    ? "winning-brick" // Apply a special class to winning cells
+                    : lastMove?.row === rowIndex &&
+                      lastMove?.col === columnIndex
+                    ? "new-brick"
+                    : ""
+                }`}
+                onClick={() => onCellClick(columnIndex)}
+                style={{
+                  backgroundColor: column || "white", // Set column background color
+                }}
+              ></div>
+            ))}
           </Fragment>
         ))}
       </div>
@@ -85,7 +83,14 @@ const BoardUI: React.FC<BoardUIProps> = ({
           Reset Game
         </button>
         <button className="secondary-btn" type="button" onClick={onQuitGame}>
-          Quit
+          Quit Game
+        </button>
+        <button
+          className="secondary-btn"
+          type="button"
+          onClick={() => setShowHighscore(true)}
+        >
+          High Score
         </button>
       </div>
     </div>

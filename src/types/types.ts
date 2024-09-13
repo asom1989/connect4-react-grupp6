@@ -12,7 +12,7 @@ export type Move = {
 
 export enum Color {
   Red = 1,
-  Yellow = 0
+  Yellow = 0,
 }
 
 export type ColumnStatus = (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
@@ -20,11 +20,19 @@ export type ColumnStatus = (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
 export interface BoardState {
   matrix: (string | null)[][];
   currentPlayer: PlayerInfo;
+  winningCells: { row: number; col: number }[];
+  winnerAvatar: string | null;
+  winner: string | null;
+
+  lastMove?: { row: number; col: number };
 }
 export type PlayerInfo = {
   name: string;
   type: PlayerType;
   color: Color;
+  avatar: string;
+  playerMovesMade: number;
+  incrementMoves: () => void;
 };
 
 export enum PlayerType {
@@ -44,9 +52,13 @@ export type Setup = {
   playerTwoName: string;
   playerOneType: PlayerType;
   playerTwoType: PlayerType;
+  playerOneAvatar: string;
+  playerTwoAvatar: string;
+  playerOneMovesMade: number;
+  playerTwoMovesMade: number;
   gameType: GameType;
 };
 export interface BoardPropsPlayer {
-  onQuit: () => void;  // A function that will be called when the player quits
-  gameState: Setup;    // Represents the initial setup or game state
+  onQuit: () => void; // A function that will be called when the player quits
+  gameState: Setup; // Represents the initial setup or game state
 }
