@@ -6,8 +6,16 @@ const getHighscore = () => {
 
   if (Object.keys(highscoreStats).length === 0) {
     return {
-      mostWinsPlayer: { name: "", avatar: "", wins: 0 },
-      fewestMovesPlayer: { name: "", avatar: "", moves: 0 },
+      mostWinsPlayer: {
+        name: "",
+        avatar: "/images/user_icon_001.jpg",
+        wins: 0,
+      },
+      fewestMovesPlayer: {
+        name: "",
+        avatar: "/images/user_icon_001.jpg",
+        moves: 0,
+      },
     };
   }
   let mostWinsPlayer = { name: "", avatar: "", wins: 0 };
