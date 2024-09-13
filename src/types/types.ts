@@ -31,6 +31,8 @@ export type PlayerInfo = {
   type: PlayerType;
   color: Color;
   avatar: string;
+  playerMovesMade: number;
+  incrementMoves: () => void;
 };
 
 export enum PlayerType {
@@ -52,6 +54,8 @@ export type Setup = {
   playerTwoType: PlayerType;
   playerOneAvatar: string;
   playerTwoAvatar: string;
+  playerOneMovesMade: number;
+  playerTwoMovesMade: number;
   gameType: GameType;
 };
 export interface BoardPropsPlayer {
