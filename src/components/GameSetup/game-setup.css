@@ -25,6 +25,13 @@ section.game-options .buttons-wrapper {
 
 /*--------- End Game Options ----------------*/
 /*--------- Start Player Form ----------------*/
+.player-form {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .player-form form {
   height: 60vh;
   display: flex;
@@ -34,7 +41,6 @@ section.game-options .buttons-wrapper {
   gap: 1rem;
 }
 .palyer-form-input {
-  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -42,10 +48,10 @@ section.game-options .buttons-wrapper {
 }
 .palyer-form-input input {
   font-size: 1.3rem;
-  padding: 1rem;
+  padding: 0.8rem;
   border: none;
   outline: none;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   background-color: rgba(132, 165, 250, 1);
   box-shadow: var(--outset-black-shadow);
   transition: all 0.3s linear;
@@ -60,14 +66,13 @@ section.game-options .buttons-wrapper {
 }
 
 .computer-level {
-  width: 18rem;
+  min-width: 20rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.8rem;
+  border-radius: 1rem;
   background-color: var(--primary-color);
-  padding: 0.9rem;
-  border-radius: 1.5rem;
-  background-color: rgba(132, 165, 250, 1);
   box-shadow: var(--outset-black-shadow);
   transition: all 0.3s linear;
 }
@@ -76,6 +81,14 @@ section.game-options .buttons-wrapper {
   width: 7rem;
   font-size: 1rem;
   padding: 0.2rem;
+}
+
+.player-form-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 /*--------- End Player Form ----------------*/
@@ -112,7 +125,6 @@ section.game-options .buttons-wrapper {
     width: 20rem;
     font-size: 1rem;
     padding: 0.7rem;
-    border-radius: 1rem;
   }
 
   .palyer-form-input input::placeholder {
@@ -132,5 +144,8 @@ section.game-options .buttons-wrapper {
 
   .buttons-wrapper {
     gap: 1.5rem;
+  }
+  .player-form-btn-wrapper {
+    gap: 1rem;
   }
 }
