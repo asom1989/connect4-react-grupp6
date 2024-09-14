@@ -4,8 +4,10 @@ import { Request, Response } from "express";
 
 
 const SALT = "2cUMi+VRsGjxqank5yixHA==";
-const USERNAMEANDPASSWORDREGEX = /\w{1,20}/;
+const CREDENTIALS_REGEX = /\w{1,20}/;
 const FILE_EXT_REGEX = /^data:image\/(png|jpg|jpeg|gif);base64,(.+)$/;
+const USER_FOLDER = "./images/";
+const IMAGE_FOLDER = "/user-data/";
 
 function getHash(userData: string) {
   const hash = crypto
@@ -17,7 +19,7 @@ function getHash(userData: string) {
 
 const login = (req: Request, res: Response) => {
   const { username, password } = req.body;
-  if (!USERNAMEANDPASSWORDREGEX.test(username) || !USERNAMEANDPASSWORDREGEX.test(password)) {
+  if (!CREDENTIALS_REGEX.test(username) || !CREDENTIALS_REGEX.test(password)) {
     res.status(400).json({ error: "Invalid username or password" })
   };
 
@@ -33,11 +35,11 @@ const login = (req: Request, res: Response) => {
 
 const register = async (req: Request, res: Response) => {
   const { username, password, encoded }: { username: string; password: string; encoded: string } = req.body;
-  if (!USERNAMEANDPASSWORDREGEX.test(username) || !USERNAMEANDPASSWORDREGEX.test(password)) {
-    res.status(400).json({ error: "Invalid username or password" });
+  if (!CREDENTIALS_REGEX.test(username) || !CREDENTIALS_REGEX.test(password)) {
+    res.status(400).json({ error: "Invalid username or password format" });
   }
-
-  const userFolder = "./images/" + getHash(username + password);
+  const credentialsHash = getHash(username + password);
+  const userFolder = USER_FOLDER + credentialsHash;
   if (fs.existsSync(userFolder)) { res.status(400).json({ error: "User already exists!" })}
   
   fs.mkdirSync(userFolder);
@@ -48,9 +50,10 @@ const register = async (req: Request, res: Response) => {
     const binaryBuffer = Buffer.from(imageData[2], "base64");
     userProfileImage = `/userProfileImage.${imageData[1]}`;
     fs.writeFileSync(userFolder + userProfileImage, binaryBuffer);
+    userProfileImage = IMAGE_FOLDER + credentialsHash + userProfileImage;
   }
 
   fs.writeFileSync(userFolder + "/userData.json", JSON.stringify({ username, userProfileImage }, null, " "), "utf-8");
-  res.status(201).json({ message: "User registered!" });
+  res.status(201).json({ username, userProfileImage });
 };
 export default { login, register };
