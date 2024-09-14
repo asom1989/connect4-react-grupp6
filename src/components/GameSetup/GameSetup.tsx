@@ -170,20 +170,22 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
                 </div>
               )}
             </div>
-            <button
-              type="button"
-              className="primary-btn"
-              onClick={handleStartGame}
-            >
-              Start Game
-            </button>
-            <button
-              type="button"
-              className="primary-btn"
-              onClick={() => setSetup(initialGameSetup)}
-            >
-              Back
-            </button>
+            <div className="player-form-btn-wrapper">
+              <button
+                type="button"
+                className="primary-btn"
+                onClick={handleStartGame}
+              >
+                Start Game
+              </button>
+              <button
+                type="button"
+                className="primary-btn"
+                onClick={() => setSetup(initialGameSetup)}
+              >
+                Back
+              </button>
+            </div>
           </form>
         </section>
       )}
