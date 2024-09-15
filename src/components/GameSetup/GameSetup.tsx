@@ -42,6 +42,11 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
     }
   }
 
+  const handleChangeAI = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.currentTarget;
+    setSetup((prevSetup) => ({ ...prevSetup, [name]: +value }));
+  };
+
   return (
     <>
       <main className="main-gamesetup">
