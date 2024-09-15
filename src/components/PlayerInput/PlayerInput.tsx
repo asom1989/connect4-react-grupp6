@@ -21,6 +21,7 @@ type ValidationErrors = {
 };
 
 const CREDENTIALS_REGEX = /^[A-ZÅÄÖa-zåäö[0-9]{3,20}$/;
+const ERROR_STATE: ValidationErrors = { name: null, nameIsTouched: false, password: null, passwordIsTouched: false, isValid: false };
 const ERROR = "3-20 characters(a-ö, 0-9)";
 const MIN_LENGTH_ERROR = "Must be no less then 3 characters";
 const MAX_LENGT_ERROR = "Must be no more then 20 characters";
@@ -84,15 +85,19 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    //const resetErrors = false;
     if (selectedTab === "Guest") {
       setPlayer({ name: user.name, image: "" });
       setUser(userData)
+      setErrors(ERROR_STATE);
+
     }
     if (selectedTab === "Login") {
       const result = await loginUser(user.name, user.password);
       if (result) {
         setPlayer({name: result.username, image: result.userProfileImage});
         setUser(userData);
+        setErrors(ERROR_STATE)
       }
       if (!result) {
       setErrors((prevErrors) => ({...prevErrors, name: LOGIN_ERROR}))
@@ -103,6 +108,7 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
       if (result) {
         setPlayer({name: result.username, image: result.userProfileImage });
         setUser(userData);
+        setErrors(ERROR_STATE);
       }
       if (!result) {
         setErrors((prevErrors) => ({...prevErrors, name: REGISTER_ERROR}))
