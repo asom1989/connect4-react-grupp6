@@ -69,6 +69,7 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
       const { name, value } = e.currentTarget;
       const newUser = { ...user, [name]: value };
       setUser(newUser);
+      setErrors(handleErrors(selectedTab, newUser.name, newUser.password));
     }
   };
 
