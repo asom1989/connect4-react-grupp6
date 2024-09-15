@@ -6,4 +6,71 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: var(--primary-font-family);
+}
+body {
+  background-image: url("/images/background.jpg"); /* Path is relative to the public folder */
+  background-size: cover; /* Ensures the image covers the element */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  height: 100vh; /* Sets the height of the background element */
+  width: 100vw; /* Sets the width of the background element */
+  overflow: hidden;
+}
+:root {
+  --primary-font-family: cursive;
+  --primary-color: rgba(132, 165, 250, 1);
+  --secondary-color: rgb(72 73 73);
+  --bg-primary-color: linear-gradient(
+    90deg,
+    rgb(4, 93, 171) 30%,
+    rgb(237, 237, 237) 65%
+  );
+  --outset-black-shadow: 5px 5px 5px rgb(0 0 0 / 80%);
+  --inset-box-shadow: inset 0px 0px 9px 5px #96a0dd;
+}
+
+.primary-btn {
+  min-width: 15rem;
+  padding: 0.8rem 0;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 1.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: var(--outset-black-shadow);
+  transition: all 0.3s linear;
+}
+.primary-btn:active,
+.secondary-btn:active {
+  transform: scale(0.9);
+}
+
+.secondary-btn {
+  justify-content: space-evenly;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary-color);
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3s linear;
+  box-shadow: var(--outset-black-shadow);
+}
+.secondary-btn:hover {
+  filter: brightness(1.1);
+}
+
+@media screen and (min-width: 700px) {
+  .primary-btn {
+    min-width: 25rem;
+  }
+  .secondary-btn {
+    font-size: 1.5rem;
+  }
 }

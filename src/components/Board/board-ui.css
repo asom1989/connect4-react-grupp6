@@ -1,0 +1,154 @@
+/* .game-title-board {
+  color: white;
+  font-size: 2em;
+  text-shadow: var(--outset-black-shadow);
+} */
+.game-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.status {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-top: 1rem;
+  padding: 0 10rem;
+  background-color: rgba(245, 245, 220, 0.406);
+  transition: all 0.3s linear;
+}
+.status span {
+  flex: 1;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.board-player-img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.board {
+  border: 2px solid black;
+  box-shadow: var(--outset-black-shadow);
+  position: relative;
+  border-radius: 5%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 equal columns */
+  margin: 0 auto;
+  padding: 3px;
+  width: min(85vh, 85vw);
+  margin-top: min(2vh, 2vw);
+  margin-bottom: min(5vh, 5vw);
+  padding: 3%;
+  background-color: rgba(132, 165, 250, 0.8);
+  gap: 15px;
+  transition: all 0.3s linear;
+}
+
+.board-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 55%;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.brick {
+  border: 1px solid black;
+  box-shadow: inset 5px 5px 5px black;
+  position: relative;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.new-brick {
+  animation: brick-animation 0.2s ease-out; /* Animate the new brick */
+}
+.brick:hover {
+  filter: brightness(1.5);
+}
+.winning-brick {
+  animation: flash 0.8s linear infinite alternate;
+}
+@keyframes brick-animation {
+  0% {
+    transform: translateY(-800px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes flash {
+  0% {
+    box-shadow: inset 0 0 20px 1px rgb(0 0 0 / 97%);
+  }
+  50% {
+    box-shadow: inset 0 0 20px 10px rgb(16 18 17 / 84%);
+  }
+  100% {
+    box-shadow: inset 0 0 20px 18px rgb(255 255 255);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .board {
+    gap: 4px;
+    width: min(95vh, 95vw);
+  }
+  .status {
+    padding: 0 0.5rem;
+    font-size: 1.1rem;
+  }
+  .status span {
+    font-size: 1.2rem;
+  }
+  .board-buttons {
+    width: 96%;
+  }
+}
+
+@media screen and (min-width: 701px) and (max-width: 1100px) {
+  .status {
+    padding: 0 2rem;
+    font-size: 1.3rem;
+  }
+  .status span {
+    font-size: 1.6rem;
+  }
+  .board-buttons {
+    width: 80%;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 700px) {
+  .board-buttons button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    /* width: 90%; */
+  }
+  .board {
+    width: min(75vh, 95vw);
+    gap: 3px;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    padding: 2%;
+    box-shadow: 1px 3px 2px black;
+  }
+  .board-buttons {
+    width: 96%;
+  }
+  .board-player-img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+  }
+}
