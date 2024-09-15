@@ -12,11 +12,50 @@ const userData: UserData = {
   image: null,
   imagePreview: null,
 }
+type ValidationErrors = {
+  name: null | string;
+  nameIsTouched: boolean;
+  password: null | string;
+  passwordIsTouched: boolean;
+  isValid: boolean;
+};
+
+const CREDENTIALS_REGEX = /^[A-ZÅÄÖa-zåäö[0-9]{3,20}$/;
+const ERROR = "3-20 characters(a-ö, 0-9)";
+const MIN_LENGTH_ERROR = "Must be no less then 3 characters";
+const MAX_LENGT_ERROR = "Must be no more then 20 characters";
 
 export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) => void}) {
   const [selectedTab, setSelectedTab] = useState<string>("Guest");
   const [user, setUser] = useState<UserData>(userData);
+  const [errors, setErrors] = useState<ValidationErrors>({name: null, nameIsTouched: false, password: null, passwordIsTouched: false, isValid: false });
 
+  const handleErrors = (selected: string, username: string, password: string) => {
+    const newErrors: ValidationErrors = {...errors, name: null, password: null, isValid: true };
+    if (selected === "Guest" && !CREDENTIALS_REGEX.test(username)) {
+      newErrors.name = ERROR;
+      if (username.length < 3) { newErrors.name = MIN_LENGTH_ERROR }
+      if (username.length > 20) { newErrors.name = MAX_LENGT_ERROR }
+    }
+    if (selected === "Login" || selected === "Register") {
+      if (!CREDENTIALS_REGEX.test(username)) {
+        newErrors.name = ERROR;
+        if (username.length < 3) { newErrors.name = MIN_LENGTH_ERROR }
+        if (username.length > 20) { newErrors.name = MAX_LENGT_ERROR }
+      }
+      if (!CREDENTIALS_REGEX.test(password)) {
+        newErrors.password = ERROR;
+        if (password.length < 3) { newErrors.password = MIN_LENGTH_ERROR }
+        if (password.length > 20) {
+          newErrors.password = MAX_LENGT_ERROR;
+        }
+      }
+    }
+    if (newErrors.name || newErrors.password) { newErrors.isValid = false }
+
+    return newErrors;
+  };
+  
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.files) {
       const image = e.currentTarget.files[0];
@@ -155,6 +194,7 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
             )}
           </div>
         )}
+        
       </form>
     </section>
   );
