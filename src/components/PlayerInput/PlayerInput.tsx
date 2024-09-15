@@ -135,7 +135,9 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
             : "Register new player account"}
         </p>
         <label htmlFor="name" className={styles.label}>
-          <p className={styles.error}>{errors.nameIsTouched && errors.name ? `${errors.name}`: ""}</p>
+          <p className={styles.error}>
+            {errors.nameIsTouched && errors.name ? `${errors.name}` : ""}
+          </p>
           <input
             type="text"
             name="name"
@@ -143,13 +145,22 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
             className={styles.input}
             value={user.name}
             onChange={handleChange}
-            onBlur={() => setErrors((prevErrors) => ({...prevErrors, nameIsTouched: true}))}
+            onBlur={() =>
+              setErrors((prevErrors) => ({
+                ...prevErrors,
+                nameIsTouched: true,
+              }))
+            }
           />
         </label>
 
         {selectedTab !== "Guest" && (
           <label htmlFor="password" className={styles.label}>
-            <p className={styles.error}>{errors.passwordIsTouched && errors.password ? `${errors.password}`: ""}</p>
+            <p className={styles.error}>
+              {errors.passwordIsTouched && errors.password
+                ? `${errors.password}`
+                : ""}
+            </p>
             <input
               type="password"
               name="password"
@@ -157,7 +168,12 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
               className={styles.input}
               value={user.password}
               onChange={handleChange}
-              onBlur={() => setErrors((prevErrors) => ({...prevErrors, passwordIsTouched: true}))}
+              onBlur={() =>
+                setErrors((prevErrors) => ({
+                  ...prevErrors,
+                  passwordIsTouched: true,
+                }))
+              }
             />
           </label>
         )}
@@ -195,7 +211,9 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
             )}
           </div>
         )}
-        
+        <button type="submit" className={styles.button} disabled={!errors.isValid}>
+          {selectedTab === "Guest" ? "Next" : selectedTab}
+        </button>
       </form>
     </section>
   );
