@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styles from "./player-input.module.css";
 import { UserData, Player } from "../../types/types";
+import registerUser from "../../utils/registerUser";
+import loginUser from "../../utils/loginUser";
 
 const tabOptions = ["Guest", "Login", "Register"];
 
@@ -46,9 +48,25 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
     }
     if (selectedTab === "Login") {
       // Login and set player
+      const result = await loginUser(user.name, user.password);
+      if (result) {
+        setPlayer({name: result.username, image: result.userProfileImage});
+        setUser(userData);
+      }
+    if (!result) {
+      // handle error
+    }
     }
     if (selectedTab === "Register") {
       // Register user and set player
+      const result = await registerUser(user.name, user.password, user.image);
+      if (result) {
+        setPlayer({name: result.username, image: result.userProfileImage });
+        setUser(userData);
+      }
+      if (!result) {
+        //handle error
+      }
     }
   }
 
