@@ -60,7 +60,7 @@
 
 /*--------- Start Game Options ----------------*/
 section.game-options {
-  height: 60vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,15 +68,12 @@ section.game-options {
 }
 
 .game-title {
-  width: 100%;
-  height: 20vh;
+  font-size: 2.7rem;
+  margin: 0.5rem 0;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 2.7rem;
   transition: all 0.3s linear;
 }
 
@@ -185,7 +182,15 @@ section.game-options .buttons-wrapper {
   border: 0;
 }
 
+.player-form-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
 
+/*--------- End Player Form ----------------*/
 
 @media screen and (min-width: 768px) {
   .game-title {
@@ -194,20 +199,22 @@ section.game-options .buttons-wrapper {
 
 }
 
-
 @media screen and (orientation: landscape) and (max-width: 700px) {
-
   .game-title {
-    font-size: 2rem; 
-    height: 15vh; 
+    font-size: 2rem;
+    height: 15vh;
     padding: 2.5rem;
   }
   
   section.game-options {
-    height: 30vh; 
+    height: 30vh;
   }
 
+
   .buttons-wrapper {
-    gap: 1.5rem; 
+    gap: 1.5rem;
+  }
+  .player-form-btn-wrapper {
+    gap: 1rem;
   }
 }

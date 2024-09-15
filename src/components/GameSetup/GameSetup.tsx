@@ -212,6 +212,7 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
           >
             Start Game
           </button>
+
         </section>
       ) : null}
       {/* Back button */}
