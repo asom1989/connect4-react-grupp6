@@ -47,6 +47,10 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
     setSetup((prevSetup) => ({ ...prevSetup, [name]: +value }));
   };
 
+  const handleStartGame = (gameSetup: Setup) => {
+    setGameState(gameSetup);
+  };
+
   return (
     <>
       <main className="main-gamesetup">
