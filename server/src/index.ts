@@ -14,7 +14,7 @@ const imageServer = express();
 imageServer.use(express.static("images"));
 app.use("/user-data", imageServer);
 
-app.use(express.json());
+app.use(express.json({ limit: "10MB"}));
 
 app.post("/api/login", userService.login);
 app.post("/api/register", userService.register);

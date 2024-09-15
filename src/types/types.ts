@@ -62,3 +62,18 @@ export interface BoardPropsPlayer {
   onQuit: () => void; // A function that will be called when the player quits
   gameState: Setup; // Represents the initial setup or game state
 }
+
+
+// User data for login/registration
+export type UserData = {
+  name: string;
+  password: string;
+  image: null | File;
+  imagePreview: null | string;
+};
+
+export type Player = {
+  name: string;
+  image: string;
+};
+
