@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./player-input.module.css";
 import { UserData, Player } from "../../types/types";
-import registerUser from "../../utils/registerUser";
-import loginUser from "../../utils/loginUser";
+import registerUser from "../../Utils/registerUser";
+import loginUser from "../../Utils/loginUser";
 
 const tabOptions = ["Guest", "Login", "Register"];
 
@@ -85,7 +85,6 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //const resetErrors = false;
     if (selectedTab === "Guest") {
       setPlayer({ name: user.name, image: "" });
       setUser(userData)
