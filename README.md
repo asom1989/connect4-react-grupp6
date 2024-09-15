@@ -4,7 +4,7 @@
 
 This is a modern React-based implementation of the classic Connect 4 game. Built with React and Vite, this version leverages Object-Oriented Programming (OOP) principles and TypeScript for a robust and interactive web-based experience. The game allows players to compete against each other or challenge computer-controlled opponents with varying levels of difficulty.
 
-![Connect 4 Game Screenshot](/images/connect4-game-in-progress.png)
+![Connect 4 Game Screenshot](/public/images/connect4-game-in-progress.png)
 
 ## Features
 
@@ -48,7 +48,7 @@ When you start the game, you can select the type of players and gameplay mode as
 
 You can select player types for each mode, and the game will guide you through making moves and display the game board interactively in your browser.
 
-![Game in Progress](/images/connect4-game-options.png)
+![Game in Progress](/public/images/connect4-game-options.png)
 
 ## Developers
 
