@@ -59,23 +59,41 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
           <h1 className="game-title">Connect-4 Game</h1>
           <div className="buttons-wrapper">
             <button
-            className="primary-btn"
-            onClick={() => setSetup({ ...setup, gameType: 1 })}
-            type="button"
+              className="primary-btn"
+              onClick={() => setSetup({ ...setup, gameType: 1 })}
+              type="button"
             >
-            1 vs 1
+              1 vs 1
             </button>
             <button
               className="primary-btn"
-              onClick={() => setSetup({...setup, gameType: 2, playerTwoName: "Computer", playerTwoType: 2 })}
+              onClick={() =>
+                setSetup({
+                  ...setup,
+                  gameType: 2,
+                  playerTwoName: "Computer",
+                  playerTwoType: 2,
+                })
+              }
               type="button"
             >
-            1 vs AI
+              1 vs AI
             </button>
-            <button className="primary-btn" onClick={() => setSetup({...setup, gameType: 3, playerOneName: "Computer 1", playerTwoName: "Computer 2", playerOneType: 2,         playerTwoType: 2})}
+            <button
+              className="primary-btn"
+              onClick={() =>
+                setSetup({
+                  ...setup,
+                  gameType: 3,
+                  playerOneName: "Computer 1",
+                  playerTwoName: "Computer 2",
+                  playerOneType: 2,
+                  playerTwoType: 2,
+                })
+              }
               type="button"
             >
-            AI vs AI
+              AI vs AI
             </button>
           </div>
         </section>
@@ -90,7 +108,7 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
             ? setup.playerOneName === ""
               ? "Player 1"
               : "AI"
-              : "AI"}
+            : "AI"}
         </h1>
       )}
 
@@ -147,56 +165,67 @@ export default function GameSetup({ setGameState }: GameSetupProps) {
               </div>
             </fieldset>
           )}
-            <fieldset className="ai-fieldset">
-              <h3 className="ai-h3">Player 2</h3>
-              <p className="ai-p">Select difficulty level for AI</p>
-              <div className="ai-radio-container">
-                <label
-                  className={`radio-label ${
-                    setup.playerTwoType === 2 ? "radio-label-active" : null
-                  }`}
-                  htmlFor="aiTwoEasy"
-                >
-                  Easy
-                  <input
-                    type="radio"
-                    className="ai-radio"
-                    id="aiTwoEasy"
-                    name="playerTwoType"
-                    value="2"
-                    checked={setup.playerTwoType == 2}
-                    onChange={handleChangeAI}
-                  />
-                </label>
-                <label
-                  className={`radio-label ${
-                    setup.playerTwoType === 3 ? "radio-label-active" : null
-                  }`}
-                  htmlFor="aiTwoHard"
-                >
-                  Hard
-                  <input
-                    type="radio"
-                    className="ai-radio"
-                    id="aiTwoHard"
-                    name="playerTwoType"
-                    value="3"
-                    checked={setup.playerTwoType == 3}
-                    onChange={handleChangeAI}
-                  />
-                </label>
-              </div>
-            </fieldset>
-            <button
-              type="button"
-              className="start-game-button"
-              onClick={() => handleStartGame(setup)}
-            >
-              Start Game
-            </button>
-          </section>
-        ) : null}
-      </main>
-
+          <fieldset className="ai-fieldset">
+            <h3 className="ai-h3">Player 2</h3>
+            <p className="ai-p">Select difficulty level for AI</p>
+            <div className="ai-radio-container">
+              <label
+                className={`radio-label ${
+                  setup.playerTwoType === 2 ? "radio-label-active" : null
+                }`}
+                htmlFor="aiTwoEasy"
+              >
+                Easy
+                <input
+                  type="radio"
+                  className="ai-radio"
+                  id="aiTwoEasy"
+                  name="playerTwoType"
+                  value="2"
+                  checked={setup.playerTwoType == 2}
+                  onChange={handleChangeAI}
+                />
+              </label>
+              <label
+                className={`radio-label ${
+                  setup.playerTwoType === 3 ? "radio-label-active" : null
+                }`}
+                htmlFor="aiTwoHard"
+              >
+                Hard
+                <input
+                  type="radio"
+                  className="ai-radio"
+                  id="aiTwoHard"
+                  name="playerTwoType"
+                  value="3"
+                  checked={setup.playerTwoType == 3}
+                  onChange={handleChangeAI}
+                />
+              </label>
+            </div>
+          </fieldset>
+          <button
+            type="button"
+            className="start-game-button"
+            onClick={() => handleStartGame(setup)}
+          >
+            Start Game
+          </button>
+        </section>
+      ) : null}
+      {/* Back button */}
+      <div className="back-button-container">
+        {setup.gameType !== 0 && (
+          <button
+            type="button"
+            className="back-button"
+            onClick={() => setSetup(initialGameSetup)}
+          >
+            Back
+          </button>
+        )}
+      </div>
+    </main>
   );
 }
