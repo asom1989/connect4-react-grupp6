@@ -34,6 +34,7 @@ This is a modern React-based implementation of the classic Connect 4 game. Built
 
     ```bash
     npm run dev
+    npm run server
     ```
 
     The application will start on [http://localhost:5173/](http://localhost:5173/) by default.
