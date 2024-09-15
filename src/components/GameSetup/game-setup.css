@@ -1,3 +1,63 @@
+/* Game setup */
+.main-gamesetup {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+.setup-heading {
+  display: block;
+  text-align: center;
+  padding-block: 0.5rem;
+  font-size: 2.4rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgba(14, 13, 13, 0.795);
+  margin-block: 1rem;
+}
+
+.back-button-container {
+  width: 100%;
+  /* height: 15vh; */
+  display: flex;
+  flex-direction: row;
+  /* justify-content: flex-start; */
+  align-items: center;
+  padding-inline: 2rem;
+  padding-block: 2rem;
+}
+.back-button {
+  width: 15rem;
+  max-width: 50%;
+  /* padding: 0.8rem 0; */
+  padding-block: 0.25rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 1.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  /* box-shadow: 0px 4px 7px 1px #96a0dd; */
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
+  /* transition: all 0.3s linear; */
+}
+.start-game-button {
+  padding-block: 0.75rem;
+  padding-inline: 2.25rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 1.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
+  transition: all 0.3s linear;
+}
+
+
 /*--------- Start Game Options ----------------*/
 section.game-options {
   height: 80vh;
@@ -23,64 +83,103 @@ section.game-options .buttons-wrapper {
   gap: 2rem;
 }
 
-/*--------- End Game Options ----------------*/
-/*--------- Start Player Form ----------------*/
-.player-form {
-  height: 100vh;
+.player-section {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items:center;
+  padding-block: 2rem;
 }
-.player-form form {
-  height: 60vh;
+.player-heading {
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  font-size: 3rem;
+  color: rgba(14, 13, 13, 0.795);
+  text-align: center;
+}
+
+.ai-section {
+  /* height: 100vh; */
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-evenly;
+  align-items:center;
+  /* padding-block: 2rem; */
+  gap: 2rem;
+}
+.ai-fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
   gap: 1rem;
-}
-.palyer-form-input {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 1.5rem;
-}
-.palyer-form-input input {
-  font-size: 1.3rem;
-  padding: 0.8rem;
-  border: none;
-  outline: none;
-  border-radius: 1rem;
-  background-color: rgba(132, 165, 250, 1);
-  box-shadow: var(--outset-black-shadow);
-  transition: all 0.3s linear;
-}
-.palyer-form-input input::placeholder {
-  padding-left: 0.5rem;
-  font-size: 1.3rem;
-}
-
-.palyer-form-input input:focus {
-  box-shadow: inset 0px 0px 9px 5px #96a0dd;
-}
-
-.computer-level {
-  min-width: 20rem;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.8rem;
-  border-radius: 1rem;
-  background-color: var(--primary-color);
-  box-shadow: var(--outset-black-shadow);
-  transition: all 0.3s linear;
+  width: 80%;
+  max-width: 400px;
+  padding-block: 1rem;
+  background-color: rgba(132, 165, 250, 1);
+  border-radius: 1.5rem;
+  border: 0;
+}
+.ai-h3 {
+  font-size: 1rem;
+}
+.ai-p {
+  font-size: 0.9rem;
+}
+.ai-radio-container {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  & :nth-child(1){
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+  }
+  & :nth-child(2){
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+  }
+}
+.radio-label {
+  width: 50%;
+  background-color: rgba(83, 130, 252, 0.5);
+  padding-inline: 0.25rem;
+  padding-block: 0.25rem;
+  font-size: 1rem;
+  border: 0;
+  text-align: center;
+}
+.radio-label-active {
+  background-color: rgb(83, 130, 252);
+}
+.ai-radio {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: relative;
+  cursor: pointer;
+}
+.ai-label {
+  width: 80%;
 }
 
-.computer-level select {
-  width: 7rem;
-  font-size: 1rem;
-  padding: 0.2rem;
+.input {
+  width: 100%;
+  padding-inline: 1.25rem;
+  padding-block: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 1.5rem;
+  border: 0;
+}
+.submitButton {
+  width: 80%;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 1.5rem;
+  border: 0;
 }
 
 .player-form-btn-wrapper {
@@ -97,13 +196,7 @@ section.game-options .buttons-wrapper {
   .game-title {
     font-size: 4rem;
   }
-  .palyer-form-input input {
-    width: 25rem;
-  }
-  .computer-level {
-    font-size: 1.3rem;
-    width: 25rem;
-  }
+
 }
 
 @media screen and (orientation: landscape) and (max-width: 700px) {
@@ -112,35 +205,11 @@ section.game-options .buttons-wrapper {
     height: 15vh;
     padding: 2.5rem;
   }
-
+  
   section.game-options {
     height: 30vh;
   }
 
-  .player-form form {
-    height: 70vh;
-  }
-
-  .palyer-form-input input {
-    width: 20rem;
-    font-size: 1rem;
-    padding: 0.7rem;
-  }
-
-  .palyer-form-input input::placeholder {
-    font-size: 1rem;
-  }
-
-  .computer-level {
-    width: 20rem;
-    padding: 0.6rem;
-  }
-
-  .computer-level select {
-    width: 5rem;
-    font-size: 0.9rem;
-    padding: 0.2rem;
-  }
 
   .buttons-wrapper {
     gap: 1.5rem;

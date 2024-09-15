@@ -3,7 +3,7 @@ import Player from "../../classes/Player";
 import { Matrix } from "../../types/types";
 import "./board-ui.css";
 import HighScore from "../WinnerStats/Highscore";
-import getHighscore from "../../Utils/getHighscore";
+import getHighscore from "../../utils/getHighscore";
 
 interface BoardUIProps {
   matrix: Matrix;
