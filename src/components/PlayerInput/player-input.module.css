@@ -15,23 +15,41 @@
   height: 7vh;
   display: flex;
   flex-direction: row;
+  background: none;
+  border: 0;
+  outline: 0;
   
+  /* .tabButton {
+    font-size: 1rem;
+    flex: auto;
+    border: 0;
+    outline: 0;
+    background-color: rgba(178, 199, 252, 0.781);
+  } */
+
   & :nth-child(1){
+    border-bottom: 0;
+    outline: 0;
     border-top-left-radius: 1.5rem;
+  }
+  & :nth-child(2){
+    border-left: 1px solid grey;
     border-right: 1px solid grey;
   }
   & :nth-child(3){
+    border-bottom: 0;
     border-top-right-radius: 1.5rem;
-    border-left: 1px solid grey;
   } 
 }
 
 .tabButton {
   font-size: 1rem;
   flex: auto;
+  height: 100%;
   border: 0;
-  background-color: rgba(132, 165, 250, 0.7);
-  /* background-color: rgba(132, 165, 250, 0.2); */
+  outline: 0;
+  /* background-color: rgba(132, 165, 250, 1); */
+  background-color: rgba(178, 199, 252, 0.781);
 }
 .active {
   background-color: rgba(132, 165, 250, 1);
@@ -48,7 +66,8 @@
   width: 80vw;
   max-width: 400px;
   padding-block: 2rem;
-  background-color: rgba(132, 165, 250, 0.7);
+  /* background-color: rgba(132, 165, 250, 0.7); */
+  background-color: rgba(132, 165, 250, 1);
   /* border-radius: 1.5rem; */
   border-bottom-left-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
@@ -74,25 +93,30 @@
   font-size: 1.2rem;
   border-radius: 1.5rem;
   border: 0;
+  background-color: rgb(83, 130, 252);
 }
 
 .removeButton {
+  
   width: 60%;
   padding-inline: 0.5rem;
   padding-block: 0.5rem;
   font-size: 0.8rem;
   border-radius: 1.5rem;
   border: 0;
-  transform: translateY(-100%);
+  /* transform: translateY(-150%); */
+  transform: translateY(-120%);
 }
 
 .fileUpload {
   width: 80%;
-  height: 30vh;
+  /* aspect-ratio: 1 / 1; */
+  /* height: 30vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .fileLabel {
@@ -104,7 +128,8 @@
   border-radius: 50%;
   font-size: 1.2rem;
   border: 0;
-  background-color: rgba(255, 255, 255, 0.4);
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  background-color: rgb(105, 147, 252);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,4 +150,12 @@
   width: 80%;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
+}
+
+.error {
+  font-size: 0.7rem;
+  color: rgb(184, 8, 8);
+  text-align: center;
+  padding-bottom: 0.2rem;
+
 }

@@ -24,6 +24,8 @@ const CREDENTIALS_REGEX = /^[A-ZÅÄÖa-zåäö[0-9]{3,20}$/;
 const ERROR = "3-20 characters(a-ö, 0-9)";
 const MIN_LENGTH_ERROR = "Must be no less then 3 characters";
 const MAX_LENGT_ERROR = "Must be no more then 20 characters";
+const LOGIN_ERROR = "Login failed, try again";
+const REGISTER_ERROR = "Registration failed, try again";
 
 export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) => void}) {
   const [selectedTab, setSelectedTab] = useState<string>("Guest");
@@ -87,25 +89,23 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
       setUser(userData)
     }
     if (selectedTab === "Login") {
-      // Login and set player
       const result = await loginUser(user.name, user.password);
       if (result) {
         setPlayer({name: result.username, image: result.userProfileImage});
         setUser(userData);
       }
-    if (!result) {
-      // handle error
+      if (!result) {
+      setErrors((prevErrors) => ({...prevErrors, name: LOGIN_ERROR}))
     }
     }
     if (selectedTab === "Register") {
-      // Register user and set player
       const result = await registerUser(user.name, user.password, user.image);
       if (result) {
         setPlayer({name: result.username, image: result.userProfileImage });
         setUser(userData);
       }
       if (!result) {
-        //handle error
+        setErrors((prevErrors) => ({...prevErrors, name: REGISTER_ERROR}))
       }
     }
   }

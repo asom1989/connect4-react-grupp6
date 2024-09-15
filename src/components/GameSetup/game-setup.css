@@ -1,3 +1,65 @@
+/* Game setup */
+.main-gamesetup {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.setup-heading {
+  display: block;
+  text-align: center;
+  padding-block: 0.5rem;
+  font-size: 2.4rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgba(14, 13, 13, 0.795);
+  margin-block: 1rem;
+}
+
+.back-button-container {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-inline: 2rem;
+  padding-block: 2rem;
+}
+.back-button {
+  width: 15rem;
+  max-width: 50%;
+  /* padding: 0.8rem 0; */
+  padding-block: 0.25rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 1.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  /* box-shadow: 0px 4px 7px 1px #96a0dd; */
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
+  transition: all 0.3s linear;
+}
+.start-game-button {
+  padding-block: 0.75rem;
+  padding-inline: 2.25rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 1.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  /* box-shadow: 0px 4px 7px 1px #96a0dd; */
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
+  transition: all 0.3s linear;
+}
+
+
 /*--------- Start Game Options ----------------*/
 section.game-options {
   height: 60vh;
@@ -27,6 +89,8 @@ section.game-options .buttons-wrapper {
 }
 
 
+
+
 .player-section {
   height: 100vh;
   width: 100%;
@@ -44,6 +108,142 @@ section.game-options .buttons-wrapper {
   text-align: center;
 }
 
+
+
+
+.ai-section {
+  /* height: 100vh; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items:center;
+  /* padding-block: 2rem; */
+  /* gap: 2rem; */
+}
+/* .ai-form {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  gap: 2rem;
+  align-items: center;
+  width: 80vw;
+  max-width: 400px;
+  padding-block: 2rem;
+  background-color: rgba(132, 165, 250, 0.7);
+  border-radius: 1.5rem;
+} */
+/* .ai-fieldsets-section {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  gap: 4rem;
+} */
+.ai-fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  gap: 1rem;
+  /* height: 53vh; */
+  align-items: center;
+  width: 80%;
+  max-width: 400px;
+  padding-block: 1rem;
+  background-color: rgba(132, 165, 250, 1);
+  /* background-color: rgba(132, 165, 250, 0.7); */
+  border-radius: 1.5rem;
+  border: 0;
+  /* border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem; */
+}
+.ai-h3 {
+  font-size: 1rem;
+}
+.ai-p {
+  font-size: 0.9rem;
+}
+.ai-legend {
+
+}
+.ai-radio-container {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  & :nth-child(1){
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+  }
+  & :nth-child(2){
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+  }
+}
+.radio-label {
+  width: 50%;
+  background-color: rgba(83, 130, 252, 0.5);
+  
+  padding-inline: 0.25rem;
+  padding-block: 0.25rem;
+  font-size: 1rem;
+  border: 0;
+  text-align: center;
+}
+.radio-label-active {
+  /* background-color: white; */
+  background-color: rgb(83, 130, 252);
+}
+.ai-radio {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: relative;
+  cursor: pointer;
+}
+.ai-label {
+  width: 80%;
+}
+
+/* .ai-select{
+  width: 100%;
+  padding-inline: 1.25rem;
+  padding-block: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 1.5rem;
+  border: 0;
+  & :nth-child(1) {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+  }
+  & :nth-last-child(){
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+  }
+} */
+
+
+
+
+
+
+.input {
+  width: 100%;
+  padding-inline: 1.25rem;
+  padding-block: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 1.5rem;
+  border: 0;
+}
+.submitButton {
+  width: 80%;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 1.5rem;
+  border: 0;
+}
 
 /*--------- End Game Options ----------------*/
 /*--------- Start Player Form ----------------*/
