@@ -26,7 +26,8 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
       }));
     } else {
       const { name, value } = e.currentTarget;
-      setUser((prevUser) => ({ ...prevUser, [name]: value }));
+      const newUser = { ...user, [name]: value };
+      setUser(newUser);
     }
   };
 
@@ -37,7 +38,7 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
     setUser((prevUser) => ({ ...prevUser, image: null, imagePreview: null }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (selectedTab === "Guest") {
       setPlayer({ name: user.name, image: "" });
@@ -68,8 +69,15 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
         ))}
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
+        <p>
+          {selectedTab === "Guest"
+            ? "Play as guest"
+            : selectedTab === "Login"
+            ? "Login to existing player account"
+            : "Register new player account"}
+        </p>
         <label htmlFor="name" className={styles.label}>
-          <p className={styles.error}></p>
+          <p className={styles.error}>{errors.nameIsTouched && errors.name ? `${errors.name}`: ""}</p>
           <input
             type="text"
             name="name"
@@ -77,12 +85,13 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
             className={styles.input}
             value={user.name}
             onChange={handleChange}
+            onBlur={() => setErrors((prevErrors) => ({...prevErrors, nameIsTouched: true}))}
           />
         </label>
 
         {selectedTab !== "Guest" && (
           <label htmlFor="password" className={styles.label}>
-            <p className={styles.error}></p>
+            <p className={styles.error}>{errors.passwordIsTouched && errors.password ? `${errors.password}`: ""}</p>
             <input
               type="password"
               name="password"
@@ -90,26 +99,26 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
               className={styles.input}
               value={user.password}
               onChange={handleChange}
+              onBlur={() => setErrors((prevErrors) => ({...prevErrors, passwordIsTouched: true}))}
             />
           </label>
         )}
 
         {selectedTab === "Register" && (
           <div className={styles.fileUpload}>
-            <input
-              type="file"
-              name="userImage"
-              accept=".jpg, .jpeg, .png"
-              className={styles.fileInput}
-              id="userImage"
-              onChange={handleChange}
-            />
             {!user.image && (
               <label htmlFor="userImage" className={styles.fileLabel}>
-                Upload image
+                Upload profile image
+                <input
+                  type="file"
+                  name="userImage"
+                  accept=".jpg, .jpeg, .png, .gif"
+                  className={styles.fileInput}
+                  id="userImage"
+                  onChange={handleChange}
+                />
               </label>
             )}
-
             {user.imagePreview && (
               <>
                 <img
@@ -128,9 +137,6 @@ export default function PlayerInput({setPlayer} : {setPlayer: (player: Player) =
             )}
           </div>
         )}
-        <button type="submit" className={styles.button}>
-          {selectedTab === "Guest" ? "Next" : selectedTab}
-        </button>
       </form>
     </section>
   );
