@@ -3,7 +3,7 @@ import fileToBase64 from "./fileToBase64";
 export default async function register(
   username: string,
   password: string,
-  image: File | undefined
+  image: File | null
 ) {
   let encoded: string | undefined;
   if (image) {
@@ -18,7 +18,8 @@ export default async function register(
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
-    return true;
+    const data = response.json();
+    return data;
   } catch (error) {
     console.log(error);
     return false;
