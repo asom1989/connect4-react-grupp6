@@ -48,7 +48,7 @@ When you start the game, you can select the type of players and gameplay mode as
 
 You can select player types for each mode, and the game will guide you through making moves and display the game board interactively in your browser.
 
-![Game in Progress](/public/images/connect4-game-options.png)
+![Game Options](/public/images/connect4-game-options.png)
 
 ## Developers
 
