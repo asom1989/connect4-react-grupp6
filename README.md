@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+# Connect 4 (4-in-a-row) - React Version
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This is a modern React-based implementation of the classic Connect 4 game. Built with React and Vite, this version leverages Object-Oriented Programming (OOP) principles and TypeScript for a robust and interactive web-based experience. The game allows players to compete against each other or challenge computer-controlled opponents with varying levels of difficulty.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Connect 4 Game Screenshot](/public/images/connect4-game-in-progress.png)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Play against another human player or a computer-controlled opponent.
+- Choose between a "basic" bot and a "smart" bot with different difficulty levels.
+- Options to play between two human players, a human vs. a bot, or two bots.
+- Detects wins and draws, and allows for game replay.
+- View player statistics such as the highest number of wins and fewest moves.
+- Utilizes Object-Oriented Programming (OOP) and TypeScript for maintainability and type safety.
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Clone the Repository:**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+    ```bash
+    git clone https://github.com/asom1989/connect4-react-grupp6.git
+    cd connect4-react-grupp6
+    ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. **Install Dependencies:**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+    ```bash
+    npm install
+    ```
+
+3. **Run the Project:**
+
+    ```bash
+    npm run dev
+    ```
+
+    The application will start on [http://localhost:5173/](http://localhost:5173/) by default.
+
+## Usage
+
+When you start the game, you can select the type of players and gameplay mode as follows:
+
+- **1 vs 1**: Play against another human player. In this mode, two human players compete against each other.
+- **1 Player**: Play against a computer-controlled opponent. You can choose the difficulty level for the computer opponent (Easy or Hard) based on your preference.
+- **CPU vs CPU**: Watch two computer-controlled bots play against each other. You can set the difficulty level for each bot separately, allowing for various levels of challenge.
+
+You can select player types for each mode, and the game will guide you through making moves and display the game board interactively in your browser.
+
+![Game in Progress](/public/images/connect4-game-options.png)
+
+## Developers
+
+This game was developed by:
+- **Linus-Tropp**
+- **Hussein-Karim**
+- **Staffan-Bjork**
+- **Motasem-Zuhier**
