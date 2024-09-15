@@ -19,14 +19,6 @@
   border: 0;
   outline: 0;
   
-  /* .tabButton {
-    font-size: 1rem;
-    flex: auto;
-    border: 0;
-    outline: 0;
-    background-color: rgba(178, 199, 252, 0.781);
-  } */
-
   & :nth-child(1){
     border-bottom: 0;
     outline: 0;
@@ -48,7 +40,6 @@
   height: 100%;
   border: 0;
   outline: 0;
-  /* background-color: rgba(132, 165, 250, 1); */
   background-color: rgba(178, 199, 252, 0.781);
 }
 .active {
@@ -61,14 +52,11 @@
   flex-direction: column;
   justify-content:space-between;
   gap: 2rem;
-  /* height: 53vh; */
   align-items: center;
   width: 80vw;
   max-width: 400px;
   padding-block: 2rem;
-  /* background-color: rgba(132, 165, 250, 0.7); */
   background-color: rgba(132, 165, 250, 1);
-  /* border-radius: 1.5rem; */
   border-bottom-left-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
 }
@@ -97,21 +85,17 @@
 }
 
 .removeButton {
-  
   width: 60%;
   padding-inline: 0.5rem;
   padding-block: 0.5rem;
   font-size: 0.8rem;
   border-radius: 1.5rem;
   border: 0;
-  /* transform: translateY(-150%); */
   transform: translateY(-120%);
 }
 
 .fileUpload {
   width: 80%;
-  /* aspect-ratio: 1 / 1; */
-  /* height: 30vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -120,7 +104,6 @@
 }
 
 .fileLabel {
-  
   display: inline-block;
   position: relative;
   width: 80%;
@@ -128,7 +111,6 @@
   border-radius: 50%;
   font-size: 1.2rem;
   border: 0;
-  /* background-color: rgba(255, 255, 255, 0.4); */
   background-color: rgb(105, 147, 252);
   display: flex;
   align-items: center;
@@ -137,7 +119,6 @@
   padding-inline: 0.5rem;
   padding-block: 0.5rem;
 }
-
 
 .fileInput {
   opacity: 0;
@@ -153,7 +134,7 @@
 }
 
 .error {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: rgb(184, 8, 8);
   text-align: center;
   padding-bottom: 0.2rem;
