@@ -21,7 +21,7 @@ This is a modern React-based implementation of the classic Connect 4 game. Built
 
     ```bash
     git clone https://github.com/asom1989/connect4-react-grupp6.git
-    cd connect4-react-grupp6
+    cd connect4-grupp6
     ```
 
 2. **Install Dependencies:**
