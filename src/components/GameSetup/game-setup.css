@@ -7,7 +7,6 @@
   justify-content: space-between;
   overflow-y: auto;
 }
-
 .setup-heading {
   display: block;
   text-align: center;
@@ -20,10 +19,10 @@
 
 .back-button-container {
   width: 100%;
-  height: 15vh;
+  /* height: 15vh; */
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
   align-items: center;
   padding-inline: 2rem;
   padding-block: 2rem;
@@ -42,7 +41,7 @@
   cursor: pointer;
   /* box-shadow: 0px 4px 7px 1px #96a0dd; */
   box-shadow: 5px 5px 5px rgb(0, 0, 0);
-  transition: all 0.3s linear;
+  /* transition: all 0.3s linear; */
 }
 .start-game-button {
   padding-block: 0.75rem;
@@ -54,7 +53,6 @@
   font-weight: bold;
   font-size: 1.2rem;
   cursor: pointer;
-  /* box-shadow: 0px 4px 7px 1px #96a0dd; */
   box-shadow: 5px 5px 5px rgb(0, 0, 0);
   transition: all 0.3s linear;
 }
@@ -88,11 +86,7 @@ section.game-options .buttons-wrapper {
   gap: 2rem;
 }
 
-
-
-
 .player-section {
-  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -108,9 +102,6 @@ section.game-options .buttons-wrapper {
   text-align: center;
 }
 
-
-
-
 .ai-section {
   /* height: 100vh; */
   width: 100%;
@@ -120,53 +111,26 @@ section.game-options .buttons-wrapper {
   justify-content: space-evenly;
   align-items:center;
   /* padding-block: 2rem; */
-  /* gap: 2rem; */
-}
-/* .ai-form {
-  display: flex;
-  flex-direction: column;
-  justify-content:space-between;
   gap: 2rem;
-  align-items: center;
-  width: 80vw;
-  max-width: 400px;
-  padding-block: 2rem;
-  background-color: rgba(132, 165, 250, 0.7);
-  border-radius: 1.5rem;
-} */
-/* .ai-fieldsets-section {
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
-  align-items: center;
-  gap: 4rem;
-} */
+}
 .ai-fieldset {
   display: flex;
   flex-direction: column;
   justify-content:space-between;
   gap: 1rem;
-  /* height: 53vh; */
   align-items: center;
   width: 80%;
   max-width: 400px;
   padding-block: 1rem;
   background-color: rgba(132, 165, 250, 1);
-  /* background-color: rgba(132, 165, 250, 0.7); */
   border-radius: 1.5rem;
   border: 0;
-  /* border-bottom-left-radius: 1.5rem;
-  border-bottom-right-radius: 1.5rem; */
 }
 .ai-h3 {
   font-size: 1rem;
 }
 .ai-p {
   font-size: 0.9rem;
-}
-.ai-legend {
-
 }
 .ai-radio-container {
   width: 80%;
@@ -184,7 +148,6 @@ section.game-options .buttons-wrapper {
 .radio-label {
   width: 50%;
   background-color: rgba(83, 130, 252, 0.5);
-  
   padding-inline: 0.25rem;
   padding-block: 0.25rem;
   font-size: 1rem;
@@ -192,7 +155,6 @@ section.game-options .buttons-wrapper {
   text-align: center;
 }
 .radio-label-active {
-  /* background-color: white; */
   background-color: rgb(83, 130, 252);
 }
 .ai-radio {
@@ -205,28 +167,6 @@ section.game-options .buttons-wrapper {
 .ai-label {
   width: 80%;
 }
-
-/* .ai-select{
-  width: 100%;
-  padding-inline: 1.25rem;
-  padding-block: 0.5rem;
-  font-size: 1.2rem;
-  border-radius: 1.5rem;
-  border: 0;
-  & :nth-child(1) {
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
-  }
-  & :nth-last-child(){
-    border-bottom-left-radius: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
-  }
-} */
-
-
-
-
-
 
 .input {
   width: 100%;
@@ -245,75 +185,13 @@ section.game-options .buttons-wrapper {
   border: 0;
 }
 
-/*--------- End Game Options ----------------*/
-/*--------- Start Player Form ----------------*/
-.player-form form {
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-.palyer-form-input {
-  height: 45%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 1rem 0;
-}
-.palyer-form-input input {
-  width: 18rem;
-  font-size: 1.3rem;
-  padding: 1rem;
-  border: none;
-  border-radius: 1.5rem;
-  outline: none;
-  background-color: rgba(132, 165, 250, 1);
-  box-shadow: 0px 4px 7px 1px #96a0dd;
-  transition: all 0.3s linear;
-}
-.palyer-form-input input::placeholder {
-  padding-left: 0.5rem;
-  font-size: 1.3rem;
-}
 
-.palyer-form-input input:focus {
-  box-shadow: inset 0px 0px 9px 5px #96a0dd;
-}
-
-.computer-level {
-  width: 18rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--primary-color);
-
-  padding: 0.9rem;
-  border-radius: 1.5rem;
-  background-color: rgba(132, 165, 250, 1);
-  box-shadow: 0px 4px 7px 1px #96a0dd;
-  transition: all 0.3s linear;
-}
-
-.computer-level select {
-  width: 7rem;
-  font-size: 1rem;
-  padding: 0.2rem;
-}
-
-/*--------- End Player Form ----------------*/
 
 @media screen and (min-width: 768px) {
   .game-title {
     font-size: 4rem;
   }
-  .palyer-form-input input {
-    width: 25rem;
-  }
-  .computer-level {
-    font-size: 1.3rem;
-    width: 25rem;
-  }
+
 }
 
 
@@ -324,45 +202,9 @@ section.game-options .buttons-wrapper {
     height: 15vh; 
     padding: 2.5rem;
   }
-
   
   section.game-options {
     height: 30vh; 
-  }
-
-  
-  .player-form form {
-    height: 80vh; 
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  .palyer-form-input {
-    height: 40%; 
-    padding: 0.5rem 0; 
-  }
-
-  .palyer-form-input input {
-    width: 15rem; 
-    font-size: 1rem; 
-    padding: 0.8rem; 
-    border-radius: 1rem; 
-  }
-
-  .palyer-form-input input::placeholder {
-    font-size: 1rem; 
-  }
-
-  .computer-level {
-    width: 20rem; 
-    font-size: 1rem; 
-    padding: 0.7rem; 
-  }
-
-  .computer-level select {
-    width: 5rem; 
-    font-size: 0.9rem; 
-    padding: 0.2rem; 
   }
 
   .buttons-wrapper {
